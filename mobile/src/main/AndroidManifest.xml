@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.zeyomir.extremesportssos">
+
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:name=".SosApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_main_icona"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".view.welcome.WelcomeActivity"
+            android:theme="@style/AppTheme.BrandedLaunch" />
+        <activity android:name=".view.contact.ConfigureContactActivity" />
+        <activity android:name=".view.message.ConfigureMessageActivity" />
+        <activity android:name=".view.main.MainActivity" />
+        <activity android:name=".view.map.MapActivity" />
+        <activity android:name=".view.alarm.AlarmActivity" />
+        <activity android:name=".view.send.SendMessageActivity" />
+
+        <activity-alias
+            android:name=".Launcher"
+            android:label="@string/app_name"
+            android:targetActivity=".view.welcome.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+    </application>
+
+</manifest>
