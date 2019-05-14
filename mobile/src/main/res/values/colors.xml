@@ -2,5 +2,22 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">@android:color/white</color>
+
+    <color name="colorPrimaryVariant">#3E68C1</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <color name="colorSecondary">#3F51B5</color>
+    <color name="colorSecondaryVariant">#3D7741</color>
+    <color name="colorOnSecondary">@color/colorOnPrimary</color>
+
+    <color name="colorError">@android:color/holo_red_light</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#212121</color>
+
+    <color name="colorBackground">#F6F6F6</color>
+    <color name="colorOnBackground">#212121</color>
 </resources>

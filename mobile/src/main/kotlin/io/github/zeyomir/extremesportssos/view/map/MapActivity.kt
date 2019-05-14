@@ -7,7 +7,7 @@ import android.content.IntentSender
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -40,7 +40,9 @@ class MapActivity : AppCompatActivity(), MapView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
         presenter.bind(this)
+       // pulsator.start()
     }
+
 
     override fun onStart() {
         super.onStart()

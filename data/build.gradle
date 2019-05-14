@@ -16,7 +16,7 @@ android {
         targetSdkVersion androidTargetSdkVersion
         versionCode androidVersionCode
         versionName androidVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     sourceSets {

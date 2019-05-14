@@ -2,7 +2,7 @@ package io.github.zeyomir.extremesportssos.view.alarm
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import io.github.zeyomir.extremesportssos.R
 import io.github.zeyomir.extremesportssos.presenter.alarm.AlarmPresenter

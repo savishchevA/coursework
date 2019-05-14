@@ -2,7 +2,7 @@ package io.github.zeyomir.extremesportssos.view.contact
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import dagger.android.AndroidInjection
 import io.github.zeyomir.extremesportssos.R
@@ -17,6 +17,7 @@ import android.provider.ContactsContract
 import android.content.Intent
 import android.database.Cursor
 import io.github.zeyomir.extremesportssos.view.message.ConfigureMessageActivity
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class ConfigureContactActivity : AppCompatActivity(), ConfigureContactView {
@@ -37,7 +38,7 @@ class ConfigureContactActivity : AppCompatActivity(), ConfigureContactView {
             startActivityForResult(i, SELECT_PHONE_NUMBER)
         }
         next.setOnClickListener {
-            presenter.saveData(info.text.toString(), name.text.toString())
+            presenter.saveData(info.editText?.text.toString(), name.editText?.text.toString())
         }
     }
 
@@ -59,8 +60,8 @@ class ConfigureContactActivity : AppCompatActivity(), ConfigureContactView {
         if (cursor.moveToFirst()) {
             val contactNumber: String = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
             val contactName: String = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Identity.DISPLAY_NAME))
-            info.setText(contactNumber)
-            name.setText(contactName)
+            info.editText?.setText(contactNumber)
+            name.editText?.setText(contactName)
         }
 
         cursor.close()
@@ -72,8 +73,8 @@ class ConfigureContactActivity : AppCompatActivity(), ConfigureContactView {
     }
 
     override fun setData(contactInfo: String?, contactName: String?) {
-        info.setText(contactInfo)
-        name.setText(contactName)
+        info.editText?.setText(contactInfo)
+        name.editText?.setText(contactName)
     }
 
     override fun showContactInfoEmptyError() {

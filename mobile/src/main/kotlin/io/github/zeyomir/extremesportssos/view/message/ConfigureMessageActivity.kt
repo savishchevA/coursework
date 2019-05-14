@@ -2,7 +2,7 @@ package io.github.zeyomir.extremesportssos.view.message
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import dagger.android.AndroidInjection
 import io.github.zeyomir.extremesportssos.R
@@ -28,7 +28,7 @@ class ConfigureMessageActivity : AppCompatActivity(), ConfigureMessageView {
         presenter.bind(this)
         presenter.fetchMessage()
         next.setOnClickListener {
-            presenter.saveData(message.text.toString())
+            presenter.saveData(message.editText?.text.toString())
         }
     }
 
@@ -38,11 +38,11 @@ class ConfigureMessageActivity : AppCompatActivity(), ConfigureMessageView {
     }
 
     override fun setData(message: String?) {
-        this.message.setText(if (message.isNullOrEmpty()) defaultMessage else message)
+        this.message.editText?.setText(if (message.isNullOrEmpty()) defaultMessage else message)
     }
 
     override fun showMessageEmptyError() {
-        message.setText(R.string.configure_message_default)
+        message.editText?.setText(R.string.configure_message_default)
         Toast.makeText(this, R.string.configure_message_validation_error, Toast.LENGTH_SHORT).show()
     }
 

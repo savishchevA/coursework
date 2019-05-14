@@ -2,7 +2,7 @@ package io.github.zeyomir.extremesportssos.view.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.telephony.SmsManager
 import android.view.View
 import dagger.android.AndroidInjection
@@ -21,7 +21,6 @@ class WelcomeActivity : AppCompatActivity(), WelcomeView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         presenter.bind(this)
