@@ -2,6 +2,7 @@ package io.github.zeyomir.extremesportssos.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import dagger.android.AndroidInjection
@@ -34,12 +35,18 @@ class MainActivity : AppCompatActivity(), MainView {
             val i = Intent(this, ConfigureContactActivity::class.java)
             startActivity(i)
         }
+        setupWindowAnimations()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.unbind()
     }
+    private fun setupWindowAnimations() {
+        val slide = TransitionInflater.from(this).inflateTransition(R.transition.activity_slide)
+        window.exitTransition = slide
+    }
+
 
     override fun setCurrentConfig(contact: SosContact, message: String) {
         contact_info.text = getString(R.string.main_contact)

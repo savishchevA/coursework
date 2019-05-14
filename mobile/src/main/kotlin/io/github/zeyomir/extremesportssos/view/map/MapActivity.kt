@@ -115,6 +115,8 @@ class MapActivity : AppCompatActivity(), MapView {
         map.visibility = View.VISIBLE
 
         window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+
+        rippleBg.startRippleAnimation()
         help.setOnClickListener { presenter.helpNeeded() }
         finish.setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
