@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.github.zeyomir.extremesportssos.R
+import kotlinx.android.synthetic.main.choose_time_dialog.*
+import org.greenrobot.eventbus.EventBus
 
 class ChooseTimeDialogFragment: BottomSheetDialogFragment() {
     companion object {
-        fun newInstance(screenType: String): ChooseTimeDialogFragment {
-            return ChooseTimeDialogFragment().apply {
-                arguments = bundleOf("screenType" to screenType)
-            }
-        }
+        fun newInstance() = ChooseTimeDialogFragment()
     }
 
     private val screenType by lazy { arguments?.getString("screenType") }
@@ -27,12 +25,28 @@ class ChooseTimeDialogFragment: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-       /* adapter = BottomSheetTimeAdapter(currentList, screenType ?: "")
+        val timeList = arrayListOf(1,5,10,15,20)
+        adapter = BottomSheetTimeAdapter(timeList)
         adapter.listener = this::onEventClickListener
 
         recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)*/
+        recyclerView.setHasFixedSize(true)
+
+    }
+
+    fun onEventClickListener(event: BottomSheetFilterViewEvent) {
+        when (event) {
+            is ClickEvent -> {
+                dismiss()
+                EventBus.getDefault().post(EventCode(event.position))
+            }
+        }
 
     }
 
 }
+sealed class BottomSheetFilterViewEvent
+
+data class ClickEvent(val position: Int) : BottomSheetFilterViewEvent()
+
+data class EventCode(val code: Int)

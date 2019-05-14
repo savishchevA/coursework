@@ -100,7 +100,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
 
     implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
-
+    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation "androidx.recyclerview:recyclerview:1.0.0"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"

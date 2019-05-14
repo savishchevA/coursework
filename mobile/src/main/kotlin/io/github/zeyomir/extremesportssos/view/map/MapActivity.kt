@@ -21,8 +21,12 @@ import io.github.zeyomir.extremesportssos.R
 import io.github.zeyomir.extremesportssos.presenter.map.MapPresenter
 import io.github.zeyomir.extremesportssos.view.alarm.AlarmActivity
 import io.github.zeyomir.extremesportssos.view.main.MainActivity
+import io.github.zeyomir.extremesportssos.view.map.dialog.EventCode
 import io.github.zeyomir.extremesportssos.view.send.SendMessageActivity
 import kotlinx.android.synthetic.main.activity_map.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
@@ -40,6 +44,7 @@ class MapActivity : AppCompatActivity(), MapView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
         presenter.bind(this)
+        EventBus.getDefault().register(this)
        // pulsator.start()
     }
 
@@ -69,6 +74,7 @@ class MapActivity : AppCompatActivity(), MapView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.unbind()
+        EventBus.getDefault().unregister(this)
     }
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS)
@@ -136,5 +142,14 @@ class MapActivity : AppCompatActivity(), MapView {
         val i = Intent(this, SendMessageActivity::class.java)
         startActivity(i)
         finish()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun onEvent(event: EventCode) {
+
+        when (event.code) {
+
+        }
+
     }
 }

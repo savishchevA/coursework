@@ -3,16 +3,17 @@ package io.github.zeyomir.extremesportssos.view.map.dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_choose_time.*
 import io.github.zeyomir.extremesportssos.R
 
-
+typealias BottomSheetViewListener = (BottomSheetFilterViewEvent) -> Unit
 class BottomSheetTimeAdapter(
         private val items: ArrayList<Int>
 ): RecyclerView.Adapter<BottomSheetTimeAdapter.ItemViewHolder>() {
 
-
+    var listener: BottomSheetViewListener = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(LayoutInflater
@@ -24,14 +25,17 @@ class BottomSheetTimeAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(items[position])
+        holder.containerView.setOnClickListener {
+            listener(ClickEvent(items[position]))
+        }
 
     }
 
-    class ItemViewHolder(containerView: View) : RecyclerView.ViewHolder(containerView){
+    class ItemViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView){
 
 
         fun bind(item: Int) {
-            //tvTimeSelection
+         containerView.findViewById<TextView>(R.id.tvTimeSelection).text = item.toString()
         }
     }
 

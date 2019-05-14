@@ -32,6 +32,19 @@ internal class PreferencesService @Inject constructor(private val preferences: S
         Timber.v("Sos contact saved (number: %s, name: %s)", contact.contactInfo, contact.contactName)
     }
 
+
+    override fun saveCurrentTime(time: Int) {
+        val editor = preferences.edit()
+        editor.putInt(CURRENT_TIME, time)
+        editor.apply()
+    }
+
+    override fun getCurrentTime(): Int {
+        val time = preferences.getInt(CURRENT_TIME, 4)
+        return time
+    }
+
+
     override fun saveSosMessage(message: String) {
         val editor = preferences.edit()
         editor.putString(MESSAGE_HELP_KEY, message)
@@ -44,5 +57,6 @@ internal class PreferencesService @Inject constructor(private val preferences: S
         private const val CONTACT_INFO_KEY = """$PREFIX.contact.info"""
         private const val CONTACT_NAME_KEY = """$PREFIX.contact.name"""
         private const val MESSAGE_HELP_KEY = """$PREFIX.message.help"""
+        private const val CURRENT_TIME = "CURRENT_TIME"
     }
 }

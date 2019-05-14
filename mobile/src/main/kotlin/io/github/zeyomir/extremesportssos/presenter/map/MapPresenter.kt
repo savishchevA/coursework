@@ -8,4 +8,6 @@ interface MapPresenter : BasePresenerInterface<MapView> {
     fun permissionsMissing()
     fun startMonitoringLocation()
     fun helpNeeded()
+
+    fun saveCurrentTime(time: Int)
 }

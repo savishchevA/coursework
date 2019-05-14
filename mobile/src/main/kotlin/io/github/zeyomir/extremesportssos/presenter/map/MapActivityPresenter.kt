@@ -1,5 +1,6 @@
 package io.github.zeyomir.extremesportssos.presenter.map
 
+import android.content.SharedPreferences
 import io.github.zeyomir.extremesportssos.domain.usecase.AlertOnUserIsStillUseCase
 import io.github.zeyomir.extremesportssos.presenter.BasePresenter
 import io.github.zeyomir.extremesportssos.view.map.MapView
@@ -8,7 +9,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class MapActivityPresenter @Inject constructor(private val alertOnUserIsStill: AlertOnUserIsStillUseCase) : BasePresenter<MapView>(), MapPresenter {
+class MapActivityPresenter @Inject constructor(
+        private val alertOnUserIsStill: AlertOnUserIsStillUseCase
+                                               ) : BasePresenter<MapView>(), MapPresenter {
 
     override fun permissionsMissing() {
         view?.displayPermissionsMessage()
@@ -32,5 +35,9 @@ class MapActivityPresenter @Inject constructor(private val alertOnUserIsStill: A
 
     override fun helpNeeded() {
         view?.goToSendMessageScreen()
+    }
+
+    override fun saveCurrentTime(time: Int) {
+
     }
 }

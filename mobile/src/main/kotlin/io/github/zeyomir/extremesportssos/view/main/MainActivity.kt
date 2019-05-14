@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.transition.TransitionInflater
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Toast
 import dagger.android.AndroidInjection
 import io.github.zeyomir.extremesportssos.R
 import io.github.zeyomir.extremesportssos.domain.entity.SosContact
 import io.github.zeyomir.extremesportssos.presenter.main.MainPresenter
 import io.github.zeyomir.extremesportssos.view.contact.ConfigureContactActivity
 import io.github.zeyomir.extremesportssos.view.map.MapActivity
+import io.github.zeyomir.extremesportssos.view.map.dialog.ChooseTimeDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -20,6 +19,8 @@ class MainActivity : AppCompatActivity(), MainView {
 
     @Inject
     lateinit var presenter: MainPresenter
+
+    private lateinit var dialog: ChooseTimeDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), MainView {
         start.setOnClickListener {
             val i = Intent(this, MapActivity::class.java)
             startActivity(i)
+            //openChooseTimeDialog()
         }
         config.setOnClickListener {
             val i = Intent(this, ConfigureContactActivity::class.java)
@@ -47,6 +49,11 @@ class MainActivity : AppCompatActivity(), MainView {
         window.exitTransition = slide
     }
 
+    private fun openChooseTimeDialog() {
+        dialog = ChooseTimeDialogFragment.newInstance()
+        dialog.show(supportFragmentManager,
+                "add_photo_dialog_fragment")
+    }
 
     override fun setCurrentConfig(contact: SosContact, message: String) {
         contact_info.text = getString(R.string.main_contact)
