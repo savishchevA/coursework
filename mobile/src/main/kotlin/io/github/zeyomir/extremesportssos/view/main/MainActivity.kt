@@ -11,7 +11,11 @@ import io.github.zeyomir.extremesportssos.presenter.main.MainPresenter
 import io.github.zeyomir.extremesportssos.view.contact.ConfigureContactActivity
 import io.github.zeyomir.extremesportssos.view.map.MapActivity
 import io.github.zeyomir.extremesportssos.view.map.dialog.ChooseTimeDialogFragment
+import io.github.zeyomir.extremesportssos.view.map.dialog.EventCode
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
@@ -29,24 +33,36 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter.bind(this)
         presenter.fetchData()
         start.setOnClickListener {
-            val i = Intent(this, MapActivity::class.java)
-            startActivity(i)
-            //openChooseTimeDialog()
+
+            openChooseTimeDialog()
         }
         config.setOnClickListener {
             val i = Intent(this, ConfigureContactActivity::class.java)
             startActivity(i)
         }
         setupWindowAnimations()
+
+        EventBus.getDefault().register(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.unbind()
+        EventBus.getDefault().unregister(this)
     }
+
     private fun setupWindowAnimations() {
         val slide = TransitionInflater.from(this).inflateTransition(R.transition.activity_slide)
         window.exitTransition = slide
+    }
+
+    override fun navigateToMap() {
+          val i = Intent(this, MapActivity::class.java)
+             startActivity(i)
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun onEvent(event: EventCode) {
+            presenter.saveTime(event.code)
     }
 
     private fun openChooseTimeDialog() {

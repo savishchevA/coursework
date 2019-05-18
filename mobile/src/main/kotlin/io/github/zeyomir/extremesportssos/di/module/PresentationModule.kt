@@ -43,8 +43,8 @@ class PresentationModule {
 
     @Provides
     @Singleton
-    fun provideMainPresenter(fetchContact: FetchContactUseCase, fetchMessage: FetchMessageUseCase): MainPresenter {
-        return MainActivityPresenter(fetchContact, fetchMessage)
+    fun provideMainPresenter(fetchContact: FetchContactUseCase, fetchMessage: FetchMessageUseCase, fetchTime: FetchTimeUseCase): MainPresenter {
+        return MainActivityPresenter(fetchContact, fetchMessage, fetchTime)
     }
 
     @Provides
@@ -64,4 +64,6 @@ class PresentationModule {
     fun provideSendMessagePresenter(sendSosMessage: SendSosMessageUseCase): SendMessagePresenter {
         return SendMessageActivityPresenter(sendSosMessage)
     }
+
+
 }

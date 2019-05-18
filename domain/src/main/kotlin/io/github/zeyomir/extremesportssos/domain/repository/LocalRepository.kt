@@ -11,4 +11,7 @@ interface LocalRepository {
 
     fun fetchMessage(): String?
     fun saveMessage(message: String)
+
+    fun saveTime(time: Int)
+    fun getTime(): Int?
 }

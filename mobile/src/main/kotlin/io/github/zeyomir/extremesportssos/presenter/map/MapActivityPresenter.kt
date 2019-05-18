@@ -1,6 +1,5 @@
 package io.github.zeyomir.extremesportssos.presenter.map
 
-import android.content.SharedPreferences
 import io.github.zeyomir.extremesportssos.domain.usecase.AlertOnUserIsStillUseCase
 import io.github.zeyomir.extremesportssos.presenter.BasePresenter
 import io.github.zeyomir.extremesportssos.view.map.MapView

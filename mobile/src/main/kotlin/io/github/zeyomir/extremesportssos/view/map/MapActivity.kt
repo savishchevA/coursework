@@ -2,16 +2,19 @@ package io.github.zeyomir.extremesportssos.view.map
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -21,12 +24,8 @@ import io.github.zeyomir.extremesportssos.R
 import io.github.zeyomir.extremesportssos.presenter.map.MapPresenter
 import io.github.zeyomir.extremesportssos.view.alarm.AlarmActivity
 import io.github.zeyomir.extremesportssos.view.main.MainActivity
-import io.github.zeyomir.extremesportssos.view.map.dialog.EventCode
 import io.github.zeyomir.extremesportssos.view.send.SendMessageActivity
 import kotlinx.android.synthetic.main.activity_map.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
@@ -37,17 +36,40 @@ import javax.inject.Inject
 class MapActivity : AppCompatActivity(), MapView {
     @Inject
     lateinit var presenter: MapPresenter
+
     private val REQUEST_CHECK_GPS_SETTINGS: Int = 1
+
+    private lateinit var shakeDetector: ShakeDetector
+
+    private lateinit var mSensorManager: SensorManager
+    private lateinit var mAccelerometer: Sensor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
         presenter.bind(this)
-        EventBus.getDefault().register(this)
-       // pulsator.start()
+
+        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        shakeDetector = ShakeDetector()
+        shakeDetector.setOnShakeListener {
+            presenter.helpNeeded()
+        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mSensorManager.registerListener(shakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mSensorManager.unregisterListener(shakeDetector)
+    }
 
     override fun onStart() {
         super.onStart()
@@ -74,7 +96,6 @@ class MapActivity : AppCompatActivity(), MapView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.unbind()
-        EventBus.getDefault().unregister(this)
     }
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS)
@@ -142,14 +163,5 @@ class MapActivity : AppCompatActivity(), MapView {
         val i = Intent(this, SendMessageActivity::class.java)
         startActivity(i)
         finish()
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    fun onEvent(event: EventCode) {
-
-        when (event.code) {
-
-        }
-
     }
 }

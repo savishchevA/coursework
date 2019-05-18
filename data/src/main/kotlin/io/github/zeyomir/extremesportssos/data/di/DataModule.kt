@@ -26,12 +26,14 @@ import io.github.zeyomir.extremesportssos.domain.driver.SoundDriver
 import io.github.zeyomir.extremesportssos.domain.entity.TimePeriod
 import io.github.zeyomir.extremesportssos.domain.repository.LocalRepository
 import io.github.zeyomir.extremesportssos.domain.repository.LocationRepository
+import io.github.zeyomir.extremesportssos.domain.usecase.FetchTimeUseCase
 import io.nlopez.smartlocation.SmartLocation
 import io.nlopez.smartlocation.activity.config.ActivityParams
 import io.nlopez.smartlocation.location.config.LocationAccuracy
 import io.nlopez.smartlocation.location.config.LocationParams
 import io.nlopez.smartlocation.rx.ObservableFactory
 import io.reactivex.Observable
+import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -90,9 +92,9 @@ class DataModule {
 
     @Provides
     @Singleton
-    internal fun provideLocationRepository(activityDetectionService: ActivityDetectionService, @Named("timeToTellStillness") timeToTellStillness: TimePeriod, locationService: LocationService): LocationRepository = SensorsRepository(activityDetectionService, timeToTellStillness, locationService)
-
-
+    internal fun provideLocationRepository(activityDetectionService: ActivityDetectionService, @Named("timeToTellStillness") timeToTellStillness: TimePeriod,
+                                           locationService: LocationService, localRepository: LocalRepository): LocationRepository =
+            SensorsRepository(activityDetectionService, timeToTellStillness,  locationService, localRepository)
 
 
     @Provides
@@ -102,8 +104,6 @@ class DataModule {
     @Provides
     @Singleton
     internal fun provideSoundManager(soundService: SoundService, @Named("soundId") soundId: Int): SoundDriver = SoundManager(soundService, soundId)
-
-
 
     @Provides
     @Singleton

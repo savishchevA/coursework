@@ -6,4 +6,5 @@ import io.github.zeyomir.extremesportssos.view.main.MainView
 
 interface MainPresenter: BasePresenerInterface<MainView> {
     fun fetchData()
+    fun saveTime(time: Int)
 }

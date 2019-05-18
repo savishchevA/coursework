@@ -17,4 +17,8 @@ internal class PersistentRepository @Inject constructor(private val keyValueServ
     override fun fetchMessage() = keyValueService.getSosMessage()
 
     override fun saveMessage(message: String) = keyValueService.saveSosMessage(message)
+
+    override fun getTime(): Int? = keyValueService.getCurrentTime()
+
+    override fun saveTime(time: Int) = keyValueService.saveCurrentTime(time)
 }
