@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/mainFragment"
+        android:icon="@drawable/ic_accessibility_black_24dp"
+        android:title="Главный" />
+
+    <!--  <item
+          android:id="@id/saleStaticFragment"
+          android:icon="@drawable/ic_payment"
+          android:title="@string/sale" />
+
+      <item
+          android:id="@id/saleDynamicQRFragment"
+          android:icon="@drawable/ic_payment"
+          android:title="@string/sale_dyn" />-->
+
+    <item
+        android:id="@id/configureContactFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Настройки" />
+
+</menu>

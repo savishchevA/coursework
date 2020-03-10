@@ -35,7 +35,11 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    testImplementation "junit:junit:$jUnitVersion"
+    //coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
+
+      testImplementation "junit:junit:$jUnitVersion"
     testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
     testImplementation "com.nhaarman:mockito-kotlin:$kotlinMockitoVersion"
     testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"

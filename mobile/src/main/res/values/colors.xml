@@ -20,4 +20,8 @@
 
     <color name="colorBackground">#F6F6F6</color>
     <color name="colorOnBackground">#212121</color>
+
+    <color name="startColor">#CB356B</color>
+    <color name="endColor">#BD3F32</color>
+    <color name="googleColor">#E42713</color>
 </resources>

@@ -2,4 +2,23 @@
     <string name="app_name">Extreme Sports SOS</string>
     <string name="general_next_screen">Hooray! next screen!</string>
     <string name="or">or</string>
+    <string name="enter_email_hint">Enter email</string>
+    <string name="enter_password_hint">Enter password</string>
+    <string name="continue_title">Continue</string>
+    <string name="create_account_title">Create account</string>
+    <string name="or_sing_in_with_title">Or sing in with</string>
+    <string name="already_have_login_title">Already have an account?</string>
+    <string name="forgot_password_title">Forgot password?\nEnter your email</string>
+    <string name="reset_password">Reset password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="add_reg_contact_title">Enter the details of the contact to whom the message will be sent</string>
+    <string name="message">Message</string>
+    <string name="contact_name">Contact name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="login">Login</string>
+    <string name="registration">Registration</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="address">Address</string>
 </resources>

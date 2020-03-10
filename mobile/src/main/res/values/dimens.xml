@@ -12,6 +12,7 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_24">24dp</dimen>
     <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_42">42dp</dimen>
     <dimen name="margin_64">64dp</dimen>
 
@@ -23,5 +24,11 @@
     <dimen name="text_32">32sp</dimen>
     <dimen name="text_42">42sp</dimen>
 
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="card_stroke_width">1dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+
+    <dimen name="button_auth_radius">16dp</dimen>
+    <dimen name="button_auth_height">56dp</dimen>
 
 </resources>
