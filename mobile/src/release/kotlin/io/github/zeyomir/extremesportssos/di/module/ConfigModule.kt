@@ -8,7 +8,7 @@ import io.github.zeyomir.extremesportssos.domain.entity.TimePeriod
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
-import javax.inject.Singleton
+
 
 
 @Module
@@ -30,10 +30,10 @@ class ConfigModule {
     fun provideTimeToWaitBeforeSendingMessage() = 60L
 
     @Provides
-    @Singleton
+
     fun provideTimberTree(): Timber.Tree = CrashlyticsTree()
 
     @Provides
-    @Singleton
+
     fun provideCrashlytics() = Crashlytics()
 }

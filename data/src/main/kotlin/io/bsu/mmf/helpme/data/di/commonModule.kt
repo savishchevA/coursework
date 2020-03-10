@@ -14,7 +14,6 @@ import io.bsu.mmf.helpme.data.dataSource.sharedPreference.SharedPreferenceDataSo
 import io.bsu.mmf.helpme.data.dataSource.weather.WeatherDataSource
 import io.bsu.mmf.helpme.data.dataSource.weather.WeatherDataSourceImpl
 import io.bsu.mmf.helpme.data.database.db.AppDatabase
-import io.bsu.mmf.helpme.data.di.network.ErrorHandlingAdapter
 import io.bsu.mmf.helpme.data.mappers.auth.AuthResponseToDtoMapper
 import io.bsu.mmf.helpme.data.mappers.contacts.ContactDtoToRoomItemMapper
 import io.bsu.mmf.helpme.data.mappers.contacts.ContactRoomItemToDtoMapper
@@ -46,6 +45,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.create
@@ -55,16 +55,20 @@ import java.util.concurrent.TimeUnit
 val commonModule = module {
 
     //android
-    single { androidApplication().applicationContext }
+   // single { androidApplication().applicationContext }
     single { createSharedPreference(get()) }
 
     //dataSources
-    single<AuthDataSource> { AuthDataSourceImpl(get()) }
-    single<ContactsDataSource> { ContactsDataSourceImpl(get(), get(), get()) }
-    single<FireBaseContactsDataSource> { FireBaseContactsDataSourceImpl(get(), get()) }
-    single<AuthDataSource> { AuthDataSourceImpl(get()) }
+    single<AuthDataSource>{
+        AuthDataSourceImpl(get())
+    }
+
+    single<ContactsDataSource>{
+        ContactsDataSourceImpl(get(), get(), get())
+    }
+    single<FireBaseContactsDataSource>{ FireBaseContactsDataSourceImpl(get(), get()) }
     single<SharedPreferenceDataSource> { SharedPreferenceDataSourceImpl(get()) }
-    single<WeatherDataSource> { WeatherDataSourceImpl(get(), get(), get()) }
+    single<WeatherDataSource>{ WeatherDataSourceImpl(get(), get(), get()) }
     single { BaseRemoteDataSource() }
 
 
@@ -90,11 +94,11 @@ val commonModule = module {
     single { CurrentWeatherToDtoMapper() }
 
     //repositories
-    single<AuthRepository> { AuthRepositoryImpl(get()) }
-    single<SharedPreferenceRepository> { SharedPreferenceRepositoryImpl(get()) }
-    single<WeatherRepository> { WeatherRepositoryImpl(get()) }
-    single<FirebaseContactRepository> { FirebaseContactRepositoryImpl(get()) }
-    single<ContactsLocalRepository> { ContactsRepository(get()) }
+    single<AuthRepository>{ AuthRepositoryImpl(get()) }
+    single<SharedPreferenceRepository>{ SharedPreferenceRepositoryImpl(get()) }
+    single<WeatherRepository>{ WeatherRepositoryImpl(get()) }
+    single<FirebaseContactRepository>{ FirebaseContactRepositoryImpl(get()) }
+    single<ContactsLocalRepository>{ ContactsRepository(get()) }
 
     //useCases
 

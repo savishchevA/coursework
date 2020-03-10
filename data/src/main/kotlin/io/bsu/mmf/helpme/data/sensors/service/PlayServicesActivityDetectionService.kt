@@ -5,10 +5,10 @@ import io.bsu.mmf.helpme.data.sensors.ActivityDetectionService
 import io.bsu.mmf.helpme.domain.entity.ActivityType
 import io.reactivex.Observable
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class PlayServicesActivityDetectionService @Inject constructor(private val acivityObservable: Observable<DetectedActivity>) : ActivityDetectionService {
+
+class PlayServicesActivityDetectionService (private val acivityObservable: Observable<DetectedActivity>) : ActivityDetectionService {
 
     override fun userMovingUpdates(): Observable<ActivityType> {
         return acivityObservable

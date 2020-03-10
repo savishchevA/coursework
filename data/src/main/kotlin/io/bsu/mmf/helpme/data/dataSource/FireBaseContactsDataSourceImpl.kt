@@ -5,9 +5,9 @@ import io.bsu.mmf.helpme.data.mappers.firebase.ContactFBToDtoMapper
 import io.bsu.mmf.helpme.data.mappers.firebase.ContactToFBMapper
 import io.bsu.mmf.helpme.domain.entity.local.Contact
 import timber.log.Timber
-import javax.inject.Inject
 
-class FireBaseContactsDataSourceImpl @Inject constructor(
+
+class FireBaseContactsDataSourceImpl (
     private val contactFBToDtoMapper: ContactFBToDtoMapper,
     private val contactToFBMapper: ContactToFBMapper
 ) : FireBaseContactsDataSource {

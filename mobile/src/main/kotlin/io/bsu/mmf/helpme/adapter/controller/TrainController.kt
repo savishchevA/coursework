@@ -4,9 +4,9 @@ import com.airbnb.epoxy.EpoxyController
 import io.bsu.mmf.helpme.adapter.holders.trainModelView
 import io.bsu.mmf.helpme.domain.train.TrainItem
 import io.bsu.mmf.helpme.utils.epoxy.EpoxyModelProperty
-import javax.inject.Inject
 
-class TrainController @Inject constructor(): EpoxyController() {
+
+class TrainController (): EpoxyController() {
 
     var trains by EpoxyModelProperty { emptyList<TrainItem>() }
 

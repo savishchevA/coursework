@@ -28,7 +28,7 @@ import io.github.zeyomir.extremesportssos.view.main.MainActivity
 import io.github.zeyomir.extremesportssos.view.send.SendMessageActivity
 import kotlinx.android.synthetic.main.activity_map.*
 import permissions.dispatcher.*
-import javax.inject.Inject
+
 
 
 @RuntimePermissions

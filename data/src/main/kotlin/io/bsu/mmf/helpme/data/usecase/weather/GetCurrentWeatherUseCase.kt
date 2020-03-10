@@ -5,9 +5,9 @@ import io.bsu.mmf.helpme.domain.ResultNetwork
 import io.bsu.mmf.helpme.domain.weather.CurrentWeather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class GetCurrentWeatherUseCase @Inject constructor(
+
+class GetCurrentWeatherUseCase (
         private val weatherRepository: WeatherRepository
 ) {
 

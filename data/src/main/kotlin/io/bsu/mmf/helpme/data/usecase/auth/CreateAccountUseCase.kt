@@ -6,9 +6,9 @@ import io.bsu.mmf.helpme.domain.auth.Account
 import io.bsu.mmf.helpme.domain.auth.AuthData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class CreateAccountUseCase @Inject constructor(
+
+class CreateAccountUseCase (
         private val authRepository: AuthRepository
 ) {
 

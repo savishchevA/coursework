@@ -1,4 +1,5 @@
-package io.bsu.mmf.helpme.data.di.network;
+package io.bsu.mmf.helpme.data.di;
+
 
 import androidx.annotation.Nullable;
 

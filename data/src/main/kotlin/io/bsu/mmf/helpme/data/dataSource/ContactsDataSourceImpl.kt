@@ -9,9 +9,9 @@ import io.bsu.mmf.helpme.data.mappers.toListMapper
 import io.bsu.mmf.helpme.domain.entity.local.Contact
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class ContactsDataSourceImpl @Inject constructor(
+
+class ContactsDataSourceImpl (
     private val contactDao: ContactDao,
     private val contactRoomItemToDtoMapper: ContactRoomItemToDtoMapper,
     private val contactDtoToRoomItemMapper: ContactDtoToRoomItemMapper

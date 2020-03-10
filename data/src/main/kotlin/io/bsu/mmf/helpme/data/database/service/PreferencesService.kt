@@ -4,11 +4,10 @@ import android.content.SharedPreferences
 import io.bsu.mmf.helpme.data.database.KeyValueService
 import io.bsu.mmf.helpme.domain.entity.SosContact
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-internal class PreferencesService @Inject constructor(private val preferences: SharedPreferences) : KeyValueService {
+
+
+internal class PreferencesService (private val preferences: SharedPreferences) : KeyValueService {
 
     override fun getSosContact(): SosContact? {
         val info = preferences.getString(CONTACT_INFO_KEY, null)

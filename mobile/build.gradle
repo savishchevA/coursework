@@ -150,11 +150,6 @@ dependencies {
     implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation("com.github.hotchemi:permissionsdispatcher:$permissionsdispatcherVersion") {
@@ -181,9 +176,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.2.3"
 
 
-    def moxyVersion = "2.0.2"
-    implementation "com.github.moxy-community:moxy-androidx:$moxyVersion"
-    kapt "com.github.moxy-community:moxy-compiler:$moxyVersion"
     //crashlytics
     implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {

@@ -9,10 +9,10 @@ import io.bsu.mmf.helpme.domain.usecase.FetchTimeUseCase
 import io.reactivex.Observable
 import io.reactivex.Single
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class SensorsRepository @Inject constructor(
+
+class SensorsRepository (
         private val activityDetectionService: ActivityDetectionService,
         private val timeToTellStillness: TimePeriod,
         private val locationService: LocationService,

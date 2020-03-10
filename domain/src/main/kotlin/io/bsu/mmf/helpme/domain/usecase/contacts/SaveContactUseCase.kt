@@ -4,11 +4,11 @@ import io.bsu.mmf.helpme.domain.entity.local.Contact
 import io.bsu.mmf.helpme.domain.repository.ContactsLocalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SaveContactUseCase @Inject constructor(
+
+
+
+class SaveContactUseCase (
     private val contactsLocalRepository: ContactsLocalRepository
 ) {
 

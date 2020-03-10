@@ -1,10 +1,10 @@
 package io.bsu.mmf.helpme.data.device.sound
 
 import io.bsu.mmf.helpme.domain.driver.SoundDriver
-import javax.inject.Inject
 
 
-class SoundManager @Inject constructor(private val soundService: SoundService, private val soundId: Int) : SoundDriver {
+
+class SoundManager (private val soundService: SoundService, private val soundId: Int) : SoundDriver {
     private var currentVolume: Int = -1
 
     override fun playSound() {

@@ -1,16 +1,5 @@
 package io.bsu.mmf.helpme.view.send
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import dagger.android.AndroidInjection
-import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.send.SendMessagePresenter
-import io.bsu.mmf.helpme.presenter.send.SentStatus
-import io.bsu.mmf.helpme.view.main.MainActivity
-import kotlinx.android.synthetic.main.activity_send_message.*
-import javax.inject.Inject
-
 
 //class SendMessageActivity : AppCompatActivity(), SendMessageView {
 //    @Inject

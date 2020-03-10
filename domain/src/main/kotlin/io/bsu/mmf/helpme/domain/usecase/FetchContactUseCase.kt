@@ -1,11 +1,11 @@
 package io.bsu.mmf.helpme.domain.usecase
 
 import io.bsu.mmf.helpme.domain.repository.LocalRepository
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
-@Singleton
-class FetchContactUseCase @Inject constructor(private val localRepository: LocalRepository) {
+
+
+
+class FetchContactUseCase (private val localRepository: LocalRepository) {
     fun execute() = localRepository.fetchContact()
 }

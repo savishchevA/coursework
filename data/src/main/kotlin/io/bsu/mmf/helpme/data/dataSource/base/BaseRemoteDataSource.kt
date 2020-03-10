@@ -10,12 +10,12 @@ import ru.gildor.coroutines.retrofit.awaitResponse
 import retrofit2.Call
 import retrofit2.awaitResponse
 import timber.log.Timber
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
-@Singleton
-class BaseRemoteDataSource @Inject constructor() {
+
+
+
+class BaseRemoteDataSource {
 
     suspend fun executeEmptyResponse(
             call: Call<Unit>

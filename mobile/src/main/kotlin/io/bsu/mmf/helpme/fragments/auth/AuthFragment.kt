@@ -3,42 +3,34 @@ package io.bsu.mmf.helpme.fragments.auth
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.os.Bundle
-import android.view.*
+import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AnimationSet
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.transition.TransitionManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserInfo
-import dagger.Lazy
 import io.bsu.mmf.helpme.R
 import io.bsu.mmf.helpme.fragments.BaseFragment
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.presenter.auth.AuthPresenter
-import io.bsu.mmf.helpme.view.auth.AuthView
+import io.bsu.mmf.helpme.viewmodel.auth.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_auth.*
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import timber.log.Timber
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-class AuthFragment : BaseFragment(), AuthView {
-    @Inject
-    lateinit var daggerPresenter: Lazy<AuthPresenter>
+class AuthFragment : BaseFragment() {
+//    @Inject
+//    lateinit var daggerPresenter: Lazy<AuthPresenter>
+//
+//    @InjectPresenter
+//    lateinit var presenter: AuthPresenter
+//
+//    @ProvidePresenter
+//    fun providePresenter(): AuthPresenter = daggerPresenter.get()
 
-    @InjectPresenter
-    lateinit var presenter: AuthPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): AuthPresenter = daggerPresenter.get()
-
+    private val viewModel by inject<AuthViewModel>()
 
     override val layout: Int
         get() = R.layout.fragment_auth
-    override val basePresenter: BasePresenter<*>?
-        get() = presenter
+//    override val basePresenter: BasePresenter<*>?
+//        get() = presenter
 
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance();
 

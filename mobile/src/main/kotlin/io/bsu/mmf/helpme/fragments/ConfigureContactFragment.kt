@@ -6,50 +6,42 @@ import android.database.Cursor
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.View
-import android.widget.Toast
-import dagger.Lazy
 import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.presenter.contact.ConfigureContactActivityPresenter
-import io.bsu.mmf.helpme.view.contact.ConfigureContactView
 import kotlinx.android.synthetic.main.activity_contact.*
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import javax.inject.Inject
 
-class ConfigureContactFragment : BaseFragment(), ConfigureContactView {
+class ConfigureContactFragment : BaseFragment() {
 
     private val SELECT_PHONE_NUMBER: Int = 1
 
-    @Inject
-    lateinit var daggerPresenter: Lazy<ConfigureContactActivityPresenter>
-
-    @InjectPresenter
-    lateinit var presenter: ConfigureContactActivityPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): ConfigureContactActivityPresenter = daggerPresenter.get()
+//    @Inject
+//    lateinit var daggerPresenter: Lazy<ConfigureContactActivityPresenter>
+//
+//    @InjectPresenter
+//    lateinit var presenter: ConfigureContactActivityPresenter
+//
+//    @ProvidePresenter
+//    fun providePresenter(): ConfigureContactActivityPresenter = daggerPresenter.get()
 
     override val layout: Int
         get() = R.layout.activity_contact
-    override val basePresenter: BasePresenter<*>?
-        get() = presenter
+//    override val basePresenter: BasePresenter<*>?
+//        get() = presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.fetchContactInfo()
+      //  presenter.fetchContactInfo()
         pick.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
             i.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
             startActivityForResult(i, SELECT_PHONE_NUMBER)
         }
         next.setOnClickListener {
-            presenter.saveData(
-                info.editText?.text.toString(),
-                name.editText?.text.toString(),
-                address.editText?.text.toString()
-            )
+//            presenter.saveData(
+//                info.editText?.text.toString(),
+//                name.editText?.text.toString(),
+//                address.editText?.text.toString()
+//            )
         }
     }
 
@@ -81,16 +73,16 @@ class ConfigureContactFragment : BaseFragment(), ConfigureContactView {
         cursor?.close()
     }
 
-    override fun setData(contactInfo: String?, contactName: String?) {
-        info.editText?.setText(contactInfo)
-        name.editText?.setText(contactName)
-    }
-
-    override fun showContactInfoEmptyError() {
-        Toast.makeText(requireContext(), R.string.configure_contact_validation_error, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun nextScreen() {
-        navController.navigate(R.id.action_configureContactFragment_to_configureMessageFragment)
-    }
+//    override fun setData(contactInfo: String?, contactName: String?) {
+//        info.editText?.setText(contactInfo)
+//        name.editText?.setText(contactName)
+//    }
+//
+//    override fun showContactInfoEmptyError() {
+//        Toast.makeText(requireContext(), R.string.configure_contact_validation_error, Toast.LENGTH_SHORT).show()
+//    }
+//
+//    override fun nextScreen() {
+//        navController.navigate(R.id.action_configureContactFragment_to_configureMessageFragment)
+//    }
 }

@@ -6,10 +6,10 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import io.bsu.mmf.helpme.data.device.sound.SoundService
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class AndroidSoundService @Inject constructor(private val context: Context) : SoundService {
+
+class AndroidSoundService (private val context: Context) : SoundService {
 
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val audioSessionId = audioManager.generateAudioSessionId()

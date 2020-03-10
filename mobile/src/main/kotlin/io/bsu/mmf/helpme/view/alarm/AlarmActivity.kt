@@ -3,14 +3,12 @@ package io.bsu.mmf.helpme.view.alarm
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dagger.android.AndroidInjection
 import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.alarm.AlarmPresenter
 import io.bsu.mmf.helpme.presenter.alarm.AlarmStatus
 import io.bsu.mmf.helpme.view.main.MainActivity
 import kotlinx.android.synthetic.main.activity_alarm.*
 import timber.log.Timber
-import javax.inject.Inject
+
 
 
 //class AlarmActivity : AppCompatActivity(), AlarmView {

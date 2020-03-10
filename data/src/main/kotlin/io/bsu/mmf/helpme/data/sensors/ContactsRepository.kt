@@ -4,9 +4,9 @@ import io.bsu.mmf.helpme.data.dataSource.ContactsDataSource
 import io.bsu.mmf.helpme.domain.entity.local.Contact
 import io.bsu.mmf.helpme.domain.repository.ContactsLocalRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class ContactsRepository @Inject constructor(
+
+class ContactsRepository (
     private val contactsDataSource: ContactsDataSource
 ) : ContactsLocalRepository {
 

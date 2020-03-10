@@ -3,33 +3,35 @@ package io.bsu.mmf.helpme.data.network.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class CurrentWeatherResponse(
         @SerialName("base")
-    val base: String,
+        val base: String,
         @SerialName("clouds")
-    val clouds: Clouds,
+        val clouds: Clouds,
         @SerialName("cod")
-    val cod: Int,
+        val cod: Int,
         @SerialName("coord")
-    val coord: Coord,
+        val coord: Coord,
         @SerialName("dt")
-    val dt: Int,
+        val dt: Int,
         @SerialName("id")
-    val id: Int,
+        val id: Int,
         @SerialName("main")
-    val main: Main,
+        val main: Main,
         @SerialName("name")
-    val name: String,
+        val name: String,
         @SerialName("sys")
-    val sys: Sys,
+        val sys: Sys,
         @SerialName("timezone")
-    val timezone: Int,
+        val timezone: Int,
         @SerialName("visibility")
-    val visibility: Int,
+        val visibility: Int,
         @SerialName("weather")
-    val weather: List<Weather>,
+        val weather: List<Weather>,
+
         @SerialName("wind")
-    val wind: Wind
+        val wind: Wind
 )

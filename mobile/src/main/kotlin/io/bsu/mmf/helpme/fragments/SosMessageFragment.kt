@@ -2,39 +2,29 @@ package io.bsu.mmf.helpme.fragments
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.AnimationUtils
-import dagger.Lazy
 import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.presenter.SosMessagePresenter
-import io.bsu.mmf.helpme.view.SosMessageView
 import kotlinx.android.synthetic.main.fragment_sos_message.*
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import javax.inject.Inject
 
 
-class SosMessageFragment : BaseFragment(), SosMessageView {
+class SosMessageFragment : BaseFragment() {
 
 
-    @Inject
-    lateinit var daggerPresenter: Lazy<SosMessagePresenter>
-
-    @InjectPresenter
-    lateinit var presenter: SosMessagePresenter
-
-
-    @ProvidePresenter
-    fun providePresenter(): SosMessagePresenter = daggerPresenter.get()
+//    @Inject
+//    lateinit var daggerPresenter: Lazy<SosMessagePresenter>
+//
+//    @InjectPresenter
+//    lateinit var presenter: SosMessagePresenter
+//
+//
+//    @ProvidePresenter
+//    fun providePresenter(): SosMessagePresenter = daggerPresenter.get()
 
     override val layout: Int
         get() = R.layout.fragment_sos_message
-    override val basePresenter: BasePresenter<*>?
-        get() = presenter
+//    override val basePresenter: BasePresenter<*>?
+//        get() = presenter
 
     override fun onStart() {
         super.onStart()

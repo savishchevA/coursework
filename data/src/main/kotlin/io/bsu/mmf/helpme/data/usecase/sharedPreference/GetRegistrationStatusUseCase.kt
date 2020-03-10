@@ -1,9 +1,9 @@
 package io.bsu.mmf.helpme.data.usecase.sharedPreference
 
 import io.bsu.mmf.helpme.data.repository.sharedPreference.SharedPreferenceRepository
-import javax.inject.Inject
 
-class GetRegistrationStatusUseCase @Inject constructor(
+
+class GetRegistrationStatusUseCase (
     private val sharedPreferenceRepository: SharedPreferenceRepository
 ) {
 

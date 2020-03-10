@@ -4,7 +4,6 @@ import io.bsu.mmf.helpme.data.dataSource.auth.AuthDataSource
 import io.bsu.mmf.helpme.domain.ResultNetwork
 import io.bsu.mmf.helpme.domain.auth.Account
 import io.bsu.mmf.helpme.domain.auth.AuthData
-import javax.inject.Inject
 
 interface AuthRepository {
     suspend fun createAccount(account: Account): ResultNetwork<AuthData>
@@ -13,7 +12,7 @@ interface AuthRepository {
     suspend fun resetPassword(email: String): ResultNetwork<Unit>
 }
 
-class AuthRepositoryImpl @Inject constructor(
+class AuthRepositoryImpl (
         private val authDataSource: AuthDataSource
 ) : AuthRepository {
     override suspend fun createAccount(account: Account): ResultNetwork<AuthData> {

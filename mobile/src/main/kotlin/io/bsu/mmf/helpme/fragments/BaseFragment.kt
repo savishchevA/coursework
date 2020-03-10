@@ -1,30 +1,23 @@
 package io.bsu.mmf.helpme.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import dagger.android.*
-import dagger.android.support.AndroidSupportInjection
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.view.BaseView
-import moxy.MvpAppCompatFragment
-import javax.inject.Inject
 
 
-abstract class BaseFragment : MvpAppCompatFragment(), HasAndroidInjector, BaseView {
+abstract class BaseFragment : Fragment() {
 
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
-    }
+//    @Inject
+//    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+//
+//    override fun androidInjector(): AndroidInjector<Any> {
+//        return androidInjector
+//    }
 
     protected abstract val layout: Int
-    protected abstract val basePresenter: BasePresenter<*>?
+  //  protected abstract val basePresenter: BasePresenter<*>?
 
 
     protected lateinit var navController: NavController
@@ -42,17 +35,12 @@ abstract class BaseFragment : MvpAppCompatFragment(), HasAndroidInjector, BaseVi
         setupToolbar()
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        basePresenter?.createJob()
+        //basePresenter?.createJob()
         return inflater.inflate(layout, container, false)
     }
 
@@ -61,11 +49,11 @@ abstract class BaseFragment : MvpAppCompatFragment(), HasAndroidInjector, BaseVi
     }
 
     override fun onDestroyView() {
-        basePresenter?.cancelJob()
+       // basePresenter?.cancelJob()
         super.onDestroyView()
     }
 
-    override fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
+//    override fun showToast(message: String) {
+//        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+//    }
 }

@@ -1,32 +1,19 @@
 package io.bsu.mmf.helpme.view.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
-import dagger.Lazy
-import dagger.android.*
 import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.MainActivityPresenter
-import io.bsu.mmf.helpme.presenter.auth.LoginPresenter
-import io.bsu.mmf.helpme.view.BaseView
-import io.bsu.mmf.helpme.view.MainActivityView
-import moxy.MvpAppCompatActivity
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import javax.inject.Inject
+import io.bsu.mmf.helpme.viewmodel.MainActivityViewModel
+import org.koin.android.ext.android.inject
 
 
-class MainActivity :BaseActivity(), MainActivityView {
+class MainActivity :BaseActivity() {
 
-    @Inject
-    lateinit var daggerPresenter: Lazy<MainActivityPresenter>
-
-    @InjectPresenter
-    lateinit var presenter: MainActivityPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): MainActivityPresenter = daggerPresenter.get()
+   private val viewModel by inject<MainActivityViewModel>()
 
     override val layout: Int
         get() = R.layout.activity_main
@@ -39,16 +26,28 @@ class MainActivity :BaseActivity(), MainActivityView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   presenter.checkUserLoginStatus()
-        presenter.checkRegistrationStatus()
         host = supportFragmentManager
             .findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment? ?: return
 
         navController = host.navController
-      //  host.navController.graph = graph
+
+
+        viewModel.registrationStatus.observe(this, Observer {
+            updateUserLoginStatus(it)
+        })
+
+        viewModel.checkUserLogin.observe(this, Observer {
+            checkRegistrationStatus(it)
+        })
+
+//        val inflater = navController.navInflater
+//
+//        graph = inflater.inflate(R.navigation.nav_graph_main)
+//
+//       host.navController.graph = graph
     }
 
-    override fun updateUserLoginStatus(isNewUser: Boolean) {
+    fun updateUserLoginStatus(isNewUser: Boolean) {
 
         val inflater = navController.navInflater
 
@@ -62,7 +61,7 @@ class MainActivity :BaseActivity(), MainActivityView {
         host.navController.graph = graph
     }
 
-    override fun checkRegistrationStatus(registrationStatus: Boolean) {
+    fun checkRegistrationStatus(registrationStatus: Boolean) {
 
         val inflater = navController.navInflater
 
@@ -143,24 +142,13 @@ class MainActivity :BaseActivity(), MainActivityView {
 //    }
 }
 
-abstract class  BaseActivity : MvpAppCompatActivity(), HasAndroidInjector, BaseView {
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
-    }
+abstract class  BaseActivity : AppCompatActivity() {
 
     protected abstract val layout: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-
          setContentView(layout)
     }
 
-    override fun showToast(message: String) = Unit
 }

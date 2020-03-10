@@ -2,14 +2,14 @@ package io.bsu.mmf.helpme.data.repository
 
 import io.bsu.mmf.helpme.data.dataSource.FireBaseContactsDataSource
 import io.bsu.mmf.helpme.domain.entity.local.Contact
-import javax.inject.Inject
+
 
 interface FirebaseContactRepository {
     suspend fun saveContact(contact: Contact)
     suspend fun getContacts(contacts: List<Contact>)
 }
 
-class FirebaseContactRepositoryImpl @Inject constructor(
+class FirebaseContactRepositoryImpl (
         private val fireBaseContactsDataSource: FireBaseContactsDataSource
 ) : FirebaseContactRepository {
 

@@ -2,30 +2,27 @@ package io.bsu.mmf.helpme.fragments
 
 import android.Manifest
 import android.app.Activity
-import android.content.*
+import android.content.Context
+import android.content.Intent
+import android.content.IntentSender
 import android.hardware.Sensor
 import android.hardware.SensorManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.*
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import dagger.Lazy
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
 import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.presenter.map.MapActivityPresenter
-import io.bsu.mmf.helpme.view.map.*
-import kotlinx.android.synthetic.main.activity_map.*
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import permissions.dispatcher.*
-import javax.inject.Inject
+import io.bsu.mmf.helpme.view.map.ShakeDetector
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.PermissionUtils
 
-class HelpFragment : BaseFragment(), MapView {
+class HelpFragment : BaseFragment() {
 
     private val REQUEST_CHECK_GPS_SETTINGS: Int = 1
     private val REQUEST_CHECKGPSSETTINGS: Int = 0
@@ -33,19 +30,19 @@ class HelpFragment : BaseFragment(), MapView {
 
 
 
-    @Inject
-    lateinit var daggerPresenter: Lazy<MapActivityPresenter>
-
-    @InjectPresenter
-    lateinit var presenter: MapActivityPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): MapActivityPresenter = daggerPresenter.get()
+//    @Inject
+//    lateinit var daggerPresenter: Lazy<MapActivityPresenter>
+//
+//    @InjectPresenter
+//    lateinit var presenter: MapActivityPresenter
+//
+//    @ProvidePresenter
+//    fun providePresenter(): MapActivityPresenter = daggerPresenter.get()
 
     override val layout: Int
         get() = R.layout.activity_map
-    override val basePresenter: BasePresenter<*>?
-        get() = presenter
+//    override val basePresenter: BasePresenter<*>?
+//        get() = presenter
 
 
     private lateinit var shakeDetector: ShakeDetector
@@ -61,7 +58,7 @@ class HelpFragment : BaseFragment(), MapView {
 
         shakeDetector = ShakeDetector()
         shakeDetector.setOnShakeListener {
-            presenter.helpNeeded()
+          //  presenter.helpNeeded()
         }
 
 
@@ -106,7 +103,7 @@ class HelpFragment : BaseFragment(), MapView {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CHECK_GPS_SETTINGS) {
             if (resultCode == Activity.RESULT_OK) {
-                presenter.startMonitoringLocation()
+               // presenter.startMonitoringLocation()
             } else {
                 Toast.makeText(requireContext(), R.string.map_gps_off, Toast.LENGTH_SHORT).show()
             }
@@ -123,7 +120,7 @@ class HelpFragment : BaseFragment(), MapView {
         val task = client.checkLocationSettings(testLocationRequest)
 
         task.addOnSuccessListener(requireActivity()) {
-            presenter.startMonitoringLocation()
+           // presenter.startMonitoringLocation()
         }
 
         task.addOnFailureListener(requireActivity()) { e ->
@@ -139,40 +136,40 @@ class HelpFragment : BaseFragment(), MapView {
 
     @OnPermissionDenied(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.SEND_SMS)
     fun permissionsDenied() {
-        presenter.permissionsMissing()
+       // presenter.permissionsMissing()
     }
 
-    override fun displayPermissionsMessage() {
-        permissions_needed.visibility = View.VISIBLE
-        permissions_settings.setOnClickListener {
-            val intent = Intent()
-            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            val uri = Uri.fromParts("package", activity?.packageName, null)
-            intent.data = uri
-            startActivity(intent)
-        }
-    }
+//    override fun displayPermissionsMessage() {
+//        permissions_needed.visibility = View.VISIBLE
+//        permissions_settings.setOnClickListener {
+//            val intent = Intent()
+//            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+//            val uri = Uri.fromParts("package", activity?.packageName, null)
+//            intent.data = uri
+//            startActivity(intent)
+//        }
+//    }
 
-    override fun displayMap() {
-        map.visibility = View.VISIBLE
-
-     //   window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
-
-        rippleBg.startRippleAnimation()
-        help.setOnClickListener { presenter.helpNeeded() }
-        finish.setOnClickListener {
-            navController.navigateUp()
-//            val i = Intent(requireContext(), MainActivity::class.java)
-//            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            startActivity(i)
-        }
-    }
-
-    override fun triggerAlarm() {
-        navController.navigate(R.id.action_helpFragment_to_alarmFragment)
-    }
-
-    override fun goToSendMessageScreen() {
-        navController.navigate(R.id.action_helpFragment_to_sendMessageFragment)
-    }
+//    override fun displayMap() {
+//        map.visibility = View.VISIBLE
+//
+//     //   window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+//
+//        rippleBg.startRippleAnimation()
+//        help.setOnClickListener { presenter.helpNeeded() }
+//        finish.setOnClickListener {
+//            navController.navigateUp()
+////            val i = Intent(requireContext(), MainActivity::class.java)
+////            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+////            startActivity(i)
+//        }
+//    }
+//
+//    override fun triggerAlarm() {
+//        navController.navigate(R.id.action_helpFragment_to_alarmFragment)
+//    }
+//
+//    override fun goToSendMessageScreen() {
+//        navController.navigate(R.id.action_helpFragment_to_sendMessageFragment)
+//    }
 }

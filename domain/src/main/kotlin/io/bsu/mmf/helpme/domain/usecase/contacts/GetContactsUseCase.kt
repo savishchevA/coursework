@@ -5,9 +5,9 @@ import io.bsu.mmf.helpme.domain.repository.ContactsLocalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class GetContactsUseCase @Inject constructor(
+
+class GetContactsUseCase (
     private val contactsLocalRepository: ContactsLocalRepository
 ) {
 

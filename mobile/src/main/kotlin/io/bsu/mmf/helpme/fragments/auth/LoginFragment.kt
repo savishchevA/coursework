@@ -3,40 +3,24 @@ package io.bsu.mmf.helpme.fragments.auth
 import android.os.Bundle
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
-import com.pawegio.kandroid.e
-import dagger.Lazy
 import io.bsu.mmf.helpme.R
 import io.bsu.mmf.helpme.domain.auth.Account
 import io.bsu.mmf.helpme.fragments.BaseFragment
-import io.bsu.mmf.helpme.presenter.BasePresenter
-import io.bsu.mmf.helpme.presenter.auth.AuthPresenter
-import io.bsu.mmf.helpme.presenter.auth.LoginPresenter
 import io.bsu.mmf.helpme.utils.afterTextChanged
 import io.bsu.mmf.helpme.utils.isEmailValid
+import io.bsu.mmf.helpme.utils.observeEvent
 import io.bsu.mmf.helpme.utils.text
-import io.bsu.mmf.helpme.view.auth.AuthView
-import io.bsu.mmf.helpme.view.auth.LoginView
+import io.bsu.mmf.helpme.viewmodel.auth.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
-import timber.log.Timber
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 
-class LoginFragment : BaseFragment(), LoginView {
-    @Inject
-    lateinit var daggerPresenter: Lazy<LoginPresenter>
-
-    @InjectPresenter
-    lateinit var presenter: LoginPresenter
-
-    @ProvidePresenter
-    fun providePresenter(): LoginPresenter = daggerPresenter.get()
+class LoginFragment : BaseFragment() {
 
     override val layout: Int
         get() = R.layout.fragment_login
-    override val basePresenter: BasePresenter<*>?
-        get() = presenter
+
+    private val viewModel by inject<LoginViewModel>()
 
     private lateinit var auth: FirebaseAuth
 
@@ -62,12 +46,11 @@ class LoginFragment : BaseFragment(), LoginView {
 
         btn_login.setOnClickListener {
             if (validateField()) {
-                presenter.login(
-                        Account(
-                                email = email.text,
-                                password = password.text
-                        )
-                )
+                viewModel.login(Account(
+                        email = email.text,
+                        password = password.text
+                ))
+
             }
         }
 
@@ -78,10 +61,11 @@ class LoginFragment : BaseFragment(), LoginView {
         btn_signup.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_registrationFragment)
         }
-    }
 
-    override fun successLogin() {
-        navController.navigate(R.id.action_loginFragment_to_mainFragment)
+        viewModel.successLogin.observeEvent(this, {
+            navController.navigate(R.id.action_loginFragment_to_mainFragment)
+        })
+
     }
 
     private fun validateField(): Boolean {

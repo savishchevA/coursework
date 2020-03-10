@@ -1,18 +1,5 @@
 package io.bsu.mmf.helpme.view.message
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.Toast
-import dagger.android.AndroidInjection
-import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.message.MessagePresenter
-import io.bsu.mmf.helpme.view.main.MainActivity
-import javax.inject.Inject
-
-import kotlinx.android.synthetic.main.activity_message.message
-import kotlinx.android.synthetic.main.activity_message.next
-
 //
 //class ConfigureMessageActivity : AppCompatActivity(), ConfigureMessageView {
 //    @Inject

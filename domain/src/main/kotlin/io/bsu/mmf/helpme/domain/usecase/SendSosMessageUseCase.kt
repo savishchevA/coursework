@@ -4,10 +4,10 @@ import io.bsu.mmf.helpme.domain.driver.SmsDriver
 import io.bsu.mmf.helpme.domain.repository.LocalRepository
 import io.bsu.mmf.helpme.domain.repository.LocationRepository
 import io.reactivex.Completable
-import javax.inject.Inject
 
 
-class SendSosMessageUseCase @Inject constructor(
+
+class SendSosMessageUseCase (
         private val localRepository: LocalRepository,
         private val locationRepository: LocationRepository,
         private val smsDriver: SmsDriver

@@ -1,12 +1,12 @@
 package io.bsu.mmf.helpme.domain.usecase
 
 import io.bsu.mmf.helpme.domain.driver.SoundDriver
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
-@Singleton
-class PlaySoundUseCase @Inject constructor(private val soundDriver: SoundDriver) {
+
+
+
+class PlaySoundUseCase (private val soundDriver: SoundDriver) {
     private var prepared = false
 
     fun prepare() {

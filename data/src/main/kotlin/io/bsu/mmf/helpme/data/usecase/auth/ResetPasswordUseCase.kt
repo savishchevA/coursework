@@ -4,9 +4,9 @@ import io.bsu.mmf.helpme.data.repository.auth.AuthRepository
 import io.bsu.mmf.helpme.domain.ResultNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class ResetPasswordUseCase @Inject constructor(
+
+class ResetPasswordUseCase (
         private val authRepository: AuthRepository
 ) {
 

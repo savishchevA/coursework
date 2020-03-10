@@ -1,17 +1,5 @@
 package io.bsu.mmf.helpme.view.contact
 
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
-import android.provider.ContactsContract
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import dagger.android.AndroidInjection
-import io.bsu.mmf.helpme.R
-import io.bsu.mmf.helpme.presenter.contact.ContactPresenter
-import kotlinx.android.synthetic.main.activity_contact.*
-import javax.inject.Inject
-
 
 //class ConfigureContactActivity : AppCompatActivity(), ConfigureContactView {
 //    @Inject

@@ -4,9 +4,9 @@ import io.bsu.mmf.helpme.data.repository.FirebaseContactRepository
 import io.bsu.mmf.helpme.domain.entity.local.Contact
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class SaveFBContactUseCase @Inject constructor(
+
+class SaveFBContactUseCase (
         private val firebaseContactRepository: FirebaseContactRepository
 ) {
 

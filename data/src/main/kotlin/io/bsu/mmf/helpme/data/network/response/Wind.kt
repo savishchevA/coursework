@@ -9,5 +9,8 @@ data class Wind(
     @SerialName("deg")
     val deg: Int,
     @SerialName("speed")
-    val speed: Int
+    val speed: Int,
+
+    @SerialName("gust")
+    val gust: Int
 )

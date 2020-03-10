@@ -6,9 +6,9 @@ import io.bsu.mmf.helpme.data.network.WeatherApi
 import io.bsu.mmf.helpme.domain.ResultNetwork
 import io.bsu.mmf.helpme.domain.weather.CurrentWeather
 import okhttp3.internal.wait
-import javax.inject.Inject
 
-class WeatherDataSourceImpl @Inject constructor(
+
+class WeatherDataSourceImpl (
         private val weatherApi: WeatherApi,
         private val baseRemoteDataSource: BaseRemoteDataSource,
         private val currentWeatherToDtoMapper: CurrentWeatherToDtoMapper
