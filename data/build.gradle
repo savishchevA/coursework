@@ -70,7 +70,8 @@ dependencies {
 
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
-
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
     api 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'io.nlopez.smartlocation:rx:3.3.3'
     api "com.google.android.gms:play-services-location:$playServicesVersion"
