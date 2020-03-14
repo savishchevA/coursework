@@ -2,6 +2,7 @@ package io.bsu.mmf.helpme.view.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
@@ -26,6 +27,10 @@ class MainActivity :BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.statusBarColor = ContextCompat.getColor(
+            this, R.color.transparentStatusBar)
+
         host = supportFragmentManager
             .findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment? ?: return
 
@@ -33,18 +38,18 @@ class MainActivity :BaseActivity() {
 
 
         viewModel.registrationStatus.observe(this, Observer {
-            updateUserLoginStatus(it)
+           // updateUserLoginStatus(it)
         })
 
         viewModel.checkUserLogin.observe(this, Observer {
-            checkRegistrationStatus(it)
+            //checkRegistrationStatus(it)
         })
 
-//        val inflater = navController.navInflater
-//
-//        graph = inflater.inflate(R.navigation.nav_graph_main)
-//
-//       host.navController.graph = graph
+        val inflater = navController.navInflater
+
+        graph = inflater.inflate(R.navigation.nav_graph_main)
+
+       host.navController.graph = graph
     }
 
     fun updateUserLoginStatus(isNewUser: Boolean) {

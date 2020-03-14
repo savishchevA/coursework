@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.bsu.mmf.helpme.data.usecase.auth.CheckUserLoginUseCase
-import io.bsu.mmf.helpme.data.usecase.sharedPreference.GetRegistrationStatusUseCase
+import io.bsu.mmf.helpme.common.usecase.auth.CheckUserLoginUseCase
+import io.bsu.mmf.helpme.common.usecase.sharedPreference.GetRegistrationStatusUseCase
 import io.bsu.mmf.helpme.utils.Event
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
-        private val checkUserLoginUseCase: CheckUserLoginUseCase,
-        private val getRegistrationStatusUseCase: GetRegistrationStatusUseCase
+    private val checkUserLoginUseCase: CheckUserLoginUseCase,
+    private val getRegistrationStatusUseCase: GetRegistrationStatusUseCase
 ) : ViewModel() {
 
     private val _registrationStatus = MutableLiveData<Boolean>()

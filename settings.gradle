@@ -1,1 +1,6 @@
-include ':mobile', ':data', ':domain'
+include ':mobile', ':domain'
+include ':common'
+include ':baseandroid'
+include ':featureregistration'
+include ':data'
+include ':featuremain'

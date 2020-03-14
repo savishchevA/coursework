@@ -1,7 +1,7 @@
 package io.bsu.mmf.helpme.presenter.auth
 
 //import io.bsu.mmf.helpme.data.usecase.SaveFBContactUseCase
-//import io.bsu.mmf.helpme.domain.entity.local.Contact
+//import io.bsu.mmf.helpme.data.entity.local.Contact
 //
 //import io.bsu.mmf.helpme.view.auth.RegistrationSecondView
 //import io.bsu.mmf.helpme.view.auth.RegistrationView

@@ -8,9 +8,9 @@ import org.mockito.Mockito;
 
 import java.util.Locale;
 
-import io.bsu.mmf.helpme.domain.driver.SmsDriver;
-import io.bsu.mmf.helpme.domain.entity.Coordinates;
-import io.bsu.mmf.helpme.domain.entity.SosContact;
+import io.bsu.mmf.helpme.data.driver.SmsDriver;
+import io.bsu.mmf.helpme.data.entity.Coordinates;
+import io.bsu.mmf.helpme.data.entity.SosContact;
 import io.bsu.mmf.helpme.domain.repository.LocalRepository;
 import io.bsu.mmf.helpme.domain.repository.LocationRepository;
 import io.reactivex.Completable;

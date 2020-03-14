@@ -2,7 +2,7 @@ package io.bsu.mmf.helpme.presenter.auth
 //
 //import io.bsu.mmf.helpme.data.usecase.auth.CheckUserLoginUseCase
 //import io.bsu.mmf.helpme.data.usecase.auth.LoginWithEmailUseCase
-//import io.bsu.mmf.helpme.domain.auth.Account
+//import io.bsu.mmf.helpme.data.auth.Account
 //
 //import io.bsu.mmf.helpme.view.auth.AuthView
 //import io.bsu.mmf.helpme.view.auth.LoginView

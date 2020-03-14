@@ -1,7 +1,7 @@
 package io.bsu.mmf.helpme.view.main
 
-//import io.bsu.mmf.helpme.domain.entity.SosContact
-//import io.bsu.mmf.helpme.domain.weather.CurrentWeather
+//import io.bsu.mmf.helpme.data.entity.SosContact
+//import io.bsu.mmf.helpme.data.weather.CurrentWeather
 //
 //import moxy.viewstate.strategy.OneExecutionStateStrategy
 //import moxy.viewstate.strategy.StateStrategyType

@@ -1,7 +1,7 @@
 package io.bsu.mmf.helpme.presenter.contact
 
-//import io.bsu.mmf.helpme.domain.entity.SosContact
-//import io.bsu.mmf.helpme.domain.entity.local.Contact
+//import io.bsu.mmf.helpme.data.entity.SosContact
+//import io.bsu.mmf.helpme.data.entity.local.Contact
 //import io.bsu.mmf.helpme.domain.usecase.FetchContactUseCase
 //import io.bsu.mmf.helpme.domain.usecase.contacts.SaveContactUseCase
 //

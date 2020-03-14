@@ -1,7 +1,7 @@
 package io.bsu.mmf.helpme.presenter.main
 
 //import io.bsu.mmf.helpme.data.usecase.weather.GetCurrentWeatherUseCase
-//import io.bsu.mmf.helpme.domain.train.TrainItem
+//import io.bsu.mmf.helpme.data.train.TrainItem
 //import io.bsu.mmf.helpme.domain.usecase.FetchContactUseCase
 //import io.bsu.mmf.helpme.domain.usecase.FetchMessageUseCase
 //import io.bsu.mmf.helpme.domain.usecase.FetchTimeUseCase

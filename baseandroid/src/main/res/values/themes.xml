@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Main.Theme.HelpMe" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+
+    <style name="Base.Theme.HelpMe" parent="Main.Theme.HelpMe">
+
+<!--        <item name="toolbarStyle">@style/Widget.Bpay.Controller.Toolbar</item>-->
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Theme.HelpMe" parent="Base.Theme.HelpMe">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+
+
+
+        <!--        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>-->
+        <!--        <item name="colorOnPrimary">@color/colorOnPrimary</item>-->
+
+        <!--        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>-->
+        <!--        <item name="colorOnSecondary">@color/colorOnSecondary</item>-->
+
+        <item name="colorError">@color/colorError</item>
+        <!--        <item name="colorOnError">@color/colorOnError</item>-->
+
+        <!--        <item name="colorSurface">@color/colorSurface</item>-->
+        <!--        <item name="colorOnSurface">@color/colorOnSurface</item>-->
+
+        <item name="statusBarBackground">@android:color/transparent</item>
+
+        <!-- text in buttons -->
+        <item name="colorOnPrimary">@color/colorSecondary</item>
+
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+
+
+
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
+
+
+    </style>
+
+    <style name="ThemeOverlay.HelpMe.Light" parent="ThemeOverlay.MaterialComponents.Light">
+    </style>
+
+    <style name="ThemeOverlay.HelpMe.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
+    </style>
+
+    <style name="ThemeOverlay.HelpMe.PopupOverlay.DayNight" parent="ThemeOverlay.HelpMe.Light" />
+
+
+</resources>

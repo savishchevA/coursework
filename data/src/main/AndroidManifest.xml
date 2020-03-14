@@ -1,6 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.bsu.mmf.helpme.data">
-
-  <application android:allowBackup="true"/>
-
-</manifest>
+    package="io.bsu.mmf.helpme.data" />

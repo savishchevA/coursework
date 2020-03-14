@@ -3,7 +3,7 @@ package io.bsu.mmf.helpme.di.module
 //import dagger.Module
 //import dagger.Provides
 //import io.bsu.mmf.helpme.R
-//import io.bsu.mmf.helpme.domain.entity.TimePeriod
+//import io.bsu.mmf.helpme.data.entity.TimePeriod
 //import timber.log.Timber
 //import java.util.concurrent.TimeUnit
 //import javax.inject.Named

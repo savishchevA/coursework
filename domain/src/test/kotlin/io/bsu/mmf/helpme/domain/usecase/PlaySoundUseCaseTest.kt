@@ -3,7 +3,7 @@ package io.bsu.mmf.helpme.domain.usecase
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
-import io.bsu.mmf.helpme.domain.driver.SoundDriver
+import io.bsu.mmf.helpme.data.driver.SoundDriver
 import org.junit.Before
 import org.junit.Test
 

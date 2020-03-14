@@ -36,11 +36,11 @@ android {
         exclude 'META-INF/rxjava.properties'
     }
 
-    compileSdkVersion 29
+    compileSdkVersion 28
     defaultConfig {
         applicationId androidApplicationId
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 4
         versionName "1.1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -83,7 +83,9 @@ android {
             }
         }
     }
-
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -125,8 +127,10 @@ def initFabricPropertiesIfNeeded() {
 }*/
 
 dependencies {
-    implementation project(path: ':domain')
-    implementation project(path: ':data')
+    implementation project(path: ':baseandroid')
+    implementation project(path: ':common')
+    implementation project(path: ':featureregistration')
+    implementation project(path: ':featuremain')
 
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
@@ -160,13 +164,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.skyfishjy.ripplebackground:library:1.0.1"
 
-    implementation 'androidx.core:core-ktx:1.2.0'
     // + android architecture - room
-
-    //epoxy
-    implementation 'com.airbnb.android:epoxy:3.8.0'
-    kapt 'com.airbnb.android:epoxy-processor:3.8.0'
-    implementation 'com.airbnb.android:epoxy-paging:3.8.0'
 
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
@@ -208,6 +206,13 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     }
+
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+
+
+    testImplementation "org.koin:koin-test:$koin_version"
 
     //epoxy
     implementation 'com.airbnb.android:epoxy:3.9.0'

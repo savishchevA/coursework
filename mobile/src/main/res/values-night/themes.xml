@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <style name="Theme.HelpMe" parent="Base.Theme.HelpMe">-->
+<!--        <item name="colorPrimary">@color/colorSecondary</item>-->
+<!--        <item name="colorSecondary">@color/colorPrimary</item>-->
+<!--        <item name="colorSecondaryVariant">@color/colorSecondary</item>-->
+
+
+<!--        &lt;!&ndash; textinputlayout disable-->
+
+<!--         &ndash;&gt;-->
+<!--        <item name="colorOnSurface">@color/colorSecondary</item>-->
+
+<!--        <item name="colorOnSecondary">@color/colorSecondary</item>-->
+<!--        &lt;!&ndash; text in buttons &ndash;&gt;-->
+<!--        <item name="colorOnPrimary">@color/colorPrimary</item>-->
+
+<!--        <item name="dotStrokeColor">@color/colorSecondary</item>-->
+<!--        <item name="dotActColor">@color/colorSecondary</item>-->
+<!--        <item name="android:textColor">@color/colorSecondary</item>-->
+<!--    </style>-->
+
+</resources>

@@ -1,7 +1,7 @@
 package io.bsu.mmf.helpme.presenter.auth
 
 //import io.bsu.mmf.helpme.data.usecase.auth.ResetPasswordUseCase
-//import io.bsu.mmf.helpme.domain.ResultNetwork
+//import io.bsu.mmf.helpme.data.ResultNetwork
 //
 //import io.bsu.mmf.helpme.view.auth.AuthView
 //import io.bsu.mmf.helpme.view.auth.ForgotLoginView
