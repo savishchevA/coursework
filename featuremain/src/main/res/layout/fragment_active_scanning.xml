@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTintMode="multiply"
+    android:background="@drawable/gradient_start"
+    android:fitsSystemWindows="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_64"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.05"
+            android:text="SOS Alarm triggering in"
+            android:textColor="@color/colorBackground"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_cirle"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="60dp"
+            android:alpha="0.85"
+            android:src="@drawable/bg_cicrle"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#90A39FA2"
+            android:textSize="60sp"
+            android:fontFamily="sans-serif"
+            app:layout_constraintTop_toTopOf="@+id/iv_cirle"
+            app:layout_constraintStart_toStartOf="@+id/iv_cirle"
+            app:layout_constraintEnd_toEndOf="@+id/iv_cirle"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_cirle"/>
+
+        <TextView
+            android:id="@+id/sms_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:alpha="0.0"
+            android:textColor="#90A39FA2"
+            android:text="Sending message for your contact"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cirle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+        <io.bsu.mmf.helpme.baseAndroid.customview.WaveView
+            android:id  ="@+id/waveView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:waveAmplitude="8.25"
+            app:waveColor="@color/colorBackground"
+            app:waveDensity="3.0"
+            app:waveFrequency="2.0"
+            app:waveNumberOfWaves="2"
+            app:wavePhaseShift="-0.05"
+            app:wavePrimaryLineWidth="3.0"
+            app:waveSecondaryLineWidth="1.0"
+            app:waveXAxisPositionMultiplier="0.78" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/margin_24"
+            android:backgroundTint="@color/colorBackground"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#787474"
+            android:fontFamily="sans-serif"
+            android:textSize="@dimen/text_16"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/waveView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="#787474"
+            app:strokeWidth="1dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -31,9 +31,9 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
             }
         }
 
-        viewModel.successAccountCreation.observeEvent(this, {
+        viewModel.successAccountCreation.observeEvent(this) {
             navController.navigate(R.id.action_registrationFragment_to_registrationSecondFragment)
-        })
+        }
     }
 
     //TODO: move it to authDataSource

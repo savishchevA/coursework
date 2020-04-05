@@ -1,9 +1,7 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
+import kotlinx.serialization.*
 
 @Serializable
 data class CurrentWeatherResponse(
@@ -33,5 +31,5 @@ data class CurrentWeatherResponse(
         val weather: List<Weather>,
 
         @SerialName("wind")
-        val wind: Wind
+        val wind: Wind? = null
 )

@@ -21,4 +21,7 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="address">Address</string>
+    <string name="menu_main">Main</string>
+    <string name="contacts">Contacts</string>
+    <string name="settings">Settings</string>
 </resources>

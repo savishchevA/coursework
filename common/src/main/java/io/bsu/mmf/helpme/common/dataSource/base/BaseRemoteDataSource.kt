@@ -17,18 +17,17 @@ class BaseRemoteDataSource {
 
     suspend fun executeEmptyResponse(
             call: Call<Unit>
-    ): io.bsu.mmf.helpme.data.ResultNetwork<Unit> {
+    ): ResultNetwork<Unit> {
         return withContext(Dispatchers.IO) {
             try {
                 val response = call.awaitResponse()
                 if (response.isSuccessful) {
-
-                    io.bsu.mmf.helpme.data.ResultNetwork.Success(Unit)
+                    ResultNetwork.Success(Unit)
                 } else {
-                    io.bsu.mmf.helpme.data.ResultNetwork.Error.NetworkError(String(response.errorBody()!!.bytes()))
+                    ResultNetwork.Error(String(response.errorBody()!!.bytes()))
                 }
             } catch (e: Throwable) {
-                io.bsu.mmf.helpme.data.ResultNetwork.Error.NetworkError((e))
+                ResultNetwork.Error((e.message ?: ""))
             }
 
         }
@@ -38,20 +37,20 @@ class BaseRemoteDataSource {
     suspend inline fun <reified F, T> executeResponseWithMapper(
             call: Call<F>,
             serviceItemMapper: Mapper<F, T>
-    ): io.bsu.mmf.helpme.data.ResultNetwork<T> {
+    ): ResultNetwork<T> {
 
         return withContext(Dispatchers.IO) {
             try {
                 val response = call.awaitResponse()
                 if (response.isSuccessful) {
                     val resultData = serviceItemMapper.map((response.body()!!))
-                    io.bsu.mmf.helpme.data.ResultNetwork.Success(resultData)
+                    ResultNetwork.Success(resultData)
                 } else {
-                    io.bsu.mmf.helpme.data.ResultNetwork.Error.NetworkError(String(response.errorBody()!!.bytes()))
+                    ResultNetwork.Error(String(response.errorBody()!!.bytes()))
                 }
             } catch (e: Throwable) {
                 Timber.e(e)
-                io.bsu.mmf.helpme.data.ResultNetwork.Error.NetworkError((e))
+                ResultNetwork.Error((e.message ?: ""))
             }
 
         }

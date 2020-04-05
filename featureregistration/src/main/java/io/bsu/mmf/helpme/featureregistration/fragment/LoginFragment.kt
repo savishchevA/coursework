@@ -2,6 +2,8 @@ package io.bsu.mmf.helpme.featureregistration.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.lifecycle.Observer
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.utils.*
 import io.bsu.mmf.helpme.data.auth.Account
@@ -9,6 +11,7 @@ import io.bsu.mmf.helpme.featureregistration.R
 import io.bsu.mmf.helpme.featureregistration.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -37,6 +40,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                         email = email.text,
                         password = password.text
                 ))
+                activity?.hideKeyboard()
 
             }
         }
@@ -49,7 +53,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             navController.navigate(R.id.action_loginFragment_to_registrationFragment)
         }
 
-        viewModel.successLogin.observeEvent(this, {
+        viewModel.successLogin.observe(viewLifecycleOwner, Observer {
             navController.navigate(R.id.action_loginFragment_to_mainFragment)
         })
 

@@ -11,6 +11,7 @@ data class Wind(
     @SerialName("speed")
     val speed: Int,
 
+    @Transient
     @SerialName("gust")
-    val gust: Int
+    val gust: Int? = 0
 )

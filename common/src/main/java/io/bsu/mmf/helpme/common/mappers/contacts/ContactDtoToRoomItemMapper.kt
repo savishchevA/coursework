@@ -5,16 +5,18 @@ import io.bsu.mmf.helpme.common.mappers.Mapper
 import io.bsu.mmf.helpme.data.entity.local.Contact
 
 
-
-
-class ContactDtoToRoomItemMapper (
-): Mapper<Contact, ContactRoomItem> {
+class ContactDtoToRoomItemMapper(
+) : Mapper<Contact, ContactRoomItem> {
     override fun map(from: Contact): ContactRoomItem {
         return with(from) {
-            ContactRoomItem (
+            ContactRoomItem(
+                id = id,
                 contactName = name,
                 contactAddress = address,
                 phoneNumber = phoneNumber,
+                longitude = longitude,
+                latitude = latitude,
+                image = contactImage,
                 isPriorityContact = isPriorityContact
             )
         }

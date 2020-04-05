@@ -46,9 +46,12 @@ buildscript {
         //coroutines
         coroutines = '1.3.3'
 
+        //map
+        googleMap = '17.0.0'
+
         //epoxy
         epoxy = '3.9.0'
-
+        archTestingVersion = '2.0.0'
         androidXVersion = '1.0.0'
         androidXTestCoreVersion = '1.2.0'
         androidXTestExtKotlinRunnerVersion = '1.1.1'
@@ -56,6 +59,12 @@ buildscript {
         androidXAnnotations = '1.0.1'
         androidXLegacySupport = '1.0.0'
         kotlin_version = '1.3.70'
+
+        //androidxtest
+        androidXTestExtKotlinRunnerVersion = '1.1.1'
+        espressoVersion = '3.2.0-beta01'
+        androidXTestCoreVersion = '1.2.0'
+        fragmentVersion = '1.1.0-alpha07'
 
     }
 
@@ -74,10 +83,10 @@ buildscript {
         classpath "org.koin:koin-gradle-plugin:$koin_version"
         classpath 'com.google.gms:google-services:4.3.3'
         classpath 'io.fabric.tools:gradle:1.31.2'
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
 }
 
 allprojects {

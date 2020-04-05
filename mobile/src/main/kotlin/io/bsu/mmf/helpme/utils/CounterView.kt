@@ -1,21 +1,12 @@
 package io.bsu.mmf.helpme.utils
 
-import android.animation.Animator
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
-import android.widget.TextView
 import io.bsu.mmf.helpme.R
-import kotlinx.android.synthetic.main.fragment_main.view.*
-import java.util.concurrent.TimeUnit
 
 
 class CounterView @JvmOverloads constructor(

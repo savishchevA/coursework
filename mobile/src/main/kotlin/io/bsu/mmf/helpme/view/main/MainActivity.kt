@@ -1,23 +1,23 @@
 package io.bsu.mmf.helpme.view.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import io.bsu.mmf.helpme.R
 import io.bsu.mmf.helpme.viewmodel.MainActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
 
-class MainActivity :BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
-   private val viewModel by inject<MainActivityViewModel>()
-
-    override val layout: Int
-        get() = R.layout.activity_main
+    private val viewModel by inject<MainActivityViewModel>()
 
 
     private lateinit var host: NavHostFragment
@@ -25,43 +25,64 @@ class MainActivity :BaseActivity() {
     private lateinit var navController: NavController
     private lateinit var graph: NavGraph
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         window.statusBarColor = ContextCompat.getColor(
-            this, R.color.transparentStatusBar)
+            this, R.color.transparentStatusBar
+        )
 
         host = supportFragmentManager
             .findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment? ?: return
+        NavigationUI.setupWithNavController(bottomNavigationView, host.navController)
 
         navController = host.navController
 
+        host.navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.mainFragment,
+                R.id.contactsFragment,
+                R.id.settingsFragment -> showBottomNavigation()
+                else -> hideBottomNavigation()
+            }
+        }
 
         viewModel.registrationStatus.observe(this, Observer {
-           // updateUserLoginStatus(it)
+            updateUserLoginStatus(it)
         })
 
         viewModel.checkUserLogin.observe(this, Observer {
             //checkRegistrationStatus(it)
         })
 
-        val inflater = navController.navInflater
-
-        graph = inflater.inflate(R.navigation.nav_graph_main)
-
-       host.navController.graph = graph
+//        val inflater = navController.navInflater
+//
+//        graph = inflater.inflate(R.navigation.nav_graph_main)
+//
+//       host.navController.graph = graph
     }
 
-    fun updateUserLoginStatus(isNewUser: Boolean) {
+
+    private fun hideBottomNavigation() {
+        bottomNavigationView.visibility = View.GONE
+    }
+
+    private fun showBottomNavigation() {
+        bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    private fun updateUserLoginStatus(isCompleteRegistration: Boolean) {
 
         val inflater = navController.navInflater
 
         graph = inflater.inflate(R.navigation.nav_graph_main)
 
-        if (isNewUser) {
-            graph.startDestination = R.id.authFragment
+        if (isCompleteRegistration) {
+            graph.startDestination = R.id.mainFragment
         } else {
-            graph.startDestination = R.id.loginFragment
+            graph.startDestination = R.id.authFragment
         }
         host.navController.graph = graph
     }
@@ -72,7 +93,7 @@ class MainActivity :BaseActivity() {
 
         graph = inflater.inflate(R.navigation.nav_graph_main)
 
-        if(registrationStatus) {
+        if (registrationStatus) {
             graph.startDestination = R.id.mainFragment
         } else {
             graph.startDestination = R.id.authFragment
@@ -145,15 +166,4 @@ class MainActivity :BaseActivity() {
 //            "${contact.contactName} (${contact.contactInfo})"
 //        }
 //    }
-}
-
-abstract class  BaseActivity : AppCompatActivity() {
-
-    protected abstract val layout: Int
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-         setContentView(layout)
-    }
-
 }

@@ -19,7 +19,6 @@ class RegistrationSecondFragment : BaseFragment(R.layout.fragment_registration_s
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_continue.setOnClickListener {
-
             viewModel.saveContact(
                     Contact(
                             name = contact_name.text,
@@ -35,8 +34,8 @@ class RegistrationSecondFragment : BaseFragment(R.layout.fragment_registration_s
             navController.navigate(R.id.action_global_mainFragment)
         }
 
-        viewModel.navigateToMainScreen.observeEvent(this, {
+        viewModel.navigateToMainScreen.observeEvent(this) {
             navController.navigate(R.id.action_global_mainFragment)
-        })
+        }
     }
 }

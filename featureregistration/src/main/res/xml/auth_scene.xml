@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <Transition
+        app:constraintSetEnd="@id/login"
+        app:constraintSetStart="@id/auth"
+        app:duration="1000">
+
+        <OnClick
+            app:clickAction="transitionToEnd"
+            app:targetId="@id/btn_login" />
+
+    </Transition>
+
+    <Transition
+        app:constraintSetEnd="@id/auth"
+        app:constraintSetStart="@id/login"
+        app:duration="1000">
+
+        <OnClick
+            app:clickAction="transitionToEnd"
+            app:targetId="@id/btn_login2" />
+
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/auth">
+
+
+        <Constraint
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"/>
+
+        <Constraint
+            android:id="@+id/login_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"/>
+        <Constraint
+            android:id="@+id/btn_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+<!--        <Constraint-->
+<!--            android:id="@+id/btn_login"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/button_auth_height"-->
+<!--            android:layout_marginStart="@dimen/margin_40"-->
+<!--            android:layout_marginEnd="@dimen/margin_40"-->
+<!--            android:layout_marginBottom="@dimen/margin_16"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/btn_registration"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--        <Constraint-->
+<!--            android:id="@+id/btn_registration"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/button_auth_height"-->
+<!--            android:layout_marginStart="@dimen/margin_40"-->
+<!--            android:layout_marginEnd="@dimen/margin_40"-->
+<!--            android:layout_marginBottom="@dimen/margin_40"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/login">
+
+
+        <Constraint
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <Constraint
+            android:id="@+id/login_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo"/>
+
+        <Constraint
+            android:id="@+id/btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"/>
+<!--        <Constraint-->
+<!--            android:id="@+id/btn_login"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/button_auth_height"-->
+<!--            android:layout_marginStart="@dimen/margin_40"-->
+<!--            android:layout_marginEnd="@dimen/margin_40"-->
+<!--            android:layout_marginBottom="@dimen/margin_16"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/btn_registration"-->
+<!--            app:layout_constraintEnd_toStartOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+<!--        <Constraint-->
+<!--            android:id="@+id/btn_registration"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/button_auth_height"-->
+<!--            android:layout_marginStart="@dimen/margin_40"-->
+<!--            android:layout_marginEnd="@dimen/margin_40"-->
+<!--            android:layout_marginBottom="@dimen/margin_40"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+    </ConstraintSet>
+</MotionScene>

@@ -25,4 +25,6 @@
     <color name="startColor">#CB356B</color>
     <color name="endColor">#BD3F32</color>
     <color name="googleColor">#E42713</color>
+
+    <color name="futureTrainingColor">#CEF189</color>
 </resources>

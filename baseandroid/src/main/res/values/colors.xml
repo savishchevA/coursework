@@ -8,6 +8,7 @@
     <color name="colorPrimaryVariant">#3E68C1</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="transparentStatusBar">#66FFFFFF</color>
+    <color name="transparent_20">#CCFFFFFF</color>
 
     <color name="colorSecondary">#3F51B5</color>
     <color name="colorSecondaryVariant">#3D7741</color>
@@ -25,4 +26,6 @@
     <color name="startColor">#CB356B</color>
     <color name="endColor">#BD3F32</color>
     <color name="googleColor">#E42713</color>
+
+    <color name="futureTrainingColor">#E42713</color>
 </resources>

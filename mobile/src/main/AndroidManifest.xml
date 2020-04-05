@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:name="io.bsu.mmf.helpme.SosApplication"
         android:allowBackup="true"
@@ -18,6 +22,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpMe">
+
         <activity
             android:name="io.bsu.mmf.helpme.view.main.MainActivity"
             android:screenOrientation="portrait"
@@ -28,7 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-<!--        <activity-->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCsAzdUuDCEKgul7ZYYJH9t8CIyWdGGeMk"/>
+
+        <!--        <activity-->
 <!--            android:name=".view.welcome.WelcomeActivity"-->
 <!--            android:theme="@style/AppTheme.BrandedLaunch" />-->
 <!--        <activity android:name=".view.contact.ConfigureContactActivity" />-->

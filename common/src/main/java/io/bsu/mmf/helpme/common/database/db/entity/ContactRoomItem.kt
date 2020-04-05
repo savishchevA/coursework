@@ -18,7 +18,16 @@ class ContactRoomItem(
     @ColumnInfo(name = "address")
     val contactAddress: String? = null,
 
+    @ColumnInfo(name = "longitude")
+    val longitude: Double? = null,
+
+    @ColumnInfo(name = "latitude")
+    val latitude: Double? = null,
+
     @ColumnInfo(name = "priorityContact")
-    val isPriorityContact: Boolean = false
+    val isPriorityContact: Boolean = false,
+
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    val image: ByteArray? = null
 
 )

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_new_contact">Add new contact</string>
+    <string name="save_contact">Save contact</string>
+    <string name="change">Change</string>
+    <string name="change_contact">Change contact</string>
+</resources>

@@ -9,6 +9,6 @@ import io.bsu.mmf.helpme.common.database.db.entity.ContactRoomItem
     entities = [ContactRoomItem::class],
     version = 1
 )
-abstract class AppDatabase : RoomDatabase() {
+    abstract class AppDatabase : RoomDatabase() {
     abstract fun contactsDao(): ContactDao
 }

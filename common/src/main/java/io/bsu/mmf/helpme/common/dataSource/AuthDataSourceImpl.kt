@@ -29,11 +29,11 @@ class AuthDataSourceImpl (
                         authResponseToDtoMapper.map(result.result?.user)!!
                     )
                 } else {
-                    ResultNetwork.Error.OtherError(result.exception?.message ?: "")
+                    ResultNetwork.Error(result.exception?.message ?: "")
                 }
             } catch (e: Exception) {
                 Timber.e(e.message)
-                io.bsu.mmf.helpme.data.ResultNetwork.Error.OtherError(e.message ?: "")
+                io.bsu.mmf.helpme.data.ResultNetwork.Error(e.message ?: "")
             }
 
 
@@ -53,11 +53,11 @@ class AuthDataSourceImpl (
                         authResponseToDtoMapper.map(result.result?.user)!!
                     )
                 } else {
-                    ResultNetwork.Error.OtherError("dasdas")
+                    ResultNetwork.Error("dasdas")
                 }
             } catch (e: Exception) {
                 Timber.e(e.message)
-                ResultNetwork.Error.OtherError(e.message ?: "")
+                ResultNetwork.Error(e.message ?: "")
             }
 
 
@@ -77,11 +77,11 @@ class AuthDataSourceImpl (
               if (result.isSuccessful) {
                   io.bsu.mmf.helpme.data.ResultNetwork.Success(Unit)
               } else {
-                  io.bsu.mmf.helpme.data.ResultNetwork.Error.OtherError(result.exception?.message ?: "")
+                  io.bsu.mmf.helpme.data.ResultNetwork.Error(result.exception?.message ?: "")
               }
           } catch (e: Exception) {
               Timber.e(e.message)
-              io.bsu.mmf.helpme.data.ResultNetwork.Error.OtherError(e.message ?: "")
+              io.bsu.mmf.helpme.data.ResultNetwork.Error(e.message ?: "")
           }
 
 

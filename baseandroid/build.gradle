@@ -3,6 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+androidExtensions {
+    experimental = true
+}
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -24,12 +31,28 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':data')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //android
     implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.core:core-ktx:$coreKtx"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation"
@@ -38,10 +61,16 @@ dependencies {
     implementation "com.airbnb.android:epoxy:$epoxy"
     kapt "com.airbnb.android:epoxy-processor:$epoxy"
 
+    //material
+    implementation "com.google.android.material:material:$material"
 
     api "com.jakewharton.timber:timber:$timberVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+kapt {
+    generateStubs = true
 }

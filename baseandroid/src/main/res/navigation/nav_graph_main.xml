@@ -13,6 +13,60 @@
 <!--        <action-->
 <!--            android:id="@+id/action_mainFragment_to_helpFragment"-->
 <!--            app:destination="@id/helpFragment" />-->
+        <action
+            android:id="@+id/action_mainFragment_to_activeScanningFragment"
+            app:destination="@id/activeScanningFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.SettingsFragment"
+        android:label="SettingsFragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_changeContactFragment"
+            app:destination="@id/changeContactFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.AddContactFragment"
+        android:label="AddContactFragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeContactFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.ChangeContactFragment"
+        android:label="ChangeContactFragment" >
+        <argument
+            android:name="contactId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.MapFragment"
+        android:label="MapFragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/activeScanningFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.ActiveScanningFragment"
+        android:label="ActiveScanningFragment" >
     </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/welcomeFragment"-->

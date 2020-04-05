@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_8"
+    android:layout_marginStart="@dimen/margin_12"
+    android:layout_marginEnd="@dimen/margin_12"
+    android:layout_marginBottom="@dimen/margin_4"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/contactAvatar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_16"
+            app:layout_constraintDimensionRatio="1:1"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_robot" />
+
+        <TextView
+            android:id="@+id/contactName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_12"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintBottom_toTopOf="@+id/contactPhone"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ivanov Ivan Ivanovich" />
+
+        <TextView
+            android:id="@+id/contactPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_20"
+            app:layout_constraintStart_toStartOf="@+id/contactName"
+            app:layout_constraintBottom_toTopOf="@+id/contactAddress"
+            app:layout_constraintTop_toBottomOf="@+id/contactName"
+            tools:text="+375291112233" />
+
+        <TextView
+            android:id="@+id/contactAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/contactPhone"
+            app:layout_constraintTop_toBottomOf="@+id/contactPhone"
+            tools:text="Slobodskaya 121, 21" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
