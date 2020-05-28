@@ -1,18 +1,24 @@
 package io.bsu.mmf.helpme.view.main
 
+import android.app.Activity
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
-import android.view.View
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import io.bsu.mmf.helpme.R
+import io.bsu.mmf.helpme.utils.observeEvent
 import io.bsu.mmf.helpme.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
@@ -57,6 +63,12 @@ class MainActivity : AppCompatActivity() {
             //checkRegistrationStatus(it)
         })
 
+        viewModel.successLogin.observeEvent(this) {
+            Timber.e("From activity registration")
+        }
+
+
+
 //        val inflater = navController.navInflater
 //
 //        graph = inflater.inflate(R.navigation.nav_graph_main)
@@ -70,7 +82,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showBottomNavigation() {
-        bottomNavigationView.visibility = View.VISIBLE
+        bottomNavigationView.visibility = View.GONE
+       // bottomNavigationView.visibility = View.VISIBLE
     }
 
     private fun updateUserLoginStatus(isCompleteRegistration: Boolean) {
@@ -82,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         if (isCompleteRegistration) {
             graph.startDestination = R.id.mainFragment
         } else {
-            graph.startDestination = R.id.authFragment
+            graph.startDestination = R.id.authMainFragment
         }
         host.navController.graph = graph
     }
@@ -96,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         if (registrationStatus) {
             graph.startDestination = R.id.mainFragment
         } else {
-            graph.startDestination = R.id.authFragment
+            graph.startDestination = R.id.authMainFragment
         }
         host.navController.graph = graph
     }
@@ -166,4 +179,27 @@ class MainActivity : AppCompatActivity() {
 //            "${contact.contactName} (${contact.contactInfo})"
 //        }
 //    }
+}
+
+fun Activity.makeStatusBarTransparent() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+            } else {
+                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            }
+            statusBarColor = Color.TRANSPARENT
+        }
+    }
+}
+
+fun View.setMarginTop(marginTop: Int) {
+    val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+    menuLayoutParams.setMargins(0, marginTop, 0, 0)
+    this.layoutParams = menuLayoutParams
 }

@@ -2,19 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom">
 
     <TextView
         android:id="@+id/reg_title_second"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_32"
         android:fontFamily="sans-serif"
-        android:text="Registration"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_32"
+        android:gravity="center"
+        android:text="@string/registration"
+        android:textColor="@color/bg"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +28,8 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_24"
         android:layout_marginEnd="@dimen/margin_16"
+        android:gravity="center"
+        android:textColor="@color/bg"
         android:text="@string/add_reg_contact_title"
         android:textSize="@dimen/text_20"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +112,8 @@
         android:layout_marginStart="@dimen/margin_20"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_20"
+
+        app:cornerRadius="32dp"
         android:text="Continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,10 +127,11 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_24"
         android:layout_marginEnd="@dimen/margin_16"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/bg"
         android:text="Add late"
+        app:cornerRadius="32dp"
+
         android:textColor="@color/colorOnSecondary"
-        app:cornerRadius="@dimen/button_auth_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_continue" />

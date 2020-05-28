@@ -19,14 +19,14 @@ open class BaseViewModel : ViewModel() {
     fun <T> execute(
         call: suspend () -> ResultNetwork<T>,
         result: MutableLiveData<T>,
-        onSuccess: () -> Unit = {}
+        onSuccess: (T) -> Unit = {}
     ) {
         _loading.value = true
         viewModelScope.launch {
             call().fold(
                 onSuccess = {
                     result.value = it
-                    onSuccess()
+                    onSuccess(it)
                 },
                 onFailure = {
                     Timber.e("Current error is ${it.errorMessage}")

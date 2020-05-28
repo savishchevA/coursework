@@ -7,14 +7,17 @@ import androidx.lifecycle.viewModelScope
 import io.bsu.mmf.helpme.baseAndroid.BaseViewModel
 import io.bsu.mmf.helpme.baseAndroid.utils.Event
 import io.bsu.mmf.helpme.common.usecase.auth.LoginWithEmailUseCase
+import io.bsu.mmf.helpme.common.usecase.profile.CreateProfileUseCase
 import io.bsu.mmf.helpme.common.usecase.sharedPreference.SetRegistrationStatusUseCase
 import io.bsu.mmf.helpme.data.auth.Account
 import io.bsu.mmf.helpme.data.auth.AuthData
+import io.bsu.mmf.helpme.data.entity.local.Profile
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginWithEmailUseCase: LoginWithEmailUseCase,
-    private val setRegistrationStatusUseCase: SetRegistrationStatusUseCase
+    private val setRegistrationStatusUseCase: SetRegistrationStatusUseCase,
+    private val createProfileUseCase: CreateProfileUseCase
 ) : BaseViewModel() {
 
     private val _successLogin = MutableLiveData<AuthData>()
@@ -24,6 +27,13 @@ class LoginViewModel(
 
     fun login(account: Account) {
         execute({ loginWithEmailUseCase(account) }, _successLogin) {
+            viewModelScope.launch {
+                createProfileUseCase(
+                    Profile(
+                        name = it.name
+                    )
+                )
+            }
             setRegistrationStatusUseCase.invoke(true)
         }
     }

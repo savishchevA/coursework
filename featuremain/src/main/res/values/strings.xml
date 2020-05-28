@@ -4,4 +4,11 @@
     <string name="save_contact">Save contact</string>
     <string name="change">Change</string>
     <string name="change_contact">Change contact</string>
+    <string name="start_train">Start train</string>
+
+    <string name="train_distance">%1$s km</string>
+    <string name="train_time">Train time</string>
+    <string name="distance">Distance</string>
+    <string name="train_distance_change_value">Изменить значение: %1$s km</string>
+    <string name="train_time_change_value">Изменить значение: %1$s минут</string>
 </resources>

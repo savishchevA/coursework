@@ -64,6 +64,11 @@ dependencies {
     //material
     implementation "com.google.android.material:material:$material"
 
+    //material dialogs
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs"
+    implementation "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
+    implementation "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
+
     api "com.jakewharton.timber:timber:$timberVersion"
 
     testImplementation 'junit:junit:4.12'

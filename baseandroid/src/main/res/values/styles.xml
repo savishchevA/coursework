@@ -8,12 +8,12 @@
 
     <style name="Widget.HelpMe.Button.OutlinedButton.Light" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_height">56dp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/bg</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">@dimen/text_16</item>
         <item name="android:background">@drawable/btn_corner_black</item>
         <item name="strokeWidth">2dp</item>
-        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="strokeColor">@color/bg</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
     </style>
@@ -37,22 +37,54 @@
     </style>
 
     <style name="TextInputLayout.Login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusBottomEnd">8dp</item>
-        <item name="boxCornerRadiusTopEnd">8dp</item>
-        <item name="boxCornerRadiusBottomStart">8dp</item>
-        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">24dp</item>
+        <item name="boxCornerRadiusTopEnd">24dp</item>
+        <item name="boxCornerRadiusBottomStart">24dp</item>
+        <item name="boxCornerRadiusTopStart">24dp</item>
     </style>
 
     <style name="Widget.HelpMe.Button.Auth" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_height">@dimen/button_auth_height</item>
         <item name="backgroundTint">@color/colorOnSecondary</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/bg</item>
+        <item name="strokeColor">@color/bg</item>
         <item name="cornerRadius">@dimen/button_auth_radius</item>
         <item name="strokeWidth">2dp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
+    <style name="Widget.HelpMe.Pink" parent="">
+        <item name="colorPrimary">@color/owl_pink_500</item>
+        <item name="colorSecondary">@color/owl_pink_500</item>
+        <item name="colorPrimaryVariant">@color/owl_pink_600</item>
+        <item name="colorOnPrimary">#000</item>
+    </style>
 
+    <style name="Widget.HelpMe.Button.Main" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_height">56dp</item>
+        <item name="cornerRadius">30dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="textAllCaps">false</item>
+        <item name="rippleColor">@color/btn_main_start</item>
+        <item name="android:textColor">@color/btn_main_start</item>
+        <item name="android:textSize">20sp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/btn_main_start</item>
+    </style>
+
+
+    <style name="ShapeAppearance.Owl.MinimizedSheet" parent="ShapeAppearance.Owl.MediumComponent">
+        <item name="cornerSizeTopLeft">48dp</item>
+    </style>
+
+    <!--Shape Appearance for medium components like cards, alert dialogs-->
+    <style name="ShapeAppearance.Owl.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0px</item>
+    </style>
    <!-- <style name="EditText.Normal" parent="android:Widget.EditText">
         <item name="android:background">@drawable/rounded_corner</item>
         <item name="android:backgroundTint">?attr/editTextBackgroundTint</item>
@@ -61,4 +93,49 @@
         <item name="android:imeOptions">actionDone</item>
     </style>-->
 
+
+    <style name="Widget.HelpMe.Button.Train" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_height">56dp</item>
+        <item name="cornerRadius">30dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="textAllCaps">false</item>
+        <item name="rippleColor">@color/train_card_bg</item>
+        <item name="android:textColor">@color/train_card_bg</item>
+        <item name="android:textSize">16sp</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/train_card_bg</item>
+    </style>
+
+
+    <style name="TrainDataShapeAppearance">
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="AppTheme.AppBarOverlay">
+        <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="titleTextColor">@android:color/white</item>
+    </style>
+
+
+
+    <style name="ToolbarTextAppearance">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+    <style name="TextViewSettings">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
 </resources>

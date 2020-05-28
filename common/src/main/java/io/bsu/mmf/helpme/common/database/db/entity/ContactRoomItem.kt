@@ -30,4 +30,6 @@ class ContactRoomItem(
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     val image: ByteArray? = null
 
+
+
 )

@@ -13,9 +13,9 @@ class TrainController: EpoxyController() {
     override fun buildModels() {
         trains.forEach { train ->
             trainModelView {
-                id(train.name)
-                trainName(train.name)
-                trainDate(train.day)
+                id(train.id)
+                trainName("Тренирока №${train.id}")
+                trainDate(train.date)
                 trainDistance(train.distance)
             }
         }

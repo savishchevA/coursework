@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.bsu.mmf.helpme.featuremain" />
+    package="io.bsu.mmf.helpme.featuremain" >
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+</manifest>

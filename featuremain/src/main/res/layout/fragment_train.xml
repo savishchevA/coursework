@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_train"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:fitsSystemWindows="true"
+            android:backgroundTint="@color/train_card_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/TrainDataShapeAppearance">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/card_train"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_time_hint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="@string/train_time"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_train_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="12:41"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_32"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time_hint" />
+
+
+                <TextView
+                    android:id="@+id/tv_distance_hint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Distance"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_train_time" />
+
+                <TextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:gravity="center"
+                    android:text="0.0 km"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_distance_hint"
+                    app:layout_constraintStart_toStartOf="@+id/tv_distance_hint"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_distance_hint" />
+
+                <TextView
+                    android:id="@+id/tv_speed_hint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Speed"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_train_time" />
+
+                <TextView
+                    android:id="@+id/tv_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0.0 km/h"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_speed_hint"
+                    app:layout_constraintStart_toStartOf="@+id/tv_speed_hint"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_speed_hint" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pause"
+            style="@style/Widget.HelpMe.Button.Train"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:text="pause"
+            android:visibility="gone"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_stop"
+            style="@style/Widget.HelpMe.Button.Train"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:text="Finish"
+            android:textSize="@dimen/text_20"
+            android:fontFamily="sans-serif-light"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

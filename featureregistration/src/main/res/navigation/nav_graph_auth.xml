@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_auth"
+    app:startDestination="@id/authFragment2">
+
+    <fragment
+        android:id="@+id/authFragment2"
+        android:name="io.bsu.mmf.helpme.featureregistration.fragment.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/fromAuthToLogin"
+            app:destination="@id/loginFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/fromAuthToRegistration"
+            app:destination="@id/registrationFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="io.bsu.mmf.helpme.featureregistration.fragment.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/registrationFragment2"
+        android:name="io.bsu.mmf.helpme.featureregistration.fragment.RegistrationFragment"
+        android:label="RegistrationFragment">
+        <action
+            android:id="@+id/toSecondRegistrationStep"
+            app:destination="@id/registrationSecondFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationSecondFragment2"
+        android:name="io.bsu.mmf.helpme.featureregistration.fragment.RegistrationSecondFragment"
+        android:label="RegistrationSecondFragment" >
+
+
+    </fragment>
+</navigation>

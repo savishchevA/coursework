@@ -2,21 +2,38 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:src="@drawable/ic_back"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/login_title"
+        app:layout_constraintBottom_toBottomOf="@+id/login_title"/>
 
     <TextView
         android:id="@+id/login_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/login"
-        android:layout_marginTop="@dimen/margin_32"
         android:layout_marginStart="@dimen/margin_16"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_32"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginEnd="56dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/bg"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
@@ -66,10 +83,15 @@
         android:id="@+id/btn_login"
         style="@style/Widget.HelpMe.Button.Auth"
         android:layout_width="0dp"
-        android:layout_height="@dimen/button_auth_height"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_20"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_20"
+        app:cornerRadius="32dp"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetLeft="0dp"
         android:text="Log in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +101,14 @@
         android:id="@+id/singup_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_16"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
@@ -88,9 +116,9 @@
             android:id="@+id/singup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:gravity="center"
-            android:text="Don't have an account?" />
+            android:text="Don't have an account?"
+            android:textAlignment="center" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_signup"
@@ -101,22 +129,4 @@
             android:minHeight="0dp"
             android:text="Sign up" />
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_google_login"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/button_auth_height"
-        app:cornerRadius="@dimen/button_auth_radius"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif"
-        android:text="Or login with google"
-        android:layout_marginStart="@dimen/margin_20"
-        android:layout_marginTop="@dimen/margin_16"
-        android:layout_marginEnd="@dimen/margin_20"
-        android:backgroundTint="#DA493A"
-        app:layout_constraintTop_toBottomOf="@+id/singup_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

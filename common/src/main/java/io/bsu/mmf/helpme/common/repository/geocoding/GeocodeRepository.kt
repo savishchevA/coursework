@@ -1,25 +1,28 @@
 package io.bsu.mmf.helpme.common.repository.geocoding
 
 import android.location.Geocoder
+import io.bsu.mmf.helpme.data.ResultNetwork
 import io.bsu.mmf.helpme.data.location.AddressCoordinate
 
 interface GeocodeRepository {
-   suspend fun getLocationFromAddress(address: String): AddressCoordinate
+   suspend fun getLocationFromAddress(address: String): ResultNetwork<AddressCoordinate>
 }
 
 class GeocodeRepositoryImpl(
     private val geocoder: Geocoder
 ) : GeocodeRepository {
 
-    override suspend fun getLocationFromAddress(address: String): AddressCoordinate {
+    override suspend fun getLocationFromAddress(address: String): ResultNetwork<AddressCoordinate> {
         val foundAddress = geocoder.getFromLocationName(address, 1)
         return if (foundAddress.isNotEmpty()) {
-            AddressCoordinate(
+            ResultNetwork.Success<AddressCoordinate>( AddressCoordinate(
                 latitude = foundAddress[0].latitude,
                 longitude = foundAddress[0].longitude
-            )
+            ))
+
         } else {
-            AddressCoordinate(0.0, 0.0)
+            ResultNetwork.Error("Error find coordinates: ${foundAddress.toString()}")
+            //AddressCoordinate(0.0, 0.0)
         }
     }
 }

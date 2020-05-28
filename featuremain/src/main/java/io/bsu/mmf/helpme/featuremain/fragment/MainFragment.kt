@@ -15,6 +15,8 @@ import com.google.android.material.shape.*
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.customview.ProgressItemDecoration
 import io.bsu.mmf.helpme.baseAndroid.customview.recycler.TrainItemDecoration
+import io.bsu.mmf.helpme.baseAndroid.utils.navigateDirectionSafe
+import io.bsu.mmf.helpme.baseAndroid.utils.navigateSafe
 import io.bsu.mmf.helpme.featuremain.R
 import io.bsu.mmf.helpme.featuremain.adapter.controller.TrainController
 import io.bsu.mmf.helpme.featuremain.adapter.holder.TrainModelView
@@ -49,14 +51,19 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initTrainingList()
-
-        viewModel.trainList.observe(viewLifecycleOwner, Observer {
-            trainController.trains = it
-            rv_training.addItemDecoration(TrainItemDecoration(requireContext(), it))
-        })
+        initContentView()
+        //  initTrainingList()
+//
+//        viewModel.trainList.observe(viewLifecycleOwner, Observer {
+//            trainController.trains = it
+//            rv_training.addItemDecoration(TrainItemDecoration(requireContext(), it))
+//        })
 
         viewModel.currentWeather.observe(viewLifecycleOwner, Observer {
+
+
+            tv_current_weather.text =
+                getString(R.string.current_weather, (it.temp - 273.15).toInt().toString())
             Timber.e("Current weather: ${it.temp - 273.15}")
         })
 
@@ -74,12 +81,48 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 //        }
 
         // trainController.trains = presenter.trainList
-        rv_training.setController(trainController)
+        //  rv_training.setController(trainController)
 
-        btn_start_training.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_activeScanningFragment)
-           // navController.navigate(R.id.action_mainFragment_to_contactsFragment)
+        btn_train.setOnClickListener {
+            navController.navigate(R.id.toTrainFragment)
+            // navController.navigate(R.id.action_mainFragment_to_contactsFragment)
         }
+
+        btn_contact.setOnClickListener {
+            navController.navigateDirectionSafe(
+                MainFragmentDirections.actionMainFragmentToContactsFragment()
+            )
+        }
+
+        btn_settings.setOnClickListener {
+            navController.navigateSafe(
+                R.id.toSettingsFragment
+            )
+        }
+
+    }
+
+    private fun initContentView() {
+        val leftShapePathModel = ShapeAppearanceModel.builder()
+            .setTopLeftCorner(RoundedCornerTreatment())
+            .setTopLeftCornerSize(300f)
+            .build()
+
+        val rightBottomShapePathModel = ShapeAppearanceModel.builder()
+            .setBottomRightCorner(RoundedCornerTreatment())
+            .setBottomRightCornerSize(250f)
+            .build()
+
+
+        val leftRoundedMaterialShape = MaterialShapeDrawable(leftShapePathModel)
+        leftRoundedMaterialShape.fillColor =
+            ContextCompat.getColorStateList(requireContext(), R.color.white)
+
+        val rightBg = MaterialShapeDrawable(rightBottomShapePathModel)
+        rightBg.fillColor = ContextCompat.getColorStateList(requireContext(), R.color.bg)
+        topContent.background = rightBg
+        bottomContent.background = leftRoundedMaterialShape
+
 
     }
 

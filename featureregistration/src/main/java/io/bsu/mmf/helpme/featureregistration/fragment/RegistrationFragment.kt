@@ -19,22 +19,28 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_registration.setOnClickListener {
-            if(isValidFields()) {
-                viewModel.createAccount(
-                        Account(
-                                email = email.text,
-                                password = password.text
+        root.setTopRoundedBackground()
 
-                        )
+        btn_registration.setOnClickListener {
+            if (isValidFields()) {
+                viewModel.createAccount(
+                    Account(
+                        email = email.text,
+                        password = password.text
+                    )
                 )
             }
         }
 
         viewModel.successAccountCreation.observeEvent(this) {
-            navController.navigate(R.id.action_registrationFragment_to_registrationSecondFragment)
+            navController.navigateSafe(R.id.toSecondRegistrationStep)
+        }
+
+        btn_back.setOnClickListener {
+            navController.navigateUp()
         }
     }
+
 
     //TODO: move it to authDataSource
 //    private fun updateUserData() {

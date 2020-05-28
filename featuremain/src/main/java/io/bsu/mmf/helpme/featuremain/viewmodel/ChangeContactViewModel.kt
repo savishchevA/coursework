@@ -7,6 +7,7 @@ import io.bsu.mmf.helpme.common.usecase.location.GetCoordinatesFromAddressUseCas
 import io.bsu.mmf.helpme.data.entity.local.Contact
 import io.bsu.mmf.helpme.data.location.AddressCoordinate
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ChangeContactViewModel (
     private val getContactUseCase: GetContactByIdUseCase,
@@ -28,7 +29,15 @@ class ChangeContactViewModel (
 
     fun getAddressCoordinate(address: String) {
         viewModelScope.launch {
-            _addressCoordinate.value = getCoordinatesFromAddressUseCase(address)
+            getCoordinatesFromAddressUseCase(address).fold (
+                onSuccess = {
+                    _addressCoordinate.value = it
+
+                },
+                onFailure = {
+                    Timber.e(it.errorMessage)
+                }
+            )
         }
     }
 

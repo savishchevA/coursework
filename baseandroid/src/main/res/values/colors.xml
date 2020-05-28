@@ -3,6 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
 
+    <color name="bg">#A1AECC</color>
+    <color name="main_text_color">#0A0B15</color>
+
     <color name="white">@android:color/white</color>
 
     <color name="colorPrimaryVariant">#3E68C1</color>
@@ -23,9 +26,16 @@
     <color name="colorBackground">#F6F6F6</color>
     <color name="colorOnBackground">#212121</color>
 
+    <color name="btn_main_start">#FF5722</color>
+
     <color name="startColor">#CB356B</color>
     <color name="endColor">#BD3F32</color>
     <color name="googleColor">#E42713</color>
-
+    <color name="owl_pink_500">#ff0266</color>
+    <color name="owl_pink_600">#d8004d</color>
     <color name="futureTrainingColor">#E42713</color>
+
+    <color name="train_card_bg">#7c71f2</color>
+
+    <color name="help_train">#b71c1c</color>
 </resources>

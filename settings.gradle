@@ -1,3 +1,4 @@
+include ':settings'
 include ':mobile', ':domain'
 include ':common'
 include ':baseandroid'

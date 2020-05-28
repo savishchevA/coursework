@@ -22,6 +22,11 @@ class MainActivityViewModel(
     val checkUserLogin: LiveData<Boolean>
         get() = _checkUserLogin
 
+    val successLogin = MutableLiveData<Event<Unit>>()
+
+    private fun successRegistration() {
+        successLogin.value = Event(Unit)
+    }
     init {
         checkRegistrationStatus()
         checkUserLoginStatus()

@@ -1,57 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_main"
-    app:startDestination="@id/authFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/authMainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.MainFragment"
-        android:label="MainFragment" >
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_configureContactFragment"-->
-<!--            app:destination="@id/configureContactFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_mainFragment_to_helpFragment"-->
-<!--            app:destination="@id/helpFragment" />-->
-        <action
-            android:id="@+id/action_mainFragment_to_activeScanningFragment"
-            app:destination="@id/activeScanningFragment" />
+        android:label="MainFragment">
+        <!--        <action-->
+        <!--            android:id="@+id/action_mainFragment_to_configureContactFragment"-->
+        <!--            app:destination="@id/configureContactFragment" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_mainFragment_to_helpFragment"-->
+        <!--            app:destination="@id/helpFragment" />-->
         <action
             android:id="@+id/action_mainFragment_to_contactsFragment"
-            app:destination="@id/contactsFragment" />
+            app:destination="@id/contactsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/toTrainFragment"
+            app:destination="@id/trainFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/toSettingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
 
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="io.bsu.mmf.helpme.featuremain.fragment.SettingsFragment"
-        android:label="SettingsFragment" >
-    </fragment>
 
     <fragment
         android:id="@+id/contactsFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.ContactsFragment"
-        android:label="ContactsFragment" >
+        android:label="ContactsFragment">
         <action
             android:id="@+id/action_contactsFragment_to_addContactFragment"
-            app:destination="@id/addContactFragment" />
+            app:destination="@id/addContactFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
         <action
             android:id="@+id/action_contactsFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
         <action
             android:id="@+id/action_contactsFragment_to_changeContactFragment"
-            app:destination="@id/changeContactFragment" />
+            app:destination="@id/changeContactFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/action_contactsFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.chat.ChatFragment"
+        android:label="ContactsFragment">
+
     </fragment>
 
     <fragment
         android:id="@+id/addContactFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.AddContactFragment"
-        android:label="AddContactFragment" >
-    </fragment>
+        android:label="AddContactFragment"></fragment>
 
     <fragment
         android:id="@+id/changeContactFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.ChangeContactFragment"
-        android:label="ChangeContactFragment" >
+        android:label="ChangeContactFragment">
         <argument
             android:name="contactId"
             app:argType="integer" />
@@ -60,71 +95,95 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.MapFragment"
-        android:label="MapFragment" >
-    </fragment>
+        android:label="MapFragment"></fragment>
 
     <fragment
         android:id="@+id/activeScanningFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.ActiveScanningFragment"
-        android:label="ActiveScanningFragment" >
+        android:label="ActiveScanningFragment">
+        <action
+            android:id="@+id/showHelpFragment"
+            app:destination="@id/helpFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/welcomeFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.WelcomeFragment"-->
-<!--        android:label="WelcomeFragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_welcomeFragment_to_mainFragment"-->
-<!--            app:destination="@id/mainFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_welcomeFragment_to_configureContactFragment"-->
-<!--            app:destination="@id/configureContactFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/configureContactFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.ConfigureContactFragment"-->
-<!--        android:label="ConfigureContactFragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_configureContactFragment_to_configureMessageFragment"-->
-<!--            app:destination="@id/configureMessageFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/configureMessageFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.ConfigureMessageFragment"-->
-<!--        android:label="ConfigureMessageFragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_configureMessageFragment_to_mainFragment"-->
-<!--            app:destination="@id/mainFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/helpFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.HelpFragment"-->
-<!--        android:label="HelpFragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_helpFragment_to_alarmFragment"-->
-<!--            app:destination="@id/alarmFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_helpFragment_to_sendMessageFragment"-->
-<!--            app:destination="@id/sendMessageFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/alarmFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.AlarmFragment"-->
-<!--        android:label="AlarmFragment" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_alarmFragment_to_sendMessageFragment"-->
-<!--            app:destination="@id/sendMessageFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/sendMessageFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.SendMessageFragment"-->
-<!--        android:label="SendMessageFragment" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/welcomeFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.WelcomeFragment"-->
+    <!--        android:label="WelcomeFragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_welcomeFragment_to_mainFragment"-->
+    <!--            app:destination="@id/mainFragment" />-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_welcomeFragment_to_configureContactFragment"-->
+    <!--            app:destination="@id/configureContactFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/configureContactFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.ConfigureContactFragment"-->
+    <!--        android:label="ConfigureContactFragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_configureContactFragment_to_configureMessageFragment"-->
+    <!--            app:destination="@id/configureMessageFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/configureMessageFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.ConfigureMessageFragment"-->
+    <!--        android:label="ConfigureMessageFragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_configureMessageFragment_to_mainFragment"-->
+    <!--            app:destination="@id/mainFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/helpFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.HelpFragment"-->
+    <!--        android:label="HelpFragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_helpFragment_to_alarmFragment"-->
+    <!--            app:destination="@id/alarmFragment" />-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_helpFragment_to_sendMessageFragment"-->
+    <!--            app:destination="@id/sendMessageFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/alarmFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.AlarmFragment"-->
+    <!--        android:label="AlarmFragment" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_alarmFragment_to_sendMessageFragment"-->
+    <!--            app:destination="@id/sendMessageFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/sendMessageFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.SendMessageFragment"-->
+    <!--        android:label="SendMessageFragment" />-->
+
+    <fragment
+        android:id="@+id/authMainFragment"
+        android:name="io.bsu.mmf.helpme.featureregistration.fragment.AuthMainFragment"
+        android:label="AuthMainFragment">
+        <action
+            android:id="@+id/fromAuthToMainScreen"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
     <action
         android:id="@+id/action_global_mainFragment"
-        app:destination="@id/mainFragment" />
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popEnterAnim="@anim/fragment_fade_enter"
+        app:popExitAnim="@anim/fragment_fade_exit"
+        app:popUpTo="@+id/nav_graph_main"/>
     <fragment
         android:id="@+id/authFragment"
         android:name="io.bsu.mmf.helpme.featureregistration.fragment.AuthFragment"
-        android:label="AuthFragment" >
+        android:label="AuthFragment">
         <action
             android:id="@+id/authFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -132,14 +191,14 @@
             android:id="@+id/authFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/sosMessageFragment"-->
-<!--        android:name="io.bsu.mmf.helpme.fragments.SosMessageFragment"-->
-<!--        android:label="SosMessageFragment" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/sosMessageFragment"-->
+    <!--        android:name="io.bsu.mmf.helpme.fragments.SosMessageFragment"-->
+    <!--        android:label="SosMessageFragment" />-->
     <fragment
         android:id="@+id/loginFragment"
         android:name="io.bsu.mmf.helpme.featureregistration.fragment.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_forgotLoginFragment"
             app:destination="@id/forgotLoginFragment" />
@@ -148,12 +207,16 @@
             app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="io.bsu.mmf.helpme.featureregistration.fragment.RegistrationFragment"
-        android:label="RegistrationFragment" >
+        android:label="RegistrationFragment">
         <action
             android:id="@+id/action_registrationFragment_to_registrationSecondFragment"
             app:destination="@id/registrationSecondFragment" />
@@ -166,4 +229,49 @@
         android:id="@+id/registrationSecondFragment"
         android:name="io.bsu.mmf.helpme.featureregistration.fragment.RegistrationSecondFragment"
         android:label="RegistrationSecondFragment" />
+    <fragment
+        android:id="@+id/trainFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.train.TrainFragment"
+        android:label="TrainFragment">
+        <action
+            android:id="@+id/toActiveScanningFragment"
+            app:destination="@id/activeScanningFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/showTrainSuccess"
+            app:destination="@id/successTrainFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/trainSettingsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.TrainSettingsFragment"
+        android:label="TrainSettingsFragment"/>
+    <fragment
+        android:id="@+id/successTrainFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.train.finish.SuccessTrainFragment"
+        android:label="SuccessTrainFragment"/>
+<fragment
+        android:id="@+id/helpFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.train.finish.HelpFragment"
+        android:label="HelpFragment"/>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.SettingsFragment"
+        android:label="SettingsFragment">
+        <action
+            android:id="@+id/toTrainSettingsFragment"
+            app:destination="@id/trainSettingsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
+    </fragment>
 </navigation>

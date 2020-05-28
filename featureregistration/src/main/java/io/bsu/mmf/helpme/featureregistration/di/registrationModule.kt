@@ -10,11 +10,13 @@ val registrationModule = module {
     //auth
     viewModel { AuthViewModel() }
     viewModel { ForgotLoginViewModel(get()) }
-    viewModel { LoginViewModel(get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { RegistrationSecondViewModel(get(), get()) }
-    viewModel { RegistrationViewModel(get(), get()) }
+    viewModel { RegistrationViewModel(get(), get(), get()) }
+    viewModel { AuthMainViewModel() }
 
     fragment { AuthFragment() }
+    fragment { AuthMainFragment() }
     fragment { ForgotLoginFragment() }
     fragment { LoginFragment() }
     fragment { RegistrationFragment() }

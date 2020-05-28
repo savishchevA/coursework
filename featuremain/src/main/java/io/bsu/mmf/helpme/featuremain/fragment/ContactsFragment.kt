@@ -34,6 +34,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
         })
 
         viewModel.contactDetailEvent.observeEvent(viewLifecycleOwner) {
+            navController.navigate(R.id.action_contactsFragment_to_chatFragment)
             Timber.e("Details event")
         }
 
@@ -52,10 +53,10 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
 //        })
 
 
-                EpoxyTouchHelper.initSwiping(recyclerView)
+        EpoxyTouchHelper.initSwiping(recyclerView)
             .leftAndRight()
             .withTarget(ContactModelViewModel_::class.java)
-            .andCallbacks(object : EpoxyTouchHelper.SwipeCallbacks<ContactModelViewModel_>(){
+            .andCallbacks(object : EpoxyTouchHelper.SwipeCallbacks<ContactModelViewModel_>() {
 
                 override fun onSwipeCompleted(
                     model: ContactModelViewModel_?,
@@ -63,7 +64,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                     position: Int,
                     direction: Int
                 ) {
-                    when(direction) {
+                    when (direction) {
                         ItemTouchHelper.RIGHT -> {
                             navController.navigateDirectionSafe(
                                 ContactsFragmentDirections.actionContactsFragmentToChangeContactFragment(

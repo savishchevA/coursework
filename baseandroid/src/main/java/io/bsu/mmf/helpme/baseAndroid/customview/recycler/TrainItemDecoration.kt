@@ -108,7 +108,7 @@ class TrainItemDecoration(
             }
 
             canvas.drawText(
-                dateList[i].day,
+                dateList[i].date,
                 40f,
                 childView.top + childView.height / 2f + dp2Px(6),
                 datePaint

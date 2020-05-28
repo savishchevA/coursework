@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import io.bsu.mmf.helpme.data.entity.local.Contact
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
-import io.bsu.mmf.helpme.baseAndroid.utils.observeEvent
-import io.bsu.mmf.helpme.baseAndroid.utils.text
+import io.bsu.mmf.helpme.baseAndroid.utils.*
 import io.bsu.mmf.helpme.featureregistration.R
 import io.bsu.mmf.helpme.featureregistration.viewmodel.RegistrationSecondViewModel
 import kotlinx.android.synthetic.main.fragment_registration_second.*
@@ -18,6 +17,9 @@ class RegistrationSecondFragment : BaseFragment(R.layout.fragment_registration_s
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        root.setTopRoundedBackground()
+
         btn_continue.setOnClickListener {
             viewModel.saveContact(
                     Contact(
@@ -31,11 +33,11 @@ class RegistrationSecondFragment : BaseFragment(R.layout.fragment_registration_s
         }
 
         btn_late.setOnClickListener {
-            navController.navigate(R.id.action_global_mainFragment)
+            (parentFragment?.parentFragment as AuthMainFragment).navigateToMainScreen()
         }
 
         viewModel.navigateToMainScreen.observeEvent(this) {
-            navController.navigate(R.id.action_global_mainFragment)
+            (parentFragment?.parentFragment as AuthMainFragment).navigateToMainScreen()
         }
     }
 }

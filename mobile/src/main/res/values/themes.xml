@@ -10,7 +10,7 @@
     </style>
 
     <style name="Theme.HelpMe" parent="Base.Theme.HelpMe">
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#A1AECC</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
 

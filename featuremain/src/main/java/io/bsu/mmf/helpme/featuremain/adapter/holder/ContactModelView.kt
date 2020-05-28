@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.widget.*
 import com.airbnb.epoxy.*
 import io.bsu.mmf.helpme.featuremain.R
+import timber.log.Timber
 
 
 @ModelView(saveViewState = false, autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
@@ -53,6 +54,7 @@ class ContactModelView @JvmOverloads constructor(
 
     @AfterPropsSet
     fun bind() {
+        Timber.e("Current image: ${img}")
         if (img != null) {
             contactA.setImageBitmap(BitmapFactory.decodeByteArray(img,0, img!!.size))
         } else {
