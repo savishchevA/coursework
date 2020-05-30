@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import io.bsu.mmf.helpme.baseAndroid.BaseViewModel
 import io.bsu.mmf.helpme.common.usecase.contact.GetAllContactUseCase
 import io.bsu.mmf.helpme.common.usecase.contact.SaveContactUseCase
+import io.bsu.mmf.helpme.common.usecase.train.DeleteTrainUseCase
+import io.bsu.mmf.helpme.common.usecase.train.GetTrainsUseCase
 import io.bsu.mmf.helpme.common.usecase.weather.GetCurrentWeatherUseCase
 import io.bsu.mmf.helpme.data.entity.local.Contact
 import io.bsu.mmf.helpme.data.train.TrainItem
@@ -18,7 +20,9 @@ import timber.log.Timber
 class MainViewModel(
     private val getCurrentWeatherUseCase: GetCurrentWeatherUseCase,
     private val getAllContactUseCase: GetAllContactUseCase,
-    private val saveContactUseCase: SaveContactUseCase
+    private val saveContactUseCase: SaveContactUseCase,
+    private val getTrainsUseCase: GetTrainsUseCase,
+    private val deleteTrainUseCase: DeleteTrainUseCase
 ) : BaseViewModel() {
 
     private val _currentWeather = MutableLiveData<CurrentWeather>()
@@ -80,6 +84,12 @@ class MainViewModel(
 
     init {
 
+        viewModelScope.launch {
+            getTrainsUseCase().collect() {
+                _trainList.value = it
+            }
+        }
+
     //    viewModelScope.launch {
 //            repeat(1000) {
 //                addTestContact("New contact №$it")
@@ -125,5 +135,10 @@ class MainViewModel(
     }
 
     fun triggeredEvent() {}
+    fun deleteTrain(trainItem: TrainItem) {
+        viewModelScope.launch {
+            deleteTrainUseCase(trainItem)
+        }
+    }
 
 }

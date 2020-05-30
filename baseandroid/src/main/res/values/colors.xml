@@ -38,4 +38,6 @@
     <color name="train_card_bg">#7c71f2</color>
 
     <color name="help_train">#b71c1c</color>
+
+    <color name="message_settings">#b71c1c</color>
 </resources>

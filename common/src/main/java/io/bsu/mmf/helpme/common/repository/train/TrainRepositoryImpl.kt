@@ -15,4 +15,8 @@ class TrainRepositoryImpl (
     override suspend fun saveTrain(trainItem: TrainItem) {
         trainDataSource.insert(trainItem)
     }
+
+    override suspend fun deleteTrain(trainItem: TrainItem) {
+        trainDataSource.delete(trainItem)
+    }
 }

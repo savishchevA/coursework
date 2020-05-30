@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface TrainDao : BaseDao<TrainRoomItem> {
 
 
-    @Query("SELECT * FROM train")
+    @Query("SELECT * FROM train ORDER BY id DESC")
     fun getAll(): Flow<List<TrainRoomItem>>
 
 

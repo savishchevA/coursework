@@ -1,17 +1,24 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
+
+@JsonClass(generateAdapter = true)
 data class Weather(
-    @SerialName("description")
-    val description: String,
-    @SerialName("icon")
-    val icon: String,
-    @SerialName("id")
-    val id: Int,
-    @SerialName("main")
-    val main: String
+
+    @Json(name="description")
+    val description: String? = null,
+
+    @Json(name="icon")
+    val icon: String? = null,
+
+    @Json(name="id")
+    val id: Int? = null,
+
+    @Json(name="main")
+    val main: String? = null
 )

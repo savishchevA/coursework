@@ -10,7 +10,10 @@ class CurrentWeatherToDtoMapper (
 ) : Mapper<CurrentWeatherResponse, CurrentWeather> {
     override fun map(from: CurrentWeatherResponse): CurrentWeather {
         return CurrentWeather(
-            temp =  from.main.temp
+            temp =  from.main?.temp ?: 0.0,
+            feelTemp = from.main?.feelsLike ?: 0.0,
+            windSpeed = from.wind?.speed ?: 0.0,
+            weatherIcon = from.weather?.get(0)?.icon.orEmpty()
         )
     }
 }

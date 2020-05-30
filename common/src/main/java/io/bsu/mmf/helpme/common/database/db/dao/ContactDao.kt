@@ -13,6 +13,9 @@ interface ContactDao : BaseDao<ContactRoomItem> {
     fun getAll(): Flow<List<ContactRoomItem>>
 
     @Query("SELECT * FROM contacts")
+    fun getAllContactsList(): List<ContactRoomItem>
+
+    @Query("SELECT * FROM contacts")
     fun getAllSource(): DataSource.Factory<Int, ContactRoomItem>
 
     @Query("SELECT * FROM contacts WHERE contactName = :name ")
@@ -28,5 +31,13 @@ interface ContactDao : BaseDao<ContactRoomItem> {
     @Query("DELETE FROM contacts WHERE id = :contactId")
     suspend fun deleteContactById(contactId: Int)
 
+    @Query("UPDATE contacts SET priorityContact = (id = :contactId)")
+    suspend fun setPrimaryContact(contactId: Int)
+
+    @Query("SELECT COUNT(*) FROM contacts")
+    suspend fun count(): Int
+
+    @Query("SELECT * FROM contacts WHERE priorityContact = :isPriority")
+    fun getFlowPrimaryContact(isPriority: Boolean): Flow<ContactRoomItem>
 
 }

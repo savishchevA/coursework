@@ -130,6 +130,7 @@
         android:backgroundTint="@color/bg"
         android:text="Add late"
         app:cornerRadius="32dp"
+        android:visibility="gone"
 
         android:textColor="@color/colorOnSecondary"
         app:layout_constraintEnd_toEndOf="parent"

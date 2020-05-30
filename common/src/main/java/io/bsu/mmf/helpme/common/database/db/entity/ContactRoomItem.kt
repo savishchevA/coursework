@@ -15,6 +15,9 @@ class ContactRoomItem(
     @ColumnInfo(name = "phoneNumber")
     val phoneNumber: String,
 
+    @ColumnInfo(name = "contactMessage")
+    val contactMessage: String? = null,
+
     @ColumnInfo(name = "address")
     val contactAddress: String? = null,
 

@@ -10,7 +10,10 @@ class ProfileDtoToRoomItemMapper (
         return ProfileRoomItem(
             name = from.name,
             trainTime = from.trainTime,
-            trainDistance = from.trainDistance
+            trainDistance = from.trainDistance,
+            commonMessage = from.commonMessage,
+            stayTime = from.stayTime,
+            alarmTime = from.alarmTime
 
         )
     }

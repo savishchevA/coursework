@@ -14,4 +14,28 @@ class SharedPreferenceRepositoryImpl (
     override fun setRegistrationStatus(isCompleteRegistration: Boolean) {
         sharedPreferenceDataSource.setRegistrationStatus(isCompleteRegistration)
     }
+
+    override fun isSendAllContacts(): Boolean {
+        return sharedPreferenceDataSource.isSendAllContacts()
+    }
+
+    override fun setSendAllContacts(isSendAllContacts: Boolean) {
+        sharedPreferenceDataSource.setSendAllContacts(isSendAllContacts)
+    }
+
+    override fun getAlarmTime(): String {
+        return sharedPreferenceDataSource.getAlarmTime()
+    }
+
+    override fun setAlarmTime(alarmTime: String) {
+        sharedPreferenceDataSource.setAlarmTime(alarmTime)
+    }
+
+    override fun getStayTime(): String {
+        return sharedPreferenceDataSource.getStayTime()
+    }
+
+    override fun setStayTime(stayTime: String) {
+        sharedPreferenceDataSource.setStayTime(stayTime)
+    }
 }

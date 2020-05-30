@@ -45,4 +45,24 @@ class ContactsDataSourceImpl(
             contactDao.getContactById(contactId)
         )
     }
+
+    override suspend fun updatePrimaryContact(contactId: Int) {
+        contactDao.setPrimaryContact(contactId)
+    }
+
+    override suspend fun getFlowPrimaryContact(): Flow<Contact> {
+        return contactDao.getFlowPrimaryContact(true).map {
+            contactRoomItemToDtoMapper.map(it)
+        }
+    }
+
+    override fun getAllContactsList(): List<Contact> {
+        return contactRoomItemToDtoMapper.toListMapper().map(
+            contactDao.getAllContactsList()
+        )
+    }
+
+    override suspend fun getContactsCount(): Int {
+        return contactDao.count()
+    }
 }

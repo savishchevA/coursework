@@ -4,6 +4,7 @@ import android.location.Location
 import androidx.lifecycle.*
 import io.bsu.mmf.helpme.baseAndroid.utils.Event
 import io.bsu.mmf.helpme.common.usecase.profile.GetProfileUseCase
+import io.bsu.mmf.helpme.common.usecase.sharedPreference.time.GetStayTimeUseCase
 import io.bsu.mmf.helpme.common.usecase.train.SaveTrainUseCase
 import io.bsu.mmf.helpme.data.entity.local.Profile
 import io.bsu.mmf.helpme.data.train.TrainItem
@@ -12,11 +13,14 @@ import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TrainViewModel(
     private val getProfileUseCase: GetProfileUseCase,
-    private val saveTrainUseCase: SaveTrainUseCase
+    private val saveTrainUseCase: SaveTrainUseCase,
+    private val getStayTimeUseCase: GetStayTimeUseCase
 ) : ViewModel() {
     private var currentTime: Int = 0
     private var prevTime: Int = 0
@@ -29,6 +33,8 @@ class TrainViewModel(
 
     private var tickerChannel: ReceiveChannel<Unit>? = null
 
+    private val stayTimeLimit: Long = getStayTimeUseCase().toLong() * 1000
+
     private val _checkDistanceLimit = MediatorLiveData<Boolean>()
     val checkDistanceLimit: LiveData<Boolean>
         get() = _checkDistanceLimit
@@ -39,6 +45,8 @@ class TrainViewModel(
 
     init {
         startTimer()
+
+        Timber.e("Current stay time: ${getStayTimeUseCase()}")
 
         viewModelScope.launch {
             getProfileUseCase().collect {
@@ -62,7 +70,6 @@ class TrainViewModel(
         get() = _profile
 
 
-
     private val _showCurrentTime = MutableLiveData<Event<Int>>()
     val showCurrentTime: LiveData<Event<Int>>
         get() = _showCurrentTime
@@ -80,9 +87,15 @@ class TrainViewModel(
         get() = _drawPartOfDistance
 
 
-    fun saveTrain(trainItem: TrainItem) {
+    fun saveTrain(distance: String, trainTime: String) {
         viewModelScope.launch {
-            saveTrainUseCase(trainItem)
+            saveTrainUseCase(
+                TrainItem(
+                    time = trainTime,
+                    distance = distance,
+                    date = getTrainDate()
+                )
+            )
         }
     }
 
@@ -138,7 +151,7 @@ class TrainViewModel(
 
     private fun timerDelay() {
         viewModelScope.launch {
-            delay(20000)
+            delay(stayTimeLimit)
             checkMoving()
         }
     }
@@ -160,5 +173,21 @@ class TrainViewModel(
     fun cancelTimer() {
         tickerChannel?.cancel()
     }
+
+    private val _timeTrain = MutableLiveData<Event<Long>>()
+    val timeTrain: LiveData<Event<Long>>
+        get() = _timeTrain
+
+    fun updateTime(initTime: Long) {
+        _timeTrain.postValue(Event(initTime))
+    }
+
+    fun getTrainDate(): String {
+        val c = Calendar.getInstance().time
+
+        val df = SimpleDateFormat("dd-MMM")
+        return df.format(c)
+    }
+
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import io.bsu.mmf.helpme.baseAndroid.BaseViewModel
 import io.bsu.mmf.helpme.baseAndroid.utils.Event
 import io.bsu.mmf.helpme.common.usecase.profile.*
+import io.bsu.mmf.helpme.common.usecase.sharedPreference.time.SetStayTimeUseCase
 import io.bsu.mmf.helpme.data.entity.local.Profile
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -11,7 +12,9 @@ import kotlinx.coroutines.launch
 class TrainSettingsViewModel(
     private val updateTrainDistanceUseCase: UpdateTrainDistanceUseCase,
     private val updateTrainTimeUseCase: UpdateTrainTimeUseCase,
-    private val getProfileUseCase: GetProfileUseCase
+    private val updateStayTimeUseCase: UpdateStayTimeUseCase,
+    private val getProfileUseCase: GetProfileUseCase,
+    private val setStayTimeUseCase: SetStayTimeUseCase
 ) : BaseViewModel() {
 
 
@@ -31,6 +34,13 @@ class TrainSettingsViewModel(
         }
     }
 
+
+    fun updateStayTime(stayTime: String) {
+        viewModelScope.launch {
+            updateStayTimeUseCase(stayTime)
+            setStayTimeUseCase(stayTime)
+        }
+    }
 
     fun updateTrainTime(trainTime: String) {
         viewModelScope.launch {

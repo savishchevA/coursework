@@ -32,9 +32,6 @@ class RegistrationSecondFragment : BaseFragment(R.layout.fragment_registration_s
             )
         }
 
-        btn_late.setOnClickListener {
-            (parentFragment?.parentFragment as AuthMainFragment).navigateToMainScreen()
-        }
 
         viewModel.navigateToMainScreen.observeEvent(this) {
             (parentFragment?.parentFragment as AuthMainFragment).navigateToMainScreen()

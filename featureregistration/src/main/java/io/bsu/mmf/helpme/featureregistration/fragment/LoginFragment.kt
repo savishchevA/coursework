@@ -1,22 +1,16 @@
 package io.bsu.mmf.helpme.featureregistration.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isGone
 import androidx.lifecycle.Observer
 import com.github.razir.progressbutton.*
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.utils.*
-import io.bsu.mmf.helpme.baseAndroid.utils.dialog.SimpleKeyboardAnimator
 import io.bsu.mmf.helpme.data.auth.Account
 import io.bsu.mmf.helpme.featureregistration.R
-import io.bsu.mmf.helpme.featureregistration.viewmodel.AuthMainViewModel
 import io.bsu.mmf.helpme.featureregistration.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import timber.log.Timber
 
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -26,7 +20,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        SimpleKeyboardAnimator(requireActivity().window).start()
+      //  SimpleKeyboardAnimator(requireActivity().window).start()
         email.afterTextChanged {
             if (email.error != null) {
                 email.error = null
@@ -67,7 +61,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
 
         viewModel.successLogin.observe(viewLifecycleOwner, Observer {
-           // navController.navigate(R.id.action_global_mainFragment)
             (parentFragment?.parentFragment as AuthMainFragment).navigateToMainScreen()
         })
 

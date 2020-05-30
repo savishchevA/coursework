@@ -17,4 +17,10 @@ interface ContactsDataSource :
     suspend fun deleteContactById(contactId: Int)
     suspend fun getContactById(contactId: Int): Contact
 
+    suspend fun updatePrimaryContact(contactId: Int)
+    suspend fun getFlowPrimaryContact(): Flow<Contact>
+
+    fun getAllContactsList(): List<Contact>
+
+    suspend fun getContactsCount(): Int
 }

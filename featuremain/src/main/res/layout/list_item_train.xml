@@ -15,8 +15,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/trainName"
@@ -24,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16"
         android:layout_marginStart="@dimen/margin_16"
+        android:textColor="@color/bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Тренировка №1"/>
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginStart="@dimen/margin_16"
+        android:textColor="@color/bg"
         app:layout_constraintTop_toBottomOf="@+id/trainName"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="20.10.20 в 14:55"/>
@@ -45,6 +46,7 @@
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginBottom="@dimen/margin_16"
+        android:textColor="@color/bg"
         app:layout_constraintTop_toBottomOf="@+id/trainDay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

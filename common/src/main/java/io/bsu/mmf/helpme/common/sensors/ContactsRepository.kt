@@ -42,4 +42,20 @@ class ContactsRepository (
     override suspend fun updateContact(contact: Contact) {
         contactsDataSource.update(contact)
     }
+
+    override suspend fun updatePrimaryContact(contactId: Int) {
+        contactsDataSource.updatePrimaryContact(contactId)
+    }
+
+    override suspend fun getFlowPrimaryContact(): Flow<Contact> {
+        return contactsDataSource.getFlowPrimaryContact()
+    }
+
+    override fun getAllContactsList(): List<Contact> {
+        return contactsDataSource.getAllContactsList()
+    }
+
+    override suspend fun getContactsCount(): Int {
+        return contactsDataSource.getContactsCount()
+    }
 }

@@ -1,11 +1,12 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class Clouds(
-    @SerialName("all")
-    val all: Int
+
+    @Json(name="all")
+    val all: Int? = null
 )

@@ -33,23 +33,26 @@ class HelpFragment : BaseFragment(R.layout.fragment_help) {
         super.onViewCreated(view, savedInstanceState)
         v = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
+        viewModel.sendMessage()
        // v.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 150) , 1))
 
-        val rotate: ObjectAnimator = ObjectAnimator.ofFloat(
-            btn_call,
-            "rotation",
-            0f,
-            5f,
-            0f,
-            -5f,
-            0f
-        ) // rotate o degree then 20 degree and so on for one loop of rotation.
+//        val rotate: ObjectAnimator = ObjectAnimator.ofFloat(
+//            btn_call,
+//            "rotation",
+//            0f,
+//            5f,
+//            0f,
+//            -5f,
+//            0f
+//        ) // rotate o degree then 20 degree and so on for one loop of rotation.
+//
+//// animateView (View object)
+//        // animateView (View object)
+//        rotate.repeatCount = 100 // repeat the loop 20 times
+//        rotate.duration = 100 // animation play time 100 ms
+//        rotate.start()
 
-// animateView (View object)
-        // animateView (View object)
-        rotate.repeatCount = 100 // repeat the loop 20 times
-        rotate.duration = 100 // animation play time 100 ms
-        rotate.start()
+
 
         btn_call.setOnClickListener {
             callToMedical()

@@ -31,4 +31,16 @@ class ProfileDataSourceImpl (
     override suspend fun updateTrainTime(trainTime: String) {
         profileDao.updateTrainTime(trainTime)
     }
+
+    override suspend fun updateCommonMessage(commonMessage: String) {
+        profileDao.updateCommonMessage(commonMessage)
+    }
+
+    override suspend fun updateStayTime(stayTime: String) {
+        profileDao.updateStayTime(stayTime)
+    }
+
+    override suspend fun updateAlarmTime(alarmTime: String) {
+        profileDao.updateAlarmTime(alarmTime)
+    }
 }

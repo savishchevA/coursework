@@ -7,6 +7,7 @@ import android.preference.PreferenceManager
 import android.telephony.SmsManager
 import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.squareup.moshi.Moshi
 import io.bsu.mmf.helpme.common.BuildConfig
 import io.bsu.mmf.helpme.common.dataSource.*
 import io.bsu.mmf.helpme.common.dataSource.auth.AuthDataSource
@@ -49,6 +50,7 @@ import io.bsu.mmf.helpme.common.repository.train.TrainRepositoryImpl
 import io.bsu.mmf.helpme.common.repository.weather.WeatherRepository
 import io.bsu.mmf.helpme.common.repository.weather.WeatherRepositoryImpl
 import io.bsu.mmf.helpme.common.sensors.ContactsRepository
+import io.bsu.mmf.helpme.common.usecase.GetFBContactUseCase
 import io.bsu.mmf.helpme.common.usecase.SaveFBContactUseCase
 import io.bsu.mmf.helpme.common.usecase.auth.CheckUserLoginUseCase
 import io.bsu.mmf.helpme.common.usecase.auth.CreateAccountUseCase
@@ -57,11 +59,11 @@ import io.bsu.mmf.helpme.common.usecase.auth.ResetPasswordUseCase
 import io.bsu.mmf.helpme.common.usecase.contact.*
 import io.bsu.mmf.helpme.common.usecase.location.GetCoordinatesFromAddressUseCase
 import io.bsu.mmf.helpme.common.usecase.profile.*
-import io.bsu.mmf.helpme.common.usecase.sharedPreference.GetRegistrationStatusUseCase
-import io.bsu.mmf.helpme.common.usecase.sharedPreference.SetRegistrationStatusUseCase
+import io.bsu.mmf.helpme.common.usecase.sharedPreference.*
+import io.bsu.mmf.helpme.common.usecase.sharedPreference.time.*
+import io.bsu.mmf.helpme.common.usecase.sms.SendMessageForAllUseCase
 import io.bsu.mmf.helpme.common.usecase.sms.SendSmsUseCase
-import io.bsu.mmf.helpme.common.usecase.train.GetTrainsUseCase
-import io.bsu.mmf.helpme.common.usecase.train.SaveTrainUseCase
+import io.bsu.mmf.helpme.common.usecase.train.*
 import io.bsu.mmf.helpme.common.usecase.weather.GetCurrentWeatherUseCase
 import kotlinx.serialization.json.Json
 import okhttp3.Cache
@@ -72,6 +74,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import java.io.File
 import java.util.*
@@ -105,8 +108,10 @@ val commonModule = module {
     single { createOkHttpClient(get(), get()) }
     single { createOkHttpCache(get()) }
     single { createFile(get()) }
+    single { createMoshi() }
+    single { createMoshiConverter(get()) }
     single { createHttpLoggingInterceptor() }
-    single { createRetrofit(get(), get()) }
+    single { createRetrofit(get(), get(), get()) }
     single { createUrl() }
     single { createWeatherApi(get()) }
 
@@ -151,12 +156,19 @@ val commonModule = module {
     //sharedPreference
     single { GetRegistrationStatusUseCase(get()) }
     single { SetRegistrationStatusUseCase(get()) }
+    single { IsSendAllContactsUseCase(get()) }
+    single { SetSendAllContactsUseCase(get()) }
+    single { SetAlarmTimeUseCase(get()) }
+    single { GetAlarmTimeUseCase(get()) }
+    single { SetStayTimeUseCase(get()) }
+    single { GetStayTimeUseCase(get()) }
 
     //weather
     single { GetCurrentWeatherUseCase(get()) }
 
     //firebase
     single { SaveFBContactUseCase(get()) }
+    single { GetFBContactUseCase(get()) }
 
     //contatcs
     factory { GetAllContactUseCase(get()) }
@@ -165,12 +177,16 @@ val commonModule = module {
     single { DeleteContactUseCase(get()) }
     single { GetContactByIdUseCase(get()) }
     single { UpdateContactUseCase(get()) }
+    single { UpdatePrimaryContactUseCase(get()) }
+    single { GetObservablePrimaryContactUseCase(get()) }
+    single { GetContactsCountUseCase(get()) }
 
     //geocoder
     single { GetCoordinatesFromAddressUseCase(get()) }
 
     //sms
     factory { SendSmsUseCase(get(), get()) }
+    factory { SendMessageForAllUseCase(get(), get(), get()) }
 
 
     //profile
@@ -178,10 +194,14 @@ val commonModule = module {
     single { UpdateTrainTimeUseCase(get()) }
     single { UpdateTrainDistanceUseCase(get()) }
     single { CreateProfileUseCase(get()) }
+    single { UpdateCommonMessageUseCase(get()) }
+    single { UpdateStayTimeUseCase(get()) }
+    single { UpdateAlarmTimeUseCase(get()) }
 
     //train
     single { GetTrainsUseCase(get()) }
     single { SaveTrainUseCase(get()) }
+    single { DeleteTrainUseCase(get()) }
 
     //geocoder
     single { createGeocoder(get()) }
@@ -223,16 +243,22 @@ fun createHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingIntercep
 
 fun createRetrofit(
     url: String,
-    okHttpClient: OkHttpClient
+    okHttpClient: OkHttpClient,
+    moshiConverter: MoshiConverterFactory
 ): Retrofit {
     val contentType = "application/json".toMediaType()
     return Retrofit.Builder()
-        .addConverterFactory(Json.asConverterFactory(contentType))
+        .addConverterFactory(moshiConverter)
         .baseUrl(url)
         .addCallAdapterFactory(ErrorHandlingAdapter.ErrorHandlingCallAdapterFactory())
         .client(okHttpClient)
         .build()
 }
+
+
+fun createMoshiConverter(moshi: Moshi) = MoshiConverterFactory.create(moshi)
+
+fun createMoshi() = Moshi.Builder().build()
 
 fun createUrl() = "http://api.openweathermap.org/data/2.5/"
 

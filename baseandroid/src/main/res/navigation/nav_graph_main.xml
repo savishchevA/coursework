@@ -20,14 +20,14 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/toTrainFragment"
             app:destination="@id/trainFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/toSettingsFragment"
             app:destination="@id/settingsFragment"
@@ -48,28 +48,28 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_contactsFragment_to_mapFragment"
             app:destination="@id/mapFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_contactsFragment_to_changeContactFragment"
             app:destination="@id/changeContactFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_contactsFragment_to_chatFragment"
             app:destination="@id/chatFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -170,7 +170,7 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <action
         android:id="@+id/action_global_mainFragment"
@@ -179,7 +179,7 @@
         app:exitAnim="@anim/fragment_close_exit"
         app:popEnterAnim="@anim/fragment_fade_enter"
         app:popExitAnim="@anim/fragment_fade_exit"
-        app:popUpTo="@+id/nav_graph_main"/>
+        app:popUpTo="@+id/nav_graph_main" />
     <fragment
         android:id="@+id/authFragment"
         android:name="io.bsu.mmf.helpme.featureregistration.fragment.AuthFragment"
@@ -211,7 +211,7 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -239,28 +239,40 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/showTrainSuccess"
             app:destination="@id/successTrainFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
 
     <fragment
         android:id="@+id/trainSettingsFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.TrainSettingsFragment"
-        android:label="TrainSettingsFragment"/>
+        android:label="TrainSettingsFragment" />
+    <fragment
+        android:id="@+id/profileSettingsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.ProfileSettingsFragment"
+        android:label="ProfileSettingsFragment" />
+    <fragment
+        android:id="@+id/contactsSettingsFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.ContactSettingsFragment"
+        android:label="ContactSettingsFragment" />
+    <fragment
+        android:id="@+id/aboutAppFragment"
+        android:name="io.bsu.mmf.helpme.featuremain.fragment.settings.AboutAppFragment"
+        android:label="AboutAppFragment" />
     <fragment
         android:id="@+id/successTrainFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.train.finish.SuccessTrainFragment"
-        android:label="SuccessTrainFragment"/>
-<fragment
+        android:label="SuccessTrainFragment" />
+    <fragment
         android:id="@+id/helpFragment"
         android:name="io.bsu.mmf.helpme.featuremain.fragment.train.finish.HelpFragment"
-        android:label="HelpFragment"/>
+        android:label="HelpFragment" />
 
     <fragment
         android:id="@+id/settingsFragment"
@@ -272,6 +284,27 @@
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
-            app:popExitAnim="@anim/fragment_fade_exit"/>
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/toProfileSettingsFragment"
+            app:destination="@id/profileSettingsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/toContactsSettingsFragment"
+            app:destination="@id/contactsSettingsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/toAboutAppFragment"
+            app:destination="@id/aboutAppFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
 </navigation>

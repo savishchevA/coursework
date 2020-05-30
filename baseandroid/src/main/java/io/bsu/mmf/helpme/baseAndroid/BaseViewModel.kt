@@ -37,6 +37,25 @@ open class BaseViewModel : ViewModel() {
             _loading.value = false
         }
     }
+    fun <T> execute(
+        call: suspend () -> ResultNetwork<T>,
+        onSuccess: (T) -> Unit = {}
+    ) {
+        _loading.value = true
+        viewModelScope.launch {
+            call().fold(
+                onSuccess = {
+                    onSuccess(it)
+                },
+                onFailure = {
+                    Timber.e("Current error is ${it.errorMessage}")
+                    _error.value = it.errorMessage
+                }
+            )
+
+            _loading.value = false
+        }
+    }
 
 
 }

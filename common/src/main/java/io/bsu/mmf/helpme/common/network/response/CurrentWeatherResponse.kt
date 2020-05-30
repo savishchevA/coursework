@@ -1,35 +1,45 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
-import kotlinx.serialization.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class CurrentWeatherResponse(
-        @SerialName("base")
-        val base: String,
-        @SerialName("clouds")
-        val clouds: Clouds,
-        @SerialName("cod")
-        val cod: Int,
-        @SerialName("coord")
-        val coord: Coord,
-        @SerialName("dt")
-        val dt: Int,
-        @SerialName("id")
-        val id: Int,
-        @SerialName("main")
-        val main: Main,
-        @SerialName("name")
-        val name: String,
-        @SerialName("sys")
-        val sys: Sys,
-        @SerialName("timezone")
-        val timezone: Int,
-        @SerialName("visibility")
-        val visibility: Int,
-        @SerialName("weather")
-        val weather: List<Weather>,
 
-        @SerialName("wind")
+        @Json(name="base")
+        val base: String? = null,
+        @Json(name="clouds")
+        val clouds: Clouds? = null,
+        @Json(name="cod")
+        val cod: Int? = null,
+        @Json(name="coord")
+        val coord: Coord? = null,
+
+        @Json(name="dt")
+        val dt: Int? = null,
+
+        @Json(name="id")
+        val id: Int? = null,
+
+        @Json(name="main")
+        val main: Main? = null,
+
+        @Json(name="name")
+        val name: String? = null,
+
+        @Json(name="sys")
+        val sys: Sys? = null,
+
+        @Json(name="timezone")
+        val timezone: Int? = null,
+
+        @Json(name="visibility")
+        val visibility: Int? = null,
+
+        @Json(name="weather")
+        val weather: List<Weather>? = null,
+
+        @Json(name="wind")
         val wind: Wind? = null
 )

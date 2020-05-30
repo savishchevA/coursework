@@ -10,4 +10,8 @@ interface ProfileDataSource : BaseLocalDataSource<Profile> {
     suspend fun updateTrainDistance(trainDistance: String)
     suspend fun updateTrainTime(trainTime: String)
 
+    suspend fun updateCommonMessage(commonMessage: String)
+    suspend fun updateStayTime(stayTime: String)
+    suspend fun updateAlarmTime(alarmTime: String)
+
 }

@@ -10,7 +10,6 @@ import com.google.android.gms.maps.model.*
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.utils.navigateSafe
 import io.bsu.mmf.helpme.baseAndroid.utils.observeEvent
-import io.bsu.mmf.helpme.data.train.TrainItem
 import io.bsu.mmf.helpme.featuremain.R
 import io.bsu.mmf.helpme.featuremain.fragment.train.location.CurrentLocationListener
 import io.bsu.mmf.helpme.featuremain.viewmodel.TrainViewModel
@@ -98,7 +97,8 @@ class TrainFragment : BaseFragment(R.layout.fragment_train) {
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 initTime += 1000
-                tv_train_time.text = TimeParser.parse(initTime)
+                viewModel.updateTime(initTime)
+              //
             }
         }, 1000, 1000)
 
@@ -106,6 +106,10 @@ class TrainFragment : BaseFragment(R.layout.fragment_train) {
             color(ContextCompat.getColor(requireContext(), R.color.train_card_bg))
             width(15f)
             visible(true)
+        }
+
+        viewModel.timeTrain.observeEvent(viewLifecycleOwner) {
+            tv_train_time.text = TimeParser.parse(initTime)
         }
         viewModel.showCurrentDistance.observeEvent(viewLifecycleOwner) {
             Timber.e("Current distance in m: $it")
@@ -138,11 +142,7 @@ class TrainFragment : BaseFragment(R.layout.fragment_train) {
 
         btn_stop.setOnClickListener {
             navController.navigateSafe(R.id.showTrainSuccess)
-//            viewModel.saveTrain(
-//                TrainItem(
-//
-//                )
-//            )
+            viewModel.saveTrain(tv_distance.text.toString(), tv_train_time.text.toString())
         }
 
     }

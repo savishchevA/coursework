@@ -29,7 +29,6 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
         recyclerView.setControllerAndBuildModels(contactsController)
 
         viewModel.allContacts.observe(viewLifecycleOwner, Observer {
-            Timber.e("List recieved")
             contactsController.contactsList = it
         })
 

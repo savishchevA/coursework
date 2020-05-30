@@ -2,6 +2,7 @@ package io.bsu.mmf.helpme.featuremain.fragment.settings
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
@@ -16,13 +17,18 @@ class TrainSettingsFragment : BaseFragment(R.layout.fragment_train_settings) {
 
     private val viewModel by inject<TrainSettingsViewModel>()
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        activity?.window?.statusBarColor = ContextCompat.getColor(
+            requireContext(), R.color.bg
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(toolbarTrainSettings) {
-            setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener {
-                navController.navigateUp()
-            }
+
+        btn_back.setOnClickListener {
+            navController.navigateUp()
         }
 //
 //        btn_update_distance.setOnClickListener {
@@ -45,6 +51,16 @@ class TrainSettingsFragment : BaseFragment(R.layout.fragment_train_settings) {
                     showTimeDialog()
                 } else {
                     viewModel.updateTrainTime("")
+                }
+            }
+        }
+
+        switch_train_stay_time.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (buttonView.isPressed) {
+                if (isChecked) {
+                    showStayTimeDialog()
+                } else {
+                    viewModel.updateStayTime("")
                 }
             }
         }
@@ -73,6 +89,14 @@ class TrainSettingsFragment : BaseFragment(R.layout.fragment_train_settings) {
                 tv_change_time.text = getString(R.string.train_time_change_value, profile.trainTime)
             } else {
                 tv_change_time.visibility = View.GONE
+            }
+
+            if (profile.stayTime.isNotEmpty()) {
+                switch_train_stay_time.isChecked = true
+                tv_change_stay_time.visibility = View.VISIBLE
+                tv_change_stay_time.text = getString(R.string.train_time_change_value_sec, profile.stayTime)
+            } else {
+                tv_change_stay_time.visibility = View.GONE
             }
         }
 
@@ -107,6 +131,23 @@ class TrainSettingsFragment : BaseFragment(R.layout.fragment_train_settings) {
                 hint = "Лимит в минутах"
             ) { _, text ->
                 viewModel.updateTrainTime(text.toString())
+            }
+            negativeButton(text = "Отмена") {
+                dismiss()
+            }
+
+            positiveButton(text = "Сохранить")
+
+        }
+    }
+    private fun showStayTimeDialog() {
+        MaterialDialog(requireContext()).show {
+            lifecycleOwner(viewLifecycleOwner)
+            title(text = "Установите лимит по времени")
+            input(
+                hint = "Лимит в секундах"
+            ) { _, text ->
+                viewModel.updateStayTime(text.toString())
             }
             negativeButton(text = "Отмена") {
                 dismiss()

@@ -9,4 +9,6 @@ interface TrainRepository {
 
     suspend fun saveTrain(trainItem: TrainItem)
 
+    suspend fun deleteTrain(trainItem: TrainItem)
+
 }

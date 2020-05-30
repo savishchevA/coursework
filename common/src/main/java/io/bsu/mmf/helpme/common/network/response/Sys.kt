@@ -1,19 +1,26 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class Sys(
-    @SerialName("country")
-    val country: String,
-    @SerialName("id")
-    val id: Int,
-    @SerialName("sunrise")
-    val sunrise: Int,
-    @SerialName("sunset")
-    val sunset: Int,
-    @SerialName("type")
-    val type: Int
+
+    @Json(name="country")
+    val country: String? = null,
+
+    @Json(name="id")
+    val id: Int? = null,
+
+    @Json(name="sunrise")
+    val sunrise: Int? = null,
+
+    @Json(name="sunset")
+    val sunset: Int? = null,
+
+    @Json(name="type")
+    val type: Int? = null
 )

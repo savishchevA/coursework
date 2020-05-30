@@ -6,15 +6,13 @@ import android.telephony.SmsManager
 import android.view.View
 import android.view.animation.*
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.utils.navigateSafe
+import io.bsu.mmf.helpme.baseAndroid.utils.observeEvent
 import io.bsu.mmf.helpme.featuremain.R
 import io.bsu.mmf.helpme.featuremain.viewmodel.ActiveScanningViewModel
 import kotlinx.android.synthetic.main.fragment_active_scanning.*
-import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
 class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
 
@@ -31,11 +29,18 @@ class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // viewModel.startTimer()
+        // viewModel.startTimer()
 
+        viewModel.alarmTimeValue.observeEvent(viewLifecycleOwner) {
+            startTimer(it)
+        }
 
-       // Timber.e("Current circle bottom : ${iv_cirle.} top: ${iv_cirle.top}")
-      //  startTimeAnimation(9)
+        btn_cancel.setOnClickListener {
+            navController.navigateSafe(R.id.action_global_mainFragment)
+        }
+
+        // Timber.e("Current circle bottom : ${iv_cirle.} top: ${iv_cirle.top}")
+        //  startTimeAnimation(9)
 
 //        viewModel.currentTimerValue.observe(viewLifecycleOwner, Observer {
 //            startTimeAnimation(it)
@@ -45,14 +50,14 @@ class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
 //
 //            }
 //        })
-        startTimer()
+
         waveView.play()
     }
 
-    private fun startTimer() {
-        timer = object : CountDownTimer(11000L, 1000) {
+    private fun startTimer(alarmTime: Long) {
+        timer = object : CountDownTimer(alarmTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-               // setTimerTime(millisUntilFinished / 1000)
+                // setTimerTime(millisUntilFinished / 1000)
                 startTimeAnimation((millisUntilFinished / 1000).toInt())
             }
 
@@ -63,12 +68,20 @@ class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
         timer.start()
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if (::timer.isInitialized) {
+            timer.cancel()
+        }
+    }
+
     private fun sendMessage() {
 
-//        val smsManager = SmsManager.getDefault()
-//
-//        val dividedMessage = smsManager.divideMessage("test message")
-//        smsManager.sendMultipartTextMessage("+375291196847", null,dividedMessage , null, null)
+        val smsManager = SmsManager.getDefault()
+
+        val dividedMessage = smsManager.divideMessage("test message")
+        smsManager.sendMultipartTextMessage("+375291196847", null,dividedMessage , null, null)
 
     }
 
@@ -90,7 +103,7 @@ class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
         val animate = TranslateAnimation(
             0f,  // fromXDelta
             0f,  // toXDelta
-            tv_timer.height.toFloat() -80f,  // fromYDelta
+            tv_timer.height.toFloat() - 80f,  // fromYDelta
             tv_timer.height.toFloat() - 380f
         )
         animate.setDuration(1000)
@@ -103,8 +116,8 @@ class ActiveScanningFragment : BaseFragment(R.layout.fragment_active_scanning) {
 
 
 
-          tv_timer.startAnimation(anim)
-      //  slideUp(tv_timer)
+        tv_timer.startAnimation(anim)
+        //  slideUp(tv_timer)
 
 
     }

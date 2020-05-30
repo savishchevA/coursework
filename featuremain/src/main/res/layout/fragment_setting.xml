@@ -25,20 +25,40 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-        <TextView
-            android:id="@+id/tv_setting"
-            style="@style/TextViewSettings"
-            android:layout_width="0dp"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16"
-            android:layout_marginTop="@dimen/margin_16"
-            android:gravity="center"
-            android:text="Settings"
-            android:fontFamily="sans-serif"
-            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/btn_main_start"
+            app:shapeAppearance="@style/TrainDataShapeAppearance">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_setting"
+                    style="@style/TextViewSettings"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="Settings"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_train_settings"
@@ -48,20 +68,19 @@
             android:layout_marginTop="@dimen/margin_16"
             android:layout_marginEnd="@dimen/margin_8"
             android:alpha="0.8"
+            android:background="?selectableItemBackground"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:rippleColor="#393660"
             android:clickable="true"
             android:focusable="true"
-            app:strokeWidth="1dp"
-            app:strokeColor="#393660"
-            android:background="?selectableItemBackground"
-            app:layout_constraintDimensionRatio="1:2"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_divider"
             app:layout_constraintEnd_toStartOf="@+id/card_contact_settings"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_setting"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_center">
+            app:layout_constraintTop_toBottomOf="@+id/card_title"
+            app:rippleColor="#393660"
+            app:strokeColor="#393660"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -87,11 +106,11 @@
                     android:id="@+id/tv_train_settings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_16"
                     android:layout_marginStart="@dimen/margin_4"
                     android:layout_marginEnd="@dimen/margin_4"
-                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/margin_16"
                     android:fontFamily="sans-serif-light"
+                    android:gravity="center"
                     android:text="Train settings"
                     android:textColor="#393660"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -111,20 +130,20 @@
             android:layout_marginTop="@dimen/margin_16"
             android:layout_marginEnd="@dimen/margin_16"
             android:alpha="0.8"
+            android:background="?selectableItemBackground"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/help_train"
-            app:rippleColor="@color/help_train"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/view_divider"
             app:layout_constraintDimensionRatio="1:2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/card_train_settings"
-            app:layout_constraintTop_toBottomOf="@+id/tv_setting"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_center">
+            app:layout_constraintTop_toBottomOf="@+id/card_title"
+            app:rippleColor="@color/help_train"
+            app:strokeColor="@color/help_train"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -150,16 +169,16 @@
                     android:id="@+id/tv_contact_settings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_16"
                     android:layout_marginStart="@dimen/margin_4"
                     android:layout_marginEnd="@dimen/margin_4"
-                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/margin_16"
                     android:fontFamily="sans-serif-light"
-                    android:text="Contact settings"
+                    android:gravity="center"
+                    android:text="Message settings"
                     android:textColor="@color/help_train"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -175,17 +194,17 @@
             android:alpha="0.8"
             android:background="?selectableItemBackground"
             android:backgroundTint="@color/train_card_bg"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
             android:clickable="true"
             android:focusable="true"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/card_train_settings"
             app:layout_constraintStart_toStartOf="@+id/card_train_settings"
-            app:layout_constraintTop_toBottomOf="@+id/guideline_center"
-            app:rippleColor="@color/white">
+            app:layout_constraintTop_toBottomOf="@+id/view_divider"
+            app:rippleColor="@color/white"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -212,16 +231,16 @@
                     android:id="@+id/tv_app_settings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_16"
                     android:layout_marginStart="@dimen/margin_4"
                     android:layout_marginEnd="@dimen/margin_4"
-                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/margin_16"
                     android:fontFamily="sans-serif-light"
+                    android:gravity="center"
                     android:text="Application settings"
                     android:textColor="@color/white"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -235,19 +254,19 @@
             android:layout_marginTop="@dimen/margin_8"
             android:layout_marginBottom="40dp"
             android:alpha="0.8"
-            app:strokeColor="@color/colorOnBackground"
-            app:strokeWidth="1dp"
+            android:background="?selectableItemBackground"
             android:backgroundTint="@color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:rippleColor="@color/colorOnBackground"
             android:clickable="true"
             android:focusable="true"
-            android:background="?selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/card_contact_settings"
             app:layout_constraintStart_toStartOf="@+id/card_contact_settings"
-            app:layout_constraintTop_toBottomOf="@+id/guideline_center">
+            app:layout_constraintTop_toBottomOf="@+id/view_divider"
+            app:rippleColor="@color/colorOnBackground"
+            app:strokeColor="@color/colorOnBackground"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -273,16 +292,16 @@
                     android:id="@+id/tv_profile_settings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_16"
                     android:layout_marginStart="@dimen/margin_4"
                     android:layout_marginEnd="@dimen/margin_4"
-                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/margin_16"
                     android:fontFamily="sans-serif-light"
+                    android:gravity="center"
                     android:text="Profile settings"
                     android:textColor="@color/colorOnBackground"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -304,12 +323,15 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.75" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,17 +1,17 @@
 package io.bsu.mmf.helpme.common.network.response
 
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class Wind(
-    @SerialName("deg")
-    val deg: Int,
-    @SerialName("speed")
-    val speed: Int,
+    @Json(name="deg")
+    val deg: Int? = null,
 
-    @Transient
-    @SerialName("gust")
-    val gust: Int? = 0
+    @Json(name="speed")
+    val speed: Double? = null,
+
+    @Json(name="gust")
+    val gust: Int? = null
 )

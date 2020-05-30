@@ -9,4 +9,8 @@ interface ProfileRepository {
     suspend fun updateTrainTime(trainTime: String)
 
     suspend fun insertProfile(profile: Profile)
+
+    suspend fun updateCommonMessage(commonMessage: String)
+    suspend fun updateStayTime(stayTime: String)
+    suspend fun updateAlarmTime(alarmTime: String)
 }

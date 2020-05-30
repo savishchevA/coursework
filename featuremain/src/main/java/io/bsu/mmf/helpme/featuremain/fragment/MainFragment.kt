@@ -1,5 +1,8 @@
 package io.bsu.mmf.helpme.featuremain.fragment
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
@@ -8,15 +11,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.coroutineScope
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.airbnb.epoxy.EpoxyTouchHelper
+import com.github.florent37.runtimepermission.kotlin.PermissionException
+import com.github.florent37.runtimepermission.kotlin.coroutines.experimental.askPermission
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.shape.*
 import io.bsu.mmf.helpme.baseAndroid.BaseFragment
 import io.bsu.mmf.helpme.baseAndroid.customview.ProgressItemDecoration
 import io.bsu.mmf.helpme.baseAndroid.customview.recycler.TrainItemDecoration
-import io.bsu.mmf.helpme.baseAndroid.utils.navigateDirectionSafe
-import io.bsu.mmf.helpme.baseAndroid.utils.navigateSafe
+import io.bsu.mmf.helpme.baseAndroid.utils.*
+import io.bsu.mmf.helpme.baseAndroid.utils.dialog.input
+import io.bsu.mmf.helpme.data.train.TrainItem
 import io.bsu.mmf.helpme.featuremain.R
 import io.bsu.mmf.helpme.featuremain.adapter.controller.TrainController
 import io.bsu.mmf.helpme.featuremain.adapter.holder.TrainModelView
@@ -24,6 +33,7 @@ import io.bsu.mmf.helpme.featuremain.adapter.holder.TrainModelViewModel_
 import io.bsu.mmf.helpme.featuremain.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_training.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.time.*
@@ -38,33 +48,51 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     private val trainController: TrainController = TrainController()
 
+    private val controllerCallback = object : TrainController.Callbacks {
+        override fun onTrainClick(trainItem: TrainItem) {
+            deleteTrainDialog(trainItem)
+        }
+    }
     //  private lateinit var dialog: ChooseTimeDialogFragment
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity?.window?.statusBarColor = ContextCompat.getColor(
-            requireContext(), android.R.color.transparent
+            requireContext(), R.color.bg
         )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initContentView()
-        //  initTrainingList()
-//
-//        viewModel.trainList.observe(viewLifecycleOwner, Observer {
-//            trainController.trains = it
-//            rv_training.addItemDecoration(TrainItemDecoration(requireContext(), it))
-//        })
+        askLocationPermission()
+        askSendSmsPermission()
+        // initContentView()
+        initTrainingList()
+
+        viewModel.trainList.observe(viewLifecycleOwner, Observer {
+            trainController.trains = it
+            if (it.isNotEmpty()) {
+                rv_training.addItemDecoration(TrainItemDecoration(requireContext(), it))
+
+            }
+        })
 
         viewModel.currentWeather.observe(viewLifecycleOwner, Observer {
 
 
             tv_current_weather.text =
                 getString(R.string.current_weather, (it.temp - 273.15).toInt().toString())
-            Timber.e("Current weather: ${it.temp - 273.15}")
+            tv_feel_weather.text =
+                getString(R.string.feel_weather, (it.feelTemp - 273.15).toInt().toString())
+
+            tv_current_wind.text =
+                getString(R.string.wind_speed, it.windSpeed.toString())
+
+            iv_weather.setImageDrawable(requireContext().getWeatherIcon(it.weatherIcon))
+
+            Timber.e("Current weather: $it")
         })
 
 
@@ -83,12 +111,12 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         // trainController.trains = presenter.trainList
         //  rv_training.setController(trainController)
 
-        btn_train.setOnClickListener {
+        card_train.setOnClickListener {
             navController.navigate(R.id.toTrainFragment)
             // navController.navigate(R.id.action_mainFragment_to_contactsFragment)
         }
 
-        btn_contact.setOnClickListener {
+        btn_train.setOnClickListener {
             navController.navigateDirectionSafe(
                 MainFragmentDirections.actionMainFragmentToContactsFragment()
             )
@@ -102,32 +130,102 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     }
 
-    private fun initContentView() {
-        val leftShapePathModel = ShapeAppearanceModel.builder()
-            .setTopLeftCorner(RoundedCornerTreatment())
-            .setTopLeftCornerSize(300f)
-            .build()
+//    private fun initContentView() {
+//        val leftShapePathModel = ShapeAppearanceModel.builder()
+//            .setTopLeftCorner(RoundedCornerTreatment())
+//            .setTopLeftCornerSize(300f)
+//            .build()
+//
+//        val rightBottomShapePathModel = ShapeAppearanceModel.builder()
+//            .setBottomRightCorner(RoundedCornerTreatment())
+//            .setBottomRightCornerSize(250f)
+//            .build()
+//
+//
+//        val leftRoundedMaterialShape = MaterialShapeDrawable(leftShapePathModel)
+//        leftRoundedMaterialShape.fillColor =
+//            ContextCompat.getColorStateList(requireContext(), R.color.white)
+//
+//        val rightBg = MaterialShapeDrawable(rightBottomShapePathModel)
+//        rightBg.fillColor = ContextCompat.getColorStateList(requireContext(), R.color.bg)
+//        topContent.background = rightBg
+//        bottomContent.background = leftRoundedMaterialShape
+//
+//
+//    }
 
-        val rightBottomShapePathModel = ShapeAppearanceModel.builder()
-            .setBottomRightCorner(RoundedCornerTreatment())
-            .setBottomRightCornerSize(250f)
-            .build()
+    @SuppressLint("MissingPermission")
+    private fun askLocationPermission() {
+        if ((ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+                    == PackageManager.PERMISSION_GRANTED)
+            || (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+                    == PackageManager.PERMISSION_GRANTED)
+        ) {
 
+        } else {
+            lifecycle.coroutineScope.launch {
+                try {
+                    askPermission(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                } catch (e: PermissionException) {
+                }
+            }
+        }
+    }
 
-        val leftRoundedMaterialShape = MaterialShapeDrawable(leftShapePathModel)
-        leftRoundedMaterialShape.fillColor =
-            ContextCompat.getColorStateList(requireContext(), R.color.white)
+    private fun deleteTrainDialog(trainItem: TrainItem) {
+        MaterialDialog(requireContext()).show {
+            lifecycleOwner(viewLifecycleOwner)
+            title(text = "Удалить тренировку")
+            message(text = "Вы действительно хотите удалить выбранную тренировку?")
 
-        val rightBg = MaterialShapeDrawable(rightBottomShapePathModel)
-        rightBg.fillColor = ContextCompat.getColorStateList(requireContext(), R.color.bg)
-        topContent.background = rightBg
-        bottomContent.background = leftRoundedMaterialShape
+            negativeButton(text = "Отмена")
 
+            positiveButton(text = "Удалить") {
+                viewModel.deleteTrain(trainItem)
+            }
 
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun askSendSmsPermission() {
+        if ((ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.SEND_SMS
+            )
+                    == PackageManager.PERMISSION_GRANTED)
+            || (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.CALL_PHONE
+            )
+                    == PackageManager.PERMISSION_GRANTED)
+        ) {
+
+        } else {
+            lifecycle.coroutineScope.launch {
+                try {
+                    askPermission(
+                        Manifest.permission.SEND_SMS,
+                        Manifest.permission.CALL_PHONE
+                    )
+                } catch (e: PermissionException) {
+                }
+            }
+        }
     }
 
     private fun initTrainingList() {
 
+        trainController.callbacks = controllerCallback
         val leftShapePathModel = ShapeAppearanceModel.builder()
             .setTopRightCorner(RoundedCornerTreatment())
             .setTopLeftCorner(RoundedCornerTreatment())
@@ -146,8 +244,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
         bottomSheetBehavior.apply {
             state = BottomSheetBehavior.STATE_HIDDEN
-            peekHeight = 240
-            isHideable = false
+            peekHeight = training_title.height + requireContext().dpToPx(24)
+                    isHideable = false
             addBottomSheetCallback(object : BottomSheetCallback() {
                 override fun onStateChanged(
                     @NonNull bottomSheet: View,
@@ -166,6 +264,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         training_title.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
+
+        rv_training.setController(trainController)
     }
 
     fun fToC(f: Double) = 5 / 9.0 * (f - 32)

@@ -29,7 +29,8 @@ class TrainModelView @JvmOverloads constructor(
 //        radius = context.resources.getDimension(R.dimen.card_corner_radius)
 //        elevation = context.resources.getDimension(R.dimen.card_elevation)
     }
-
+    @set:CallbackProp
+    var onTrainClickListener: (() -> Unit)? = null
 
     @set:ModelProp
     var trainName: String = ""
@@ -47,5 +48,9 @@ class TrainModelView @JvmOverloads constructor(
         day.text = trainDate
         distance.text = trainDistance
 
+
+        setOnClickListener {
+            onTrainClickListener?.invoke()
+        }
     }
 }

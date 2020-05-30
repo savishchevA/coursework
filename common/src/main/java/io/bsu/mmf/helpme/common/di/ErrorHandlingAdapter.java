@@ -14,7 +14,7 @@ import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.moshi.MoshiConverterFactory;
 import retrofit2.http.GET;
 
 /**
@@ -147,7 +147,7 @@ public final class ErrorHandlingAdapter {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://httpbin.org")
                 .addCallAdapterFactory(new ErrorHandlingCallAdapterFactory())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create())
                 .build();
 
         HttpBinService service = retrofit.create(HttpBinService.class);

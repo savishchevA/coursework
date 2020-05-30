@@ -12,6 +12,15 @@ class ProfileRoomItem(
     @ColumnInfo(name = "contactName")
     val name: String,
 
+    @ColumnInfo(name = "stayTime")
+    val stayTime: String? = null,
+
+    @ColumnInfo(name = "alarmTime")
+    val alarmTime: String? = null,
+
+    @ColumnInfo(name = "commonMessage")
+    val commonMessage: String? = null,
+
     @ColumnInfo(name = "trainDistance")
     val trainDistance: String? = null,
 

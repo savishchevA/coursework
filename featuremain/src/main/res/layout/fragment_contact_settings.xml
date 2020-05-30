@@ -1,116 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/message_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/TrainDataShapeAppearance">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarTrainSettings"
-            style="@style/ToolbarStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Train settings" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content">
 
 
-        <TextView
-            android:id="@+id/tv_all_contact_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_20"
-            android:layout_marginTop="@dimen/margin_16"
-            android:fontFamily="sans-serif-light"
-            android:text="Отправлять сообщение всем контактам"
-            android:textAppearance="?textAppearanceBody1"
-            android:layout_marginEnd="@dimen/margin_12"
-            android:layout_marginStart="@dimen/margin_16"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/switch_all_contact"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_all_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_16"
-            app:layout_constraintTop_toTopOf="@+id/tv_all_contact_title"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_all_contact_title"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_distance_hint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4"
-            android:textSize="@dimen/text_16"
-            android:text="Ваше сообщение в случае проишедствия будет отправлено всем сохраненным контактам"
-            app:layout_constraintTop_toBottomOf="@+id/tv_all_contact_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_all_contact_title"
-            app:layout_constraintEnd_toEndOf="@id/tv_all_contact_title"/>
-
-        <TextView
-            android:id="@+id/tv_train_time_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_20"
-            android:layout_marginTop="@dimen/margin_32"
-            android:fontFamily="sans-serif-light"
-            android:text="Установить лимит по времени"
-            android:textAppearance="?textAppearanceBody1"
-            android:layout_marginEnd="@dimen/margin_12"
-            android:layout_marginStart="@dimen/margin_16"
-            app:layout_constraintTop_toBottomOf="@+id/tv_distance_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/switch_train_time"/>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_train_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_16"
-            app:layout_constraintTop_toTopOf="@+id/tv_train_time_title"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_train_time_title"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_change_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="?selectableItemBackground"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/train_distance_change_value"
-            android:textSize="@dimen/text_18"
-            app:layout_constraintEnd_toEndOf="@+id/tv_train_time_title"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_train_time_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_train_time_title" />
-
-        <TextView
-            android:id="@+id/tv_time_hint"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4"
-            android:textSize="@dimen/text_16"
-            android:text="Введите максимальное время тренировки, которое безопасно для вас"
-            app:layout_constraintTop_toBottomOf="@+id/tv_change_time"
-            app:layout_constraintStart_toStartOf="@+id/tv_train_time_title"
-            app:layout_constraintEnd_toEndOf="@id/tv_train_time_title"/>
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                android:tint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_setting"
+                app:layout_constraintTop_toTopOf="@+id/tv_setting"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_setting"/>
 
 
+            <TextView
+                android:id="@+id/tv_setting"
+                style="@style/TextViewSettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_marginEnd="56dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Message settings"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_all_contact_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:fontFamily="sans-serif-light"
+        android:text="Отправлять сообщение всем контактам"
+        android:textAppearance="?textAppearanceBody1"
+        android:textSize="@dimen/text_20"
+        android:textColor="@color/message_settings"
+        app:layout_constraintEnd_toStartOf="@+id/switch_all_contact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+    <Switch
+        android:id="@+id/switch_all_contact"
+        android:theme="@style/SettingsMessageSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all_contact_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_all_contact_title" />
+
+    <TextView
+        android:id="@+id/tv_distance_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:text="Ваше сообщение в случае проишедствия будет отправлено всем сохраненным контактам"
+        android:textSize="@dimen/text_16"
+        android:textColor="@color/message_settings"
+        app:layout_constraintEnd_toEndOf="@id/tv_all_contact_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_all_contact_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_all_contact_title" />
+
+    <TextView
+        android:id="@+id/tv_train_time_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:fontFamily="sans-serif-light"
+        android:text="Установить общение сообщение"
+        android:textAppearance="?textAppearanceBody1"
+        android:textSize="@dimen/text_20"
+        android:textColor="@color/message_settings"
+        app:layout_constraintEnd_toStartOf="@+id/switch_train_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_distance_hint" />
+
+    <TextView
+        android:id="@+id/tv_common_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/message_settings"
+        android:textSize="@dimen/text_14"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_train_time_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_train_time_title"
+        app:layout_constraintEnd_toEndOf="@+id/tv_train_time_title"
+        tools:visibility="visible"
+        tools:text="Общее сообщение"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_common_message"
+        android:theme="@style/SettingsMessageSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_train_time_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_train_time_title" />
+
+
+    <TextView
+        android:id="@+id/tv_time_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:text="Общее сообщение будет отправляться всем вашим контактом не зависимо от того, что указано для каждого отдельного контакта"
+        android:textColor="@color/message_settings"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintEnd_toEndOf="@id/tv_train_time_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_train_time_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_common_message" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

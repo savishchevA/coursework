@@ -23,4 +23,16 @@ class ProfileRepositoryImpl (
     override suspend fun insertProfile(profile: Profile) {
         profileDataSource.insert(profile)
     }
+
+    override suspend fun updateCommonMessage(commonMessage: String) {
+        profileDataSource.updateCommonMessage(commonMessage)
+    }
+
+    override suspend fun updateStayTime(stayTime: String) {
+        profileDataSource.updateStayTime(stayTime)
+    }
+
+    override suspend fun updateAlarmTime(alarmTime: String) {
+        profileDataSource.updateAlarmTime(alarmTime)
+    }
 }

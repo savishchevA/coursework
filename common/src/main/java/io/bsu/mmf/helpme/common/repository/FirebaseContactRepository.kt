@@ -6,7 +6,7 @@ import io.bsu.mmf.helpme.data.entity.local.Contact
 
 interface FirebaseContactRepository {
     suspend fun saveContact(contact: Contact)
-    suspend fun getContacts(contacts: List<Contact>)
+    suspend fun getContact(): Contact
 }
 
 class FirebaseContactRepositoryImpl (
@@ -17,7 +17,7 @@ class FirebaseContactRepositoryImpl (
         fireBaseContactsDataSource.saveContact(contact)
     }
 
-    override suspend fun getContacts(contacts: List<Contact>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getContact(): Contact {
+        return fireBaseContactsDataSource.getContacts()
     }
 }

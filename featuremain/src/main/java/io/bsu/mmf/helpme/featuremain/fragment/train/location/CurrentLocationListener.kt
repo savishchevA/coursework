@@ -60,9 +60,9 @@ class CurrentLocationListener private constructor(context: Context) : LiveData<L
 
     private fun createLocationRequest() {
         mLocationRequest = LocationRequest().apply {
-            interval = 10000
-            fastestInterval = 5000
-            priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+            interval = 3500
+            fastestInterval = 1500
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
     }
 

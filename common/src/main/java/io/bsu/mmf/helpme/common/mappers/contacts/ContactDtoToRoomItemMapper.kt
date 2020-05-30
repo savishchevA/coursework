@@ -17,6 +17,7 @@ class ContactDtoToRoomItemMapper(
                 longitude = longitude,
                 latitude = latitude,
                 image = contactImage,
+                contactMessage = message,
                 isPriorityContact = isPriorityContact
             )
         }

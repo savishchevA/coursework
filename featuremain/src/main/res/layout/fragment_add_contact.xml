@@ -13,19 +13,19 @@
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginTop="@dimen/margin_32"
         android:fontFamily="sans-serif"
-        android:text="Add new contact"
-        android:textColor="@color/colorPrimary"
+        android:text="Добавить контакт"
+        android:textColor="@color/bg"
         android:textSize="@dimen/text_32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/contactImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:adjustViewBounds="true"
-        android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/margin_12"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/HelpMe.Circle"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:layout_constraintTop_toBottomOf="@+id/add_contact_title"
         app:layout_constraintStart_toStartOf="parent"/>

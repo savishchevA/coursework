@@ -19,7 +19,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_setting) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity?.window?.statusBarColor = ContextCompat.getColor(
-            requireContext(), R.color.colorSecondary
+            requireContext(), R.color.btn_main_start
         )
     }
 
@@ -33,8 +33,20 @@ class SettingsFragment : BaseFragment(R.layout.fragment_setting) {
             }
         }
 
-        tv_train_settings.setOnClickListener {
+        card_train_settings.setOnClickListener {
             navController.navigateSafe(R.id.toTrainSettingsFragment)
+        }
+
+        card_contact_settings.setOnClickListener {
+            navController.navigateSafe(R.id.toContactsSettingsFragment)
+        }
+
+        card_profile_settings.setOnClickListener {
+            navController.navigateSafe(R.id.toProfileSettingsFragment)
+        }
+
+        card_app_settings.setOnClickListener {
+            navController.navigateSafe(R.id.toAboutAppFragment)
         }
     }
 }

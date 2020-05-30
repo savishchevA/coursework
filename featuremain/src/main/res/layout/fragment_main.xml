@@ -3,105 +3,170 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
-        android:fitsSystemWindows="true">
+        android:background="@color/bg">
 
-        <FrameLayout
-            android:id="@+id/topContainer"
+        <ImageView
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_weather"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
             android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/btn_settings"
+            app:shapeAppearance="@style/MainWeatherShapeAppearance">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/topContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:background="@color/bg">
-
-                <ImageView
-                    android:id="@+id/btn_settings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_16"
-                    android:contentDescription="@string/settings"
-                    android:src="@drawable/ic_settings"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tv_current_weather"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_16"
-                    android:layout_marginTop="@dimen/margin_32"
-                    android:layout_marginEnd="@dimen/margin_16"
-                    android:fontFamily="monospace"
-                    android:textColor="@color/main_text_color"
-                    android:textSize="@dimen/text_24"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/bg"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_feel_weather"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_weather"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_settings"
-                    tools:text="Current weather is 30" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Сейчас на улице: 23" />
+
+                <TextView
+                    android:id="@+id/tv_feel_weather"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/bg"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_current_wind"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_current_weather"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_current_weather"
+                    tools:text="Ощущается как: 22" />
+
+                <TextView
+                    android:id="@+id/tv_current_wind"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_current_weather"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_feel_weather"
+                    tools:text="Скорость ветра: 11 м/c" />
+
+                <ImageView
+                    android:id="@+id/iv_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/d02" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <FrameLayout
-            android:id="@+id/bottomContainer"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_train"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:backgroundTint="@color/bg"
+            android:elevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            app:rippleColor="@color/white"
+            app:shapeAppearance="@style/MainWeatherShapeAppearance"
+            app:layout_constraintTop_toBottomOf="@+id/card_weather"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/bottomContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:background="@color/white">
+                android:layout_height="match_parent">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_train"
-                    style="@style/Widget.HelpMe.Button.Main"
-                    android:layout_width="0dp"
-                    android:layout_marginEnd="@dimen/margin_16"
+                <TextView
+                    android:id="@+id/tv_start_train"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_16"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:gravity="left"
+                    android:singleLine="true"
                     android:text="@string/start_train"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/text_20"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/animation_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animation_logo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/margin_24"
+                    app:layout_constraintStart_toEndOf="@+id/tv_start_train"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/start_train_animation"
+                    app:lottie_speed="1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </FrameLayout>
-
-
-        <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:visibility="gone"
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_train"
+            style="@style/Widget.HelpMe.Button.Main"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginBottom="80dp"
+            android:text="@string/contacts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_start_training"
@@ -135,14 +200,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <fragment
-        android:id="@+id/lessons_sheet"
-        android:name="io.bsu.mmf.helpme.featuremain.fragment.train.TrainListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_anchor="@+id/constraintLayout2"
-        app:layout_anchorGravity="center"
-        tools:layout="@layout/fragment_train_list" />
-
-    <!--    <include layout="@layout/bottom_sheet_training" />-->
+    <include
+        layout="@layout/bottom_sheet_training"
+        tools:visibility="gone" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

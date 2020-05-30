@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HelpMe.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="HelpMe.HomeWidget" parent="">
+        <item name="cornerSize">@dimen/card_corner_radius</item>
+    </style>
+</resources>

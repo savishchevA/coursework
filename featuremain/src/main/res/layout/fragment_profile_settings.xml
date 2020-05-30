@@ -1,6 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/TrainDataShapeAppearance">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                android:tint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_profile"
+                app:layout_constraintTop_toTopOf="@+id/tv_profile"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_profile" />
+
+
+            <TextView
+                android:id="@+id/tv_profile"
+                style="@style/TextViewSettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_marginEnd="56dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Profile settings"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_alarm_time_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/main_text_color"
+        android:text="Установить тревожное время"
+        android:textAppearance="?textAppearanceBody1"
+        android:textSize="@dimen/text_20"
+        app:layout_constraintEnd_toStartOf="@+id/switch_alarm_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_primary_contact" />
+
+    <TextView
+        android:id="@+id/tv_alarm_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:background="?selectableItemBackground"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/train_distance_change_value"
+        android:textSize="@dimen/text_18"
+        android:textColor="@color/main_text_color"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_alarm_time_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_alarm_time_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time_title"
+        tools:visibility="visible"/>
+
+    <Switch
+        android:id="@+id/switch_alarm_time"
+        android:theme="@style/SettingsProfileSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_alarm_time_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_alarm_time_title" />
+
+    <TextView
+        android:id="@+id/tv_alarm_time_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:text="Установите максимальное время, которое будет доступно вам для отмены срабатывания тревожных функция в случае происшедствия"
+        android:textSize="@dimen/text_16"
+        android:textColor="@color/main_text_color"
+
+        app:layout_constraintEnd_toEndOf="@id/tv_alarm_time_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_alarm_time_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_alarm_time" />
+
+
+    <TextView
+        android:id="@+id/tv_choose_primary_contact_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:textSize="@dimen/text_20"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/main_text_color"
+        android:text="Выберите основной контакт"
+        app:layout_constraintTop_toBottomOf="@+id/card_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_primary_contact"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="@dimen/margin_24"
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_primary_contact_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rv_contacts">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contact_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/contact_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/HelpMe.Circle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_contact_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/text_16"
+                android:textColor="@color/main_text_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contact_img"
+                tools:text="gfdssd"/>
+
+            <TextView
+                android:id="@+id/tv_contact_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/text_16"
+                android:textColor="@color/main_text_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact_name"
+                tools:text="424345234"/>
+
+            <TextView
+                android:id="@+id/tv_contact_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/text_16"
+                android:textColor="@color/main_text_color"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact_phone"
+                tools:text="424345234"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/rv_contacts"
+        android:layout_width="100dp"
+        android:layout_marginStart="@dimen/margin_4"
+        android:layout_marginEnd="@dimen/margin_4"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/card_primary_contact"
+        app:layout_constraintBottom_toBottomOf="@+id/card_primary_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card_primary_contact"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
