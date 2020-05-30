@@ -54,8 +54,8 @@
     <string name="settings">Настройки</string>
 
    <!-- <string name="current_weather">Current weather: %1$s</string>-->
-    <string name="current_weather">Сейчас на улице: %1$s°C</string>
-    <string name="feel_weather">Ощущается как: %1$s°C</string>
+    <string name="current_weather">Сейчас %1$s°C</string>
+    <string name="feel_weather">Ощущается %1$s°C</string>
     <string name="wind_speed">Скорость ветра: %1$s м/c</string>
 
     <string name="profile_settings_alarm_value">Установленное время: %1$s секунд</string>

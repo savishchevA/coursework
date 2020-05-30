@@ -81,7 +81,7 @@ class ContactsController : EpoxyController() {
                 address(contact.address)
                 modelId(contact.id)
                 onContactClickListener {
-                    listener(ContactDetailEvent(contact))
+                   // listener(ContactDetailEvent(contact))
                 }
             }
         }

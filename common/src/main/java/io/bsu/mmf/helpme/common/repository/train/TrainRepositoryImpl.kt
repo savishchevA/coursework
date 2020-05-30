@@ -17,6 +17,6 @@ class TrainRepositoryImpl (
     }
 
     override suspend fun deleteTrain(trainItem: TrainItem) {
-        trainDataSource.delete(trainItem)
+        trainDataSource.deleteTrain(trainItem.id)
     }
 }

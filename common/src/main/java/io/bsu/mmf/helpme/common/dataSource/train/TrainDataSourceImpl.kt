@@ -22,4 +22,8 @@ class TrainDataSourceImpl(
             trainRoomItemToDtoMapper.toListMapper().map(it)
         }
     }
+
+    override suspend fun deleteTrain(trainId: Int) {
+        trainDao.deleteTrain(trainId)
+    }
 }

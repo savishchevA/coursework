@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface TrainDataSource : BaseLocalDataSource<TrainItem> {
 
     suspend fun getAllTrains(): Flow<List<TrainItem>>
-
+    suspend fun deleteTrain(trainId: Int)
 }

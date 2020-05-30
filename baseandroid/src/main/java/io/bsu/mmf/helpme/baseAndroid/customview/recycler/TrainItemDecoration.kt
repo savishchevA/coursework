@@ -10,14 +10,13 @@ import io.bsu.mmf.helpme.baseAndroid.R
 import io.bsu.mmf.helpme.data.train.TrainItem
 
 class TrainItemDecoration(
-    private val context: Context,
-    list: List<TrainItem>
+    private val context: Context
 ) : RecyclerView.ItemDecoration() {
 
     private val circlePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val linePaint: Paint
     private val datePaint: Paint
-    private var dateList: List<TrainItem> = list
+    private var dateList: List<TrainItem> = emptyList()
     private var radius: Int = 0
     private var curPosition = 0
 
@@ -58,11 +57,16 @@ class TrainItemDecoration(
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
+
         outRect.apply {
             top = dp2Px(20).toInt()
             left = dp2Px(80).toInt()
         }
 
+    }
+
+    fun setTrainList(list: List<TrainItem>) {
+        dateList = list
     }
 
     override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -174,6 +178,54 @@ class TrainItemDecoration(
                 }
 
 
+            }
+        } else {
+            val childCount = parent.childCount
+            val layoutManager = parent.layoutManager!!
+            for (i in 0 until childCount step 1) {
+                val childView = parent.getChildAt(i)
+                val leftDecorationWith = layoutManager.getLeftDecorationWidth(childView)
+                val topDecorationHeight = layoutManager.getTopDecorationHeight(childView)
+
+                val childLayoutPosition = parent.getChildLayoutPosition(childView)
+
+
+                if (childLayoutPosition > curPosition) {
+
+                    linePaint.color = ContextCompat.getColor(context, R.color.bg)
+                    circlePaint.color = ContextCompat.getColor(context, R.color.bg)
+                    circlePaint.style = Paint.Style.STROKE
+                } else {
+                    linePaint.color = ContextCompat.getColor(context, R.color.bg)
+                    circlePaint.color = ContextCompat.getColor(context, R.color.bg)
+                    circlePaint.style = Paint.Style.FILL
+                }
+
+                if (childLayoutPosition == curPosition) {
+                    circlePaint.style = Paint.Style.STROKE
+                    circlePaint.color = ContextCompat.getColor(context, R.color.futureTrainingColor)
+                    canvas.drawCircle(
+                        leftDecorationWith.toFloat(),
+                        childView.top + childView.height / 2f,
+                        dp2Px(2),
+                        circlePaint
+                    )
+                }
+
+
+                canvas.drawText(
+                    dateList[0].date,
+                    40f,
+                    childView.top + childView.height / 2f + dp2Px(6),
+                    datePaint
+                )
+
+                canvas.drawCircle(
+                    leftDecorationWith.toFloat(),
+                    childView.top + childView.height / 2f,
+                    radius.toFloat(),
+                    circlePaint
+                )
             }
         }
     }

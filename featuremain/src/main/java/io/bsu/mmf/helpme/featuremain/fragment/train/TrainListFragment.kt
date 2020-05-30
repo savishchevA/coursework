@@ -102,7 +102,7 @@ class TrainListFragment : BaseFragment(R.layout.fragment_train_list) {
 
         viewModel.trainList.observe(viewLifecycleOwner, Observer {
             trainController.trains = it
-            playlist.addItemDecoration(TrainItemDecoration(requireContext(), it))
+           // playlist.addItemDecoration(TrainItemDecoration(requireContext(), it))
             playlist.adapter = trainController.adapter
         })
     }

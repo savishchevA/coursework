@@ -13,4 +13,6 @@ interface TrainDao : BaseDao<TrainRoomItem> {
     fun getAll(): Flow<List<TrainRoomItem>>
 
 
+    @Query("DELETE FROM train WHERE id = :trainId")
+    suspend fun deleteTrain(trainId: Int)
 }

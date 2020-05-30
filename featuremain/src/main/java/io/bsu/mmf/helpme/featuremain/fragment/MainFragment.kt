@@ -71,11 +71,13 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         // initContentView()
         initTrainingList()
 
+        val itemDecoration = TrainItemDecoration(requireContext())
+        rv_training.addItemDecoration(itemDecoration)
         viewModel.trainList.observe(viewLifecycleOwner, Observer {
             trainController.trains = it
             if (it.isNotEmpty()) {
-                rv_training.addItemDecoration(TrainItemDecoration(requireContext(), it))
-
+                itemDecoration.setTrainList(it)
+                rv_training.invalidate()
             }
         })
 
@@ -116,7 +118,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             // navController.navigate(R.id.action_mainFragment_to_contactsFragment)
         }
 
-        btn_train.setOnClickListener {
+        btn_contacts.setOnClickListener {
             navController.navigateDirectionSafe(
                 MainFragmentDirections.actionMainFragmentToContactsFragment()
             )
